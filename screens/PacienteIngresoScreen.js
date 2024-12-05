@@ -4,6 +4,7 @@ import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { format } from 'date-fns';
 import { Picker } from '@react-native-picker/picker';
+import styles from './Styles';
 
 
 const PacienteIngresoScreen = ({navigation, route}) => {
@@ -34,9 +35,9 @@ const PacienteIngresoScreen = ({navigation, route}) => {
         <Text style={styles.title}>Ingreso Paciente</Text>
 
         {/* Identificación */}
-        <View style={{flexDirection: 'row', marginBottom: 15, alignItems: 'center', justifyContent: 'space-between' }}>
+        <View style={styles.inputRow}>
 
-          <Text style={{ flex: 1, fontSize: 16 }}>Identificación</Text>
+          <Text style={styles.label}>Identificación</Text>
 
           <TextInput
             style={{ flex: 1, borderColor: 'gray', borderWidth: 1, padding: 5, marginHorizontal: 5, }}
@@ -46,18 +47,18 @@ const PacienteIngresoScreen = ({navigation, route}) => {
             onChangeText={(value) => handleInputChange('idPaciente', value)}
           />
 
-          <Text style={{ flex: 1, fontSize: 16 }}></Text>
-          <Text style={{ flex: 1, fontSize: 16 }}></Text>
+          <Text style={styles.label}></Text>
+          <Text style={styles.label}></Text>
 
         </View>
 
         {/* F.Nacimiento */}
-        <View style={{flexDirection: 'row', marginBottom: 15, alignItems: 'center', justifyContent: 'space-between' }}>
+        <View style={styles.inputRow}>
 
-          <Text style={{ flex: 1, fontSize: 16 }}>F.Nacimiento</Text>
+          <Text style={styles.label}>F.Nacimiento</Text>
 
           <View style={{ flex: 1, marginHorizontal: 5 }}>
-            <Button style={{ backgroundColor: 'yellow' }}
+            <Button style={{ color: 'white' }}
               title={format(formData.fechaNacimientoPaciente, 'dd-MM-yyyy')}
               onPress={() => setShowDatePicker(true)}
             />
@@ -69,16 +70,16 @@ const PacienteIngresoScreen = ({navigation, route}) => {
             />)}
           </View>
 
-          <Text style={{ flex: 1, fontSize: 16 }}>Edad</Text>
-          <Text style={{ flex: 1, fontSize: 16, borderColor: 'gray', borderWidth: 1,  textAlign: "right", backgroundColor: 'yellow' }}>{formData.edadPaciente}</Text>
+          <Text style={styles.label}>Edad</Text>
+          <Text style={styles.text}>{formData.edadPaciente}</Text>
 
         </View>
 
         
         {/* Sexo */}
-        <View style={{flexDirection: 'row', marginBottom: 15, alignItems: 'center', justifyContent: 'space-between' }}>
+        <View style={styles.inputRow}>
 
-          <Text style={{ flex: 1, fontSize: 16 }}>Sexo</Text>
+          <Text style={styles.label}>Sexo</Text>
 
           <Picker
             selectedValue={formData.sexoPaciente}
@@ -90,44 +91,44 @@ const PacienteIngresoScreen = ({navigation, route}) => {
             <Picker.Item label="Otro" value="O" />
           </Picker>
 
-          <Text style={{ flex: 1, fontSize: 16 }}></Text>
-          <Text style={{ flex: 1, fontSize: 16 }}></Text>
+          <Text style={styles.label}></Text>
+          <Text style={styles.label}></Text>
 
         </View>
 
         {/* Peso */}
-        <View style={{flexDirection: 'row', marginBottom: 15, alignItems: 'center', justifyContent: 'space-between' }}>
+        <View style={styles.inputRow}>
 
-          <Text style={{ flex: 1, fontSize: 16 }}>Peso [Kg]</Text>
+          <Text style={styles.label}>Peso [Kg]</Text>
 
           <TextInput
-            style={{ flex: 1, borderColor: 'gray', borderWidth: 1, padding: 5, marginHorizontal: 5, }}
+            style={styles.textInput}
             keyboardType="numeric"
             textAlign="right"
             value={formData.pesoPaciente}
             onChangeText={(value) => handleInputChange('pesoPaciente', value)}
           />
 
-          <Text style={{ flex: 1, fontSize: 16 }}></Text>
-          <Text style={{ flex: 1, fontSize: 16 }}></Text>
+          <Text style={styles.label}></Text>
+          <Text style={styles.label}></Text>
 
         </View>
 
         {/* Talla */}
-        <View style={{flexDirection: 'row', marginBottom: 15, alignItems: 'center', justifyContent: 'space-between' }}>
+        <View style={styles.inputRow}>
 
-          <Text style={{ flex: 1, fontSize: 16 }}>Talla [Mtr]</Text>
+          <Text style={styles.label}>Talla [Mtr]</Text>
 
           <TextInput
-            style={{ flex: 1, borderColor: 'gray', borderWidth: 1, padding: 5, marginHorizontal: 5, }}
+            style={styles.textInput}
             keyboardType="numeric"
             textAlign="right"
             value={formData.tallaPaciente}
             onChangeText={(value) => handleInputChange('tallaPaciente', value)}
           />
 
-          <Text style={{ flex: 1, fontSize: 16 }}>IMC</Text>
-          <Text style={{ flex: 1, fontSize: 16, borderColor: 'gray', borderWidth: 1,  textAlign: "right", backgroundColor: 'yellow' }}>{formData.imcPaciente}</Text>
+          <Text style={styles.label}>IMC</Text>
+          <Text style={styles.textResult}>{formData.imcPaciente}</Text>
 
         </View>
 
@@ -138,29 +139,5 @@ const PacienteIngresoScreen = ({navigation, route}) => {
     </View>
     );
   }
-  
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 20,
-      backgroundColor: '#f5f5f5',
-    },
-    title: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      marginBottom: 20,
-    },
-    input: {
-      width: '100%',
-      padding: 10,
-      marginVertical: 10,
-      borderWidth: 1,
-      borderColor: '#ccc',
-      borderRadius: 5,
-      backgroundColor: '#fff',
-    },
-  });
-  
+ 
   export default PacienteIngresoScreen;
