@@ -70,11 +70,46 @@ const PacienteResumenScreen = ({navigation, route}) => {
         {/* Talla */}
         <View style={styles.inputRow}>
 
-          <Text style={styles.label}>Peso [Kg]</Text>
+          <Text style={styles.label}>Talla [Mtr]</Text>
           <Text style={styles.textResult}>{formData.tallaPaciente}</Text>
 
           <Text style={styles.label}>IMC</Text>
           <Text style={styles.textResult}>{formData.imcPaciente}</Text>
+
+        </View>
+
+        {/* Postración */}
+        <View style={styles.inputRow}>
+
+          <Text style={styles.label}>Tpo.postración (total, parcial, otra) [Meses]</Text>
+          <Text style={styles.textResult}>{formData.mesesPostracionPaciente}</Text>
+
+          <Text style={styles.label}>[Años]</Text>
+          <Text style={styles.textResult}>{formData.anosPostracionPaciente}</Text>
+
+        </View>
+
+        {/* Diagnóstico */}
+        <View style={styles.inputRow}>
+
+          <Text style={styles.label}>Diagnóstico de ingreso al programa PI/ACHS</Text>
+          <Text style={[styles.textResult, {flex: 3,  textAlign: "left"}]}>{formData.diagPaciente}</Text>
+
+        </View>
+
+        {/* Ingreso */}
+        <View style={styles.inputRow}>
+
+          <Text style={[styles.label, {flex: 2}]}>Promedio aproximado de ingreso mensual de todos los integrantes de la vivienda</Text>
+          <Text style={[styles.textResult, {flex: 2,  textAlign: "left"}]}>{formData.ingresoPaciente}</Text>
+
+        </View>
+
+        {/* Estudio */}
+        <View style={styles.inputRow}>
+
+          <Text style={[styles.label, {flex: 2}]}>Mayor nivel de estudios que ha obtenido el paciente</Text>
+          <Text style={[styles.textResult, {flex: 2,  textAlign: "left"}]}>{formData.estudioPaciente}</Text>
 
         </View>
 

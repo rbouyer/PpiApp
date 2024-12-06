@@ -9,14 +9,16 @@ import styles from './Styles';
 import dataDropDown from '../data/dropdown.json';
 import { ScrollView } from 'react-native-gesture-handler';
 
+import {calculaAnos, calculaEdad} from '../helpers/DateHelper.js'
+import {calculaIMC} from '../helpers/GralHelper.js'
+
 const PacienteIngresoScreen = ({navigation, route}) => {
     const { data } = route.params;
     const [showDatePicker, setShowDatePicker] = useState(false);
 
     //alert(JSON.stringify(data, null, 2));
 
-
-    console.log(JSON.stringify(dataDropDown, null, 2));
+    //console.log(JSON.stringify(dataDropDown, null, 2));
 
     const [formData, setFormData] = useState(data);
  
@@ -26,24 +28,31 @@ const PacienteIngresoScreen = ({navigation, route}) => {
  
     const handleInputChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
-      };
-    
-      const handleDateChange = (field, selectedDate) => {
-        setFormData({ ...formData, [field]: selectedDate });
-        setShowDatePicker(false); // Close the picker
-      };
+    };
+ 
+    const handleInputMesesPostracionChange = (value) => {
+      setFormData({ ...formData, "mesesPostracionPaciente": value });
+      //setFormData({ ...formData, "anosPostracionPaciente": calculaAnos(value) });
+  };
+  
+    const handleDateChange = (field, selectedDate) => {
+      setFormData({ ...formData, [field]: selectedDate, 'edadPaciente': calculaEdad(selectedDate) });
+      setShowDatePicker(false); // Close the picker
+      //setFormData({ ...formData, 'edadPaciente': calculaEdad(selectedDate) });
+    };
     
     return (
+<View>
+<Text style={styles.title}>Ingreso Paciente</Text>
 <ScrollView >
-<View style={styles.container}>
-        <Text style={styles.title}>Ingreso Paciente</Text>
+  <View style={styles.container}>
         {/* Identificación */}
         <View style={styles.inputRow}>
 
           <Text style={styles.label}>Identificación</Text>
 
           <TextInput
-            style={{ flex: 1, borderColor: 'gray', borderWidth: 1, padding: 5, marginHorizontal: 5, }}
+            style={styles.textInput}
             keyboardType="numeric"
             textAlign="right"
             value={formData.idPaciente}
@@ -70,6 +79,7 @@ const PacienteIngresoScreen = ({navigation, route}) => {
             mode="date"
             display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
             onChange={(event, selectedDate) => handleDateChange('fechaNacimientoPaciente', selectedDate)}
+            onEndEditing={(e) => handleInputChange('edadPaciente', calculaEdad(e.nativeEvent.text))}
             />)}
           </View>
 
@@ -110,6 +120,7 @@ const PacienteIngresoScreen = ({navigation, route}) => {
             textAlign="right"
             value={formData.pesoPaciente}
             onChangeText={(value) => handleInputChange('pesoPaciente', value)}
+            onEndEditing={(e) => handleInputChange('imcPaciente', calculaIMC(e.nativeEvent.text, formData.tallaPaciente))}
           />
 
           <Text style={styles.label}></Text>
@@ -128,7 +139,8 @@ const PacienteIngresoScreen = ({navigation, route}) => {
             textAlign="right"
             value={formData.tallaPaciente}
             onChangeText={(value) => handleInputChange('tallaPaciente', value)}
-          />
+            onEndEditing={(e) => handleInputChange('imcPaciente', calculaIMC(formData.pesoPaciente, e.nativeEvent.text))}
+            />
 
           <Text style={styles.label}>IMC</Text>
           <Text style={styles.textResult}>{formData.imcPaciente}</Text>
@@ -138,7 +150,7 @@ const PacienteIngresoScreen = ({navigation, route}) => {
         {/* Tpo. Postración */}
         <View style={styles.inputRow}>
 
-          <Text style={styles.label}>Tpo.postración [Meses]</Text>
+          <Text style={styles.label}>Tpo.postración (total, parcial, otra) [Meses]</Text>
 
           <TextInput
             style={styles.textInput}
@@ -146,9 +158,10 @@ const PacienteIngresoScreen = ({navigation, route}) => {
             textAlign="right"
             value={formData.mesesPostracionPaciente}
             onChangeText={(value) => handleInputChange('mesesPostracionPaciente', value)}
-          />
+            onEndEditing={(e) => handleInputChange('anosPostracionPaciente', calculaAnos(e.nativeEvent.text))}
+            />
 
-          <Text style={styles.label}>Años</Text>
+          <Text style={styles.label}>[Años]</Text>
           <Text style={styles.textResult}>{formData.anosPostracionPaciente}</Text>
 
         </View>
@@ -187,7 +200,7 @@ const PacienteIngresoScreen = ({navigation, route}) => {
         {/* Estudios */}
         <View style={styles.inputRow}>
 
-          <Text style={[styles.label, {flex: 2}]}>Por favor, indique a continuación  ¿cuál es el promedio aproximado de ingreso mensual de todos los integrantes de la vivienda?</Text>
+          <Text style={[styles.label, {flex: 2}]}>Por favor, detalle a continuación ¿cuál es el mayor nivel de estudios que ha obtenido el paciente? </Text>
 
           <Picker
             selectedValue={formData.estudioPaciente}
@@ -201,13 +214,16 @@ const PacienteIngresoScreen = ({navigation, route}) => {
 
         </View>
 
+        <Button
+          title="Siguiente"
+          onPress={() => navigation.navigate('PacienteResumen', { data: formData })}
+        />
+        <Text style={styles.label}></Text>
+        <Text style={styles.label}></Text>
 
-    <Button
-        title="Siguiente"
-        onPress={() => navigation.navigate('PacienteResumen', { data: formData })}
-      />
-    </View>
+      </View>
     </ScrollView>
+    </View>
     );
   }
  

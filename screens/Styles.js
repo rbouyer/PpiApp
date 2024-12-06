@@ -36,7 +36,7 @@ var styles = StyleSheet.create({
         flexDirection: 'row', marginBottom: 15, alignItems: 'center', justifyContent: 'space-between' 
       },
       textInput: {
-        flex: 1, borderColor: 'gray', borderWidth: 1, padding: 5, marginHorizontal: 5
+        flex: 1, borderColor: 'gray', borderWidth: 1, padding: 5, marginHorizontal: 5, backgroundColor: 'white'
       },
       separator: {
         marginVertical: 8,
