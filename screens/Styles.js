@@ -37,6 +37,14 @@ var styles = StyleSheet.create({
       },
       textInput: {
         flex: 1, borderColor: 'gray', borderWidth: 1, padding: 5, marginHorizontal: 5
+      },
+      separator: {
+        marginVertical: 8,
+        borderBottomColor: '#737373',
+        borderBottomWidth: StyleSheet.hairlineWidth,
+      },
+      picker: {
+        flex: 1, fontSize: 16
       }
     });
 

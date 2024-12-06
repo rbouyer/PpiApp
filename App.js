@@ -11,7 +11,7 @@ const App = () => {
   const [formData, setFormData] = useState(
     { emailUsuario: '', claveUsuario: '', 
       fechaNacimientoPaciente: new Date(), edadPaciente: 0, idPaciente: 0, sexoPaciente: '', pesoPaciente: 0, tallaPaciente: 0, 
-      mesesPostracionPaciente: 0, diagPaciente: '', ingresoPaciente: '', ensenanzaPaciente: '', imcPaciente: 0}
+      mesesPostracionPaciente: 0, anosPostracionPaciente: 0, diagPaciente: '', ingresoPaciente: '', estudioPaciente: '', imcPaciente: 0}
   );
 
   const handleInputChange = (field, value) => {

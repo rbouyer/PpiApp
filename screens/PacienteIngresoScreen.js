@@ -6,6 +6,8 @@ import { format } from 'date-fns';
 import { Picker } from '@react-native-picker/picker';
 import styles from './Styles';
 
+import dataDropDown from '../data/dropdown.json';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const PacienteIngresoScreen = ({navigation, route}) => {
     const { data } = route.params;
@@ -13,13 +15,14 @@ const PacienteIngresoScreen = ({navigation, route}) => {
 
     //alert(JSON.stringify(data, null, 2));
 
-    console.log(JSON.stringify(data, null, 2));
+
+    console.log(JSON.stringify(dataDropDown, null, 2));
 
     const [formData, setFormData] = useState(data);
  
     //alert(JSON.stringify(formData, null, 2));
 
-    console.log(JSON.stringify(formData, null, 2));
+    //console.log(JSON.stringify(formData, null, 2));
  
     const handleInputChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
@@ -31,9 +34,9 @@ const PacienteIngresoScreen = ({navigation, route}) => {
       };
     
     return (
-      <View style={styles.container}>
+<ScrollView >
+<View style={styles.container}>
         <Text style={styles.title}>Ingreso Paciente</Text>
-
         {/* Identificación */}
         <View style={styles.inputRow}>
 
@@ -58,7 +61,7 @@ const PacienteIngresoScreen = ({navigation, route}) => {
           <Text style={styles.label}>F.Nacimiento</Text>
 
           <View style={{ flex: 1, marginHorizontal: 5 }}>
-            <Button style={{ color: 'white' }}
+            <Button color='gray'
               title={format(formData.fechaNacimientoPaciente, 'dd-MM-yyyy')}
               onPress={() => setShowDatePicker(true)}
             />
@@ -132,11 +135,79 @@ const PacienteIngresoScreen = ({navigation, route}) => {
 
         </View>
 
+        {/* Tpo. Postración */}
+        <View style={styles.inputRow}>
+
+          <Text style={styles.label}>Tpo.postración [Meses]</Text>
+
+          <TextInput
+            style={styles.textInput}
+            keyboardType="numeric"
+            textAlign="right"
+            value={formData.mesesPostracionPaciente}
+            onChangeText={(value) => handleInputChange('mesesPostracionPaciente', value)}
+          />
+
+          <Text style={styles.label}>Años</Text>
+          <Text style={styles.textResult}>{formData.anosPostracionPaciente}</Text>
+
+        </View>
+
+        {/* Diagnóstico */}
+        <View style={styles.inputRow}>
+
+          <Text style={styles.label}>Diagóstico de ingreso al programa PI/ACHS</Text>
+
+          <TextInput
+            style={[styles.textInput, {flex: 3}]}
+            textAlign="left"
+            value={formData.diagPaciente}
+            onChangeText={(value) => handleInputChange('diagPaciente', value)}
+          />
+
+        </View>
+
+        {/* Ingresos */}
+        <View style={styles.inputRow}>
+
+          <Text style={[styles.label, {flex: 2}]}>Por favor, indique a continuación  ¿cuál es el promedio aproximado de ingreso mensual de todos los integrantes de la vivienda?</Text>
+
+          <Picker
+            selectedValue={formData.ingresoPaciente}
+            style={[styles.picker, { flex: 2 }]}
+            onValueChange={(value) => handleInputChange('ingresoPaciente', value)}
+          >
+            { dataDropDown.ingresos.map((ingreso)=>
+                  <Picker.Item label={ingreso.label} value={ingreso.value} key={ingreso.value} />
+                )}
+          </Picker>
+
+        </View>
+
+        {/* Estudios */}
+        <View style={styles.inputRow}>
+
+          <Text style={[styles.label, {flex: 2}]}>Por favor, indique a continuación  ¿cuál es el promedio aproximado de ingreso mensual de todos los integrantes de la vivienda?</Text>
+
+          <Picker
+            selectedValue={formData.estudioPaciente}
+            style={[styles.picker, { flex: 2 }]}
+            onValueChange={(value) => handleInputChange('estudioPaciente', value)}
+          >
+            { dataDropDown.estudios.map((estudio)=>
+                  <Picker.Item label={estudio.label} value={estudio.value} key={estudio.value} />
+                )}
+          </Picker>
+
+        </View>
+
+
     <Button
         title="Siguiente"
         onPress={() => navigation.navigate('PacienteResumen', { data: formData })}
       />
     </View>
+    </ScrollView>
     );
   }
  

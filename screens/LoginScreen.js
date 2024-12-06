@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import styles from './Styles';
 
+const Separator = () => <View style={styles.separator} />;
+
 const LoginScreen = ({navigation, route}) => {
     const { data } = route.params;
   
@@ -49,6 +51,8 @@ const LoginScreen = ({navigation, route}) => {
         value={formData.claveUsuario}
         onChangeText={(text) => handleInputChange('claveUsuario', text)}
       />
+
+      <Separator />
 
       <Button
         title="Siguiente"
