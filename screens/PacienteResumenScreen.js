@@ -6,11 +6,17 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { format } from 'date-fns';
 import styles from './Styles';
 
+import dataDropDown from '../data/dropdown.json';
+import {buscaEnArreglo} from '../helpers/GralHelper.js'
+
 
 const PacienteResumenScreen = ({navigation, route}) => {
     const { data } = route.params;
     const [formData, setFormData] = useState(data);
-    
+
+    //const textoIngreso = buscaEnArreglo(formData.ingresoPaciente, dataDropDown.ingresos);
+    //const textoEstudio = buscaEnArreglo(formData.estudioPaciente, dataDropDown.estudios);
+
     const handleInputChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
       };
@@ -101,7 +107,7 @@ const PacienteResumenScreen = ({navigation, route}) => {
         <View style={styles.inputRow}>
 
           <Text style={[styles.label, {flex: 2}]}>Promedio aproximado de ingreso mensual de todos los integrantes de la vivienda</Text>
-          <Text style={[styles.textResult, {flex: 2,  textAlign: "left"}]}>{formData.ingresoPaciente}</Text>
+          <Text style={[styles.textResult, {flex: 2,  textAlign: "left"}]}>{buscaEnArreglo(formData.ingresoPaciente, dataDropDown.ingresos)}</Text>
 
         </View>
 
@@ -109,7 +115,7 @@ const PacienteResumenScreen = ({navigation, route}) => {
         <View style={styles.inputRow}>
 
           <Text style={[styles.label, {flex: 2}]}>Mayor nivel de estudios que ha obtenido el paciente</Text>
-          <Text style={[styles.textResult, {flex: 2,  textAlign: "left"}]}>{formData.estudioPaciente}</Text>
+          <Text style={[styles.textResult, {flex: 2,  textAlign: "left"}]}>{buscaEnArreglo(formData.estudioPaciente, dataDropDown.estudios)}</Text>
 
         </View>
 

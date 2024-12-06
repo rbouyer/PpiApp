@@ -10,7 +10,7 @@ import dataDropDown from '../data/dropdown.json';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import {calculaAnos, calculaEdad} from '../helpers/DateHelper.js'
-import {calculaIMC} from '../helpers/GralHelper.js'
+import {calculaIMC,} from '../helpers/GralHelper.js'
 
 const PacienteIngresoScreen = ({navigation, route}) => {
     const { data } = route.params;
