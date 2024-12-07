@@ -15,5 +15,10 @@
         { "value": "EP_06", "label": "Estudios Universitarios completos" }, 
         { "value": "EP_07", "label": "Estudios Universitarios incompletos" }, 
         { "value": "EP_08", "label": "Estudios de Postgrado" }
+     ],
+     "validezExamenes": [
+        { "value": "VE_NO_VAL", "label": "No Valido"},
+        { "value": "VE_SI_VAL", "label": "Valido"},
+        { "value": "VE_NO_REC", "label": "No se ha recolectado"}
      ]
 }

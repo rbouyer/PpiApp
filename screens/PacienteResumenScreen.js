@@ -115,7 +115,7 @@ const PacienteResumenScreen = ({navigation, route}) => {
         <View style={styles.inputRow}>
 
           <Text style={[styles.label, {flex: 2}]}>Mayor nivel de estudios que ha obtenido el paciente</Text>
-          <Text style={[styles.textResult, {flex: 2,  textAlign: "left"}]}>{buscaEnArreglo(formData.estudioPaciente, dataDropDown.estudios)}</Text>
+          <Text style={[styles.textResult, {flex: 2,  textAlign: "left"}]}>{buscaEnArreglo(formData.ingresoPaciente, dataDropDown.estudios)}</Text>
 
         </View>
 
@@ -124,7 +124,10 @@ const PacienteResumenScreen = ({navigation, route}) => {
                 title="Volver"
                 onPress={() => navigation.navigate('PacienteIngreso', { data: formData })}
             />
-            <Button title="Enviar datos" onPress={enviarFormData} />
+            <Button 
+              title="Siguiente"
+              onPress={() => navigation.navigate('Examen', { data: formData })}
+ />
         </View>
 
     </View>

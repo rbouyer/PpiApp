@@ -45,7 +45,11 @@ var styles = StyleSheet.create({
       },
       picker: {
         flex: 1, fontSize: 16
+      },
+      checkbox: {
+        alignSelf: 'center',
       }
+    
     });
 
 module.exports = styles;
