@@ -48,8 +48,34 @@ var styles = StyleSheet.create({
       },
       checkbox: {
         alignSelf: 'center',
-      }
-    
+      },
+      radioGroup: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        marginTop: 2,
+        borderRadius: 2,
+        backgroundColor: 'white',
+        padding: 2,
+        elevation: 1,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+    },
+    radioButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    radioLabel: {
+        marginLeft: 1,
+        fontSize: 16,
+        color: '#333',
+    },
+
     });
 
 module.exports = styles;

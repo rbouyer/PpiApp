@@ -197,7 +197,7 @@ const ExamenScreen = ({navigation, route}) => {
                         />
                         <Button 
                             title="Siguiente"
-                            onPress={() => navigation.navigate('EnviaData', { data: formData })}
+                            onPress={() => navigation.navigate('PatologiaMedicamento', { data: formData })}
                         />
                     </View>
 
