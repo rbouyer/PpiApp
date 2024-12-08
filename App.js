@@ -7,6 +7,7 @@ import PacienteResumenScreen from './screens/PacienteResumenScreen';
 import ExamenScreen from './screens/ExamenScreen';
 import PatologiaMedicamentoScreen from './screens/PatologiaMedicamentoScreen';
 import MovilidadContencionScreen from './screens/MovilidadContencionScreen';
+import AlimentoScreen from './screens/AlimentoScreen';
 import EnviaDataScreen from './screens/EnviaDataScreen';
 
 const Stack = createStackNavigator();
@@ -28,7 +29,10 @@ const App = () => {
       tieneInsufCardiaca: false, nroMedInsufCardiaca: 0, tieneOsteoporosis: false, nroMedOsteoporosis: 0, tieneHepatico: false, nroMedHepatico: 0, tieneResInsulina: false, nroMedResInsulina: 0,
       tieneSecuelaACV: false, nroMedSecuelaACV: 0, tieneAudicionReducida: false, tieneVisionReducida: false,
 
-      tieneTraccion: false, descTraccion: '', tieneInmovilidad: false, descInmovilidad: '', tieneContencion: false, descContencion: '', tieneTipoContencion: false, tipoContencion: ''
+      tieneTraccion: false, descTraccion: '', tieneInmovilidad: false, descInmovilidad: '', tieneContencion: false, descContencion: '', tieneTipoContencion: false, tipoContencion: '',
+
+      selFruta: '', selCarne: '', selHuevo: '', selPescado: '', selPasta: '', selPan: '', selVerdura: '', selLegumbre: '', selFiambre: '', 
+      selLacteo: '', selDulce: '', selBebida: '', selRapida: '', selAperitivo: '', selJugo: ''
     }
   );
 
@@ -45,6 +49,7 @@ const App = () => {
         <Stack.Screen name="Examen" component={ExamenScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="PatologiaMedicamento" component={PatologiaMedicamentoScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="MovilidadContencion" component={MovilidadContencionScreen} initialParams={{ data: formData }}/>
+        <Stack.Screen name="Alimento" component={AlimentoScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="EnviaData" component={EnviaDataScreen} initialParams={{ data: formData }}/>
       </Stack.Navigator>
     </NavigationContainer>

@@ -79,7 +79,7 @@ const MovilidadContencionScreen = ({navigation, route}) => {
                         />
                         <Button 
                             title="Siguiente"
-                            onPress={() => navigation.navigate('EnviaData', { data: formData })}
+                            onPress={() => navigation.navigate('Alimento', { data: formData })}
                         />
                     </View>
                     <Text style={styles.label}></Text>

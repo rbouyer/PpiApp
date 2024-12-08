@@ -20,5 +20,15 @@
         { "value": "VE_NO_VAL", "label": "No Valido"},
         { "value": "VE_SI_VAL", "label": "Valido"},
         { "value": "VE_NO_REC", "label": "No se ha recolectado"}
+     ],
+     "alimentos": [
+        { "value": "AP_01", "label": "Una o mas veces al dia" }, 
+        { "value": "AP_02", "label": "De 4 a 6 veces a las semana" }, 
+        { "value": "AP_03", "label": "3 veces a la seman" }, 
+        { "value": "AP_04", "label": "1 o 2 veces a la semana" }, 
+        { "value": "AP_05", "label": "Menos de 1 vez a la semana" }, 
+        { "value": "AP_06", "label": "Nunca" }, 
+        { "value": "AP_07", "label": "No Sabe" }, 
+        { "value": "AP_08", "label": "No contesta" }
      ]
 }
