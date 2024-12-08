@@ -41,14 +41,15 @@ const PatologiaMedicamentoComponent = ({patologia, tienePatologia, setTienePatol
                 </View>
 
 
-                <TextInput
-                    style={styles.textInput}
+                {nroMedPatologia != null && (<TextInput  style={styles.textInput}
+                    editable={tienePatologia}
+                    selectTextOnFocus={tienePatologia}
                     keyboardType="numeric"
                     textAlign="right"
                     value={nroMedPatologia}
                     onChangeText={(val) =>  setNroMedPatologia(val)}
                     onEndEditing={(e) => setNroMedPatologia(e.nativeEvent.text)}
-                />
+                />)}
 
             </View>
 
