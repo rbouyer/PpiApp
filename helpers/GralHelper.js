@@ -11,3 +11,12 @@ export function buscaEnArreglo(nameKey, myArray){
         }
     }
 }
+
+export function buscaEnLista(list, where){
+    for (var i in list) {
+        if (list[i].value == where) {
+            return list[i];
+        }
+    }
+    return null;
+}
