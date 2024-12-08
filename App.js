@@ -6,6 +6,7 @@ import PacienteIngresoScreen from './screens/PacienteIngresoScreen';
 import PacienteResumenScreen from './screens/PacienteResumenScreen';
 import ExamenScreen from './screens/ExamenScreen';
 import PatologiaMedicamentoScreen from './screens/PatologiaMedicamentoScreen';
+import MovilidadContencionScreen from './screens/MovilidadContencionScreen';
 import EnviaDataScreen from './screens/EnviaDataScreen';
 
 const Stack = createStackNavigator();
@@ -25,7 +26,9 @@ const App = () => {
       tieneArtritis: false, nroMedArtritis: 0, tieneDiabetes: false, nroMedDiabetes: 0, tieneDisplidemia: false, nroMedDisplidemia: 0, tieneCardio: false, nroMedCardio: 0,
       tieneEPOC: false, nroMedEPOC: 0, tieneHipArterial: false, nroMedHipArterial: 0, tieneInUrinaria: false, nroMedInUrinaria: 0, tieneInfarto: false, nroMedInfarto: 0,
       tieneInsufCardiaca: false, nroMedInsufCardiaca: 0, tieneOsteoporosis: false, nroMedOsteoporosis: 0, tieneHepatico: false, nroMedHepatico: 0, tieneResInsulina: false, nroMedResInsulina: 0,
-      tieneSecuelaACV: false, nroMedSecuelaACV: 0, tieneAudicionReducida: false, tieneVisionReducida: false
+      tieneSecuelaACV: false, nroMedSecuelaACV: 0, tieneAudicionReducida: false, tieneVisionReducida: false,
+
+      tieneTraccion: false, descTraccion: '', tieneInmovilidad: false, descInmovilidad: '', tieneContencion: false, descContencion: '', tieneTipoContencion: false, tipoContencion: ''
     }
   );
 
@@ -41,6 +44,7 @@ const App = () => {
         <Stack.Screen name="PacienteResumen" component={PacienteResumenScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="Examen" component={ExamenScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="PatologiaMedicamento" component={PatologiaMedicamentoScreen} initialParams={{ data: formData }}/>
+        <Stack.Screen name="MovilidadContencion" component={MovilidadContencionScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="EnviaData" component={EnviaDataScreen} initialParams={{ data: formData }}/>
       </Stack.Navigator>
     </NavigationContainer>

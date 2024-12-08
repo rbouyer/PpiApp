@@ -27,7 +27,7 @@ const EnviaDataScreen = ({navigation, route}) => {
         <View style={styles.inputRow}>
             <Button
                 title="Volver"
-                onPress={() => navigation.navigate('PatologiaMedicamento', { data: formData })}
+                onPress={() => navigation.navigate('MovilidadContencion', { data: formData })}
             />
             <Button title="Enviar datos" onPress={enviarFormData} />
         </View>

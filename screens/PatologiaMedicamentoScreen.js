@@ -180,7 +180,7 @@ const PatologiaMedicamentoScreen = ({navigation, route}) => {
                         />
                         <Button 
                             title="Siguiente"
-                            onPress={() => navigation.navigate('EnviaData', { data: formData })}
+                            onPress={() => navigation.navigate('MovilidadContencion', { data: formData })}
                         />
                     </View>
                     <Text style={styles.label}></Text>
