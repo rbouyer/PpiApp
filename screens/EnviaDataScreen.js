@@ -21,7 +21,7 @@ const EnviaDataScreen = ({navigation, route}) => {
     
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Resumen Paciente</Text>
+        <Text style={styles.title}>Envio de Datos</Text>
 
 
         <View style={styles.inputRow}>

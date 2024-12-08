@@ -14,11 +14,11 @@ const App = () => {
     { emailUsuario: '', claveUsuario: '', 
       fechaNacimientoPaciente: new Date(), edadPaciente: 0, idPaciente: 0, sexoPaciente: '', pesoPaciente: 0, tallaPaciente: 0, 
       mesesPostracionPaciente: 0, anosPostracionPaciente: 0, diagPaciente: '', ingresoPaciente: '', estudioPaciente: '', imcPaciente: 0,
-      noRecolectadoProteinemia: true, fechaExProteinemia: new Date(), validezExProteinemia: 'VE_NO_VAL', 
-      noRecolectadoOximetria: true, fechaExOximetria: new Date(), validezExOximetria: 'VE_NO_VAL', 
-      noRecolectadoGlicemiaV: true, fechaExGlicemiaV: new Date(), validezExGlicemiaV: 'VE_NO_VAL', 
-      noRecolectadoGlicemiaC: true, fechaExGlicemiaC: new Date(), validezExGlicemiaC: 'VE_NO_VAL', 
-      noRecolectadoHemoglobina: true, fechaExHemoglobina: new Date(), validezExHemoglobina: 'VE_NO_VAL', 
+      noRecolectadoProteinemia: false, fechaExProteinemia: new Date(), validezExProteinemia: 'VE_SI_VAL', 
+      noRecolectadoOximetria: false, fechaExOximetria: new Date(), validezExOximetria: 'VE_SI_VAL', 
+      noRecolectadoGlicemiaV: false, fechaExGlicemiaV: new Date(), validezExGlicemiaV: 'VE_SI_VAL', 
+      noRecolectadoGlicemiaC: false, fechaExGlicemiaC: new Date(), validezExGlicemiaC: 'VE_SI_VAL', 
+      noRecolectadoHemoglobina: false, fechaExHemoglobina: new Date(), validezExHemoglobina: 'VE_SI_VAL', 
     }
   );
 
