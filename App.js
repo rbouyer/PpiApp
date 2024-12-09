@@ -9,6 +9,8 @@ import PatologiaMedicamentoScreen from './screens/PatologiaMedicamentoScreen';
 import MovilidadContencionScreen from './screens/MovilidadContencionScreen';
 import AlimentoScreen from './screens/AlimentoScreen';
 import BradenScreen from './screens/BradenScreen';
+import PielScreen from './screens/PielScreen';
+import LesionScreen from './screens/LesionScreen';
 import EnviaDataScreen from './screens/EnviaDataScreen';
 
 const Stack = createStackNavigator();
@@ -36,7 +38,9 @@ const App = () => {
       selLacteo: '', selDulce: '', selBebida: '', selRapida: '', selAperitivo: '', selJugo: '',
 
       selPercepcion: '', ptjePercepcion: null, selHumedad: '', ptjeHumedad: null, selActividad: '', ptjeActividad: null, selMovilidad: '', ptjeMovilidad: null,
-      selNutricion: '', ptjeNutricion: null, selFuerza: '', ptjeFuerza: null
+      selNutricion: '', ptjeNutricion: null, selFuerza: '', ptjeFuerza: null,
+
+      usoCrema: false, usoLinovera: false, usoColonia: false, usoHipoglos: false, usoOtraSolucion: false, usoBanoDiario: false, usoNada: false
     }
   );
 
@@ -55,6 +59,8 @@ const App = () => {
         <Stack.Screen name="MovilidadContencion" component={MovilidadContencionScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="Alimento" component={AlimentoScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="Braden" component={BradenScreen} initialParams={{ data: formData }}/>
+        <Stack.Screen name="Piel" component={PielScreen} initialParams={{ data: formData }}/>
+        <Stack.Screen name="Lesion" component={LesionScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="EnviaData" component={EnviaDataScreen} initialParams={{ data: formData }}/>
       </Stack.Navigator>
     </NavigationContainer>

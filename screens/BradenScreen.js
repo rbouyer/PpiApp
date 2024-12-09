@@ -131,7 +131,7 @@ const BradenScreen = ({navigation, route}) => {
                         />
                         <Button 
                             title="Siguiente"
-                            onPress={() => navigation.navigate('EnviaData', { data: formData })}
+                            onPress={() => navigation.navigate('Piel', { data: formData })}
                         />
                     </View>
                     <Text style={styles.label}></Text>
