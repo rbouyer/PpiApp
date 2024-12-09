@@ -31,39 +31,39 @@
         { "value": "AP_07", "label": "No Sabe" }, 
         { "value": "AP_08", "label": "No contesta" }
      ],
-     "sensorial": [
+     "percepcion": [
          { "value": "SB_01", "label": "1-Componente limitado.", "ptje": 1 },
-         { "value": "SB_01", "label": "2-Muy limitado.", "ptje": 2 },
-         { "value": "SB_01", "label": "3-Ligeramente limitado.", "ptje": 3 },
-         { "value": "SB_01", "label": "4-No limitado", "ptje": 4 }      
+         { "value": "SB_02", "label": "2-Muy limitado.", "ptje": 2 },
+         { "value": "SB_03", "label": "3-Ligeramente limitado.", "ptje": 3 },
+         { "value": "SB_04", "label": "4-No limitado", "ptje": 4 }      
      ],
      "humedad": [
       { "value": "HB_01", "label": "1-Constantemente húmeda.", "ptje": 1 },
-      { "value": "HB_01", "label": "2-Muy húmeda.", "ptje": 2 },
-      { "value": "HB_01", "label": "3-Ocasionalmente húmeda.", "ptje": 3 },
-      { "value": "HB_01", "label": "4-Raramente Húmeda.", "ptje": 4 }
+      { "value": "HB_02", "label": "2-Muy húmeda.", "ptje": 2 },
+      { "value": "HB_03", "label": "3-Ocasionalmente húmeda.", "ptje": 3 },
+      { "value": "HB_04", "label": "4-Raramente Húmeda.", "ptje": 4 }
      ],
      "actividad": [
       { "value": "AB_01", "label": "1-Postrado en cama." , "ptje": 1},
-      { "value": "AB_01", "label": "2-En silla de ruedas.", "ptje": 2 },
-      { "value": "AB_01", "label": "3-Anda ocasionalmente.", "ptje": 3 },
-      { "value": "AB_01", "label": "4-Anda con frecuencia.", "ptje": 4 }
+      { "value": "AB_02", "label": "2-En silla de ruedas.", "ptje": 2 },
+      { "value": "AB_03", "label": "3-Anda ocasionalmente.", "ptje": 3 },
+      { "value": "AB_04", "label": "4-Anda con frecuencia.", "ptje": 4 }
      ],
      "movilidad": [
       { "value": "MB_01", "label": "1-Completamente inmóvil.", "ptje": 1 },
-      { "value": "MB_01", "label": "2-Muy limitado.", "ptje": 2 },
-      { "value": "MB_01", "label": "3-Ligeramente limitado.", "ptje": 3 },
-      { "value": "MB_01", "label": "4-Sin limitación.", "ptje": 4 }
+      { "value": "MB_02", "label": "2-Muy limitado.", "ptje": 2 },
+      { "value": "MB_03", "label": "3-Ligeramente limitado.", "ptje": 3 },
+      { "value": "MB_04", "label": "4-Sin limitación.", "ptje": 4 }
      ],
      "nutricion": [
       { "value": "NB_01", "label": "1-Muy deficiente.", "ptje": 1 },
-      { "value": "NB_01", "label": "2-Probablemente inadecuada.", "ptje": 2 },
-      { "value": "NB_01", "label": "3-Adecuado.", "ptje": 3 },
-      { "value": "NB_01", "label": "4-Excelente.", "ptje": 4 }
+      { "value": "NB_02", "label": "2-Probablemente inadecuada.", "ptje": 2 },
+      { "value": "NB_03", "label": "3-Adecuado.", "ptje": 3 },
+      { "value": "NB_04", "label": "4-Excelente.", "ptje": 4 }
      ],
      "fzaFriccion": [
       { "value": "FB_01", "label": "1-Problema.", "ptje": 1 },
-      { "value": "FB_01", "label": "2-Posibles problemas.", "ptje": 2 },
-      { "value": "FB_01", "label": "3-Sin problemas aparente.", "ptje": 3 }
+      { "value": "FB_02", "label": "2-Posibles problemas.", "ptje": 2 },
+      { "value": "FB_03", "label": "3-Sin problemas aparente.", "ptje": 3 }
      ]
 }

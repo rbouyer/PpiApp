@@ -4,8 +4,9 @@ import styles from './Styles';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Picker } from '@react-native-picker/picker';
 
-
 import BradenComponent from './components/BradenComponent';
+
+import dataDropDown from '../data/dropdown.json';
 
 
 const BradenScreen = ({navigation, route}) => {
@@ -16,6 +17,33 @@ const BradenScreen = ({navigation, route}) => {
     const handleInputChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
     };
+
+    const calcularPtje = () => {
+        var res = 0;
+
+        res += !isNaN(formData.ptjePercepcion)? formData.ptjePercepcion: 0;
+        res += !isNaN(formData.ptjeHumedad)? formData.ptjeHumedad: 0;
+        res += !isNaN(formData.ptjeActividad)? formData.ptjeActividad: 0;
+        res += !isNaN(formData.ptjeMovilidad)? formData.ptjeMovilidad: 0;
+        res += !isNaN(formData.ptjeNutricion)? formData.ptjeNutricion: 0;
+        res += !isNaN(formData.ptjeFuerza)? formData.ptjeFuerza: 0;
+
+        return res;
+    }
+
+    const obtenerRiesgo = () => {
+        var res = '';
+        var totPtje = calcularPtje();
+
+        if(totPtje <= 12)
+            res = 'Riesgo Alto';
+        else if(totPtje <= 15)
+            res = 'Riesgo Moderado';
+        else
+            res = 'Riesgo Bajo';
+
+        return res;
+    }
 
     return (
         <View>
@@ -32,119 +60,74 @@ const BradenScreen = ({navigation, route}) => {
                     </View>
 
                     {/* 
-                        selFruta, selCarne, selHuevo, selPescado, selPasta, selPan, selVerdura, selLegumbre, selFiambre, 
-                        selLacteo, selDulce, selBebida, selRapida, selAperitivo, selJugo */}
+                        selPercepcion: '', ptjePercepcion: null, selHumedad: '', ptjeHumedad: null, selActividad: '', ptjeActividad: null, selMovilidad: '', ptjeMovilidad: null,
+                        selNutricion: '', ptjeNutricion: null, selFuerza: '', ptjeFuerza */}
 
-                    {/* Fruta: selFruta */}
+                    {/* Percepcion: selPercepcion, ptjePercepcion */}
                     <BradenComponent 
-                        alimento='01 - Fruta Fresca (excluyendo zumos)' 
-                        seleccion = {formData.selFruta} 
-                        setSeleccion = {(val) => {setFormData({ ...formData, 'selFruta': val })}} 
+                        braden='01 - Persepcion Sensorial' 
+                        lista = {dataDropDown.percepcion} 
+                        seleccion = {formData.selPercepcion} 
+                        setSeleccion = {(valSel, valPtje) => {setFormData({ ...formData, 'selPercepcion': valSel, 'ptjePercepcion': valPtje })}} 
+                        puntaje = {formData.ptjePercepcion} 
                     ></BradenComponent>
 
-                    {/* Carne: selCarne */}
+                    {/* Humedad: selHumedad, ptjeHumedad */}
                     <BradenComponent 
-                        alimento='02 - Carne (pollo, ternera, cerdo, cordero ' 
-                        seleccion = {formData.selCarne} 
-                        setSeleccion = {(val) => {setFormData({ ...formData, 'selCarne': val })}} 
+                        braden='02 - Humedad' 
+                        lista = {dataDropDown.humedad} 
+                        seleccion = {formData.selHumedad} 
+                        setSeleccion = {(valSel, valPtje) => {setFormData({ ...formData, 'selHumedad': valSel, 'ptjeHumedad': valPtje })}} 
+                        puntaje = {formData.ptjeHumedad} 
                     ></BradenComponent>
 
-                    {/* Huevo: selHuevo */}
+                    {/* Actividad: selActividad: '', ptjeActividad */}
                     <BradenComponent 
-                        alimento='03 - Huevos' 
-                        seleccion = {formData.selHuevo} 
-                        setSeleccion = {(val) => {setFormData({ ...formData, 'selHuevo': val })}} 
+                        braden='03 - Actividad' 
+                        lista = {dataDropDown.actividad} 
+                        seleccion = {formData.selActividad} 
+                        setSeleccion = {(valSel, valPtje) => {setFormData({ ...formData, 'selActividad': valSel, 'ptjeActividad': valPtje })}} 
+                        puntaje = {formData.ptjeActividad} 
                     ></BradenComponent>
 
-                    {/* Pescado: selPescado */}
+                    {/* Movilidad: selMovilidad, ptjeMovilidad */}
                     <BradenComponent 
-                        alimento='04  - Pescado' 
-                        seleccion = {formData.selPescado} 
-                        setSeleccion = {(val) => {setFormData({ ...formData, 'selPescado': val })}} 
+                        braden='04 - Movilidad' 
+                        lista = {dataDropDown.movilidad} 
+                        seleccion = {formData.selMovilidad} 
+                        setSeleccion = {(valSel, valPtje) => {setFormData({ ...formData, 'selMovilidad': valSel, 'ptjeMovilidad': valPtje })}} 
+                        puntaje = {formData.ptjeMovilidad} 
                     ></BradenComponent>
 
-                    {/* Pasta: selPasta */}
+                    {/* Nutricion: selNutricion: '', ptjeNutricion */}
                     <BradenComponent 
-                        alimento='05 - Pasta, Arroz, Papas' 
-                        seleccion = {formData.selPasta} 
-                        setSeleccion = {(val) => {setFormData({ ...formData, 'selPasta': val })}} 
+                        braden='05 - Nutricion' 
+                        lista = {dataDropDown.nutricion} 
+                        seleccion = {formData.selNutricion} 
+                        setSeleccion = {(valSel, valPtje) => {setFormData({ ...formData, 'selNutricion': valSel, 'ptjeNutricion': valPtje })}} 
+                        puntaje = {formData.ptjeNutricion} 
                     ></BradenComponent>
 
-                    {/* Pan: selPan */}
+                    {/* FzaFricion: selFuerza: '', ptjeFuerza */}
                     <BradenComponent 
-                        alimento='06 - Pan, Cereales' 
-                        seleccion = {formData.selPan} 
-                        setSeleccion = {(val) => {setFormData({ ...formData, 'selPan': val })}} 
+                        braden='06 - Fuerza de Friccion y Cizalla' 
+                        lista = {dataDropDown.fzaFriccion} 
+                        seleccion = {formData.selFuerza} 
+                        setSeleccion = {(valSel, valPtje) => {setFormData({ ...formData, 'selFuerza': valSel, 'ptjeFuerza': valPtje })}} 
+                        puntaje = {formData.ptjeFuerza} 
                     ></BradenComponent>
 
-                    {/* Pan: selVerdura */}
-                    <BradenComponent 
-                        alimento='07 - Verduras, Ensaladas, Hortalizas' 
-                        seleccion = {formData.selVerdura} 
-                        setSeleccion = {(val) => {setFormData({ ...formData, 'selVerdura': val })}} 
-                    ></BradenComponent>
-
-                    {/* Legumbre: selLegumbre */}
-                    <BradenComponent 
-                        alimento='08  -Legumbres' 
-                        seleccion = {formData.selLegumbre} 
-                        setSeleccion = {(val) => {setFormData({ ...formData, 'selLegumbre': val })}} 
-                    ></BradenComponent>
-
-                    {/* Fiambre: selFiambre */}
-                    <BradenComponent 
-                        alimento='09 - Embutidos y Fiambres' 
-                        seleccion = {formData.selFiambre} 
-                        setSeleccion = {(val) => {setFormData({ ...formData, 'selFiambre': val })}} 
-                    ></BradenComponent>
-
-                    {/* Lacteo: selLacteo */}
-                    <BradenComponent 
-                        alimento='10 - Productos Lacteos ( leche, queso, yogurt )' 
-                        seleccion = {formData.selLacteo} 
-                        setSeleccion = {(val) => {setFormData({ ...formData, 'selLacteo': val })}} 
-                    ></BradenComponent>
-
-                    {/* Dulce: selDulce */}
-                    <BradenComponent 
-                        alimento='11 - Duelces ( galletas, mermeladas, cereales con azucar, caramelos )' 
-                        seleccion = {formData.selDulce} 
-                        setSeleccion = {(val) => {setFormData({ ...formData, 'selDulce': val })}} 
-                    ></BradenComponent>
-
-                    {/* Bebida: selBebida */}
-                    <BradenComponent 
-                        alimento='12 - Bebidas y jugos con azucar' 
-                        seleccion = {formData.selBebida} 
-                        setSeleccion = {(val) => {setFormData({ ...formData, 'selBebida': val })}} 
-                    ></BradenComponent>
-
-                    {/* Rapida: selRapida, selAperitivo, selJugo */}
-                    <BradenComponent 
-                        alimento='13 - Comida rapida ( pollo frito, bocadillos, pizzas, hamburguezas )' 
-                        seleccion = {formData.selRapida} 
-                        setSeleccion = {(val) => {setFormData({ ...formData, 'selRapida': val })}} 
-                    ></BradenComponent>
-
-                    {/* selAperitivo: selAperitivo */}
-                    <BradenComponent 
-                        alimento='14 -  Aperitivos o comidas saladas de picar ( papas fritas, galletitas saladas )' 
-                        seleccion = {formData.selAperitivo} 
-                        setSeleccion = {(val) => {setFormData({ ...formData, 'selAperitivo': val })}} 
-                    ></BradenComponent>
-
-                    {/* Jugo: selJugo */}
-                    <BradenComponent 
-                        alimento='15 - Jugos naturales o de versuras' 
-                        seleccion = {formData.selJugo} 
-                        setSeleccion = {(val) => {setFormData({ ...formData, 'selJugo': val })}} 
-                    ></BradenComponent>
-
+                    <View style={styles.inputRow}>
+                        <Text style={styles.label}>Ptje.Braden</Text>
+                        <Text style={styles.textResult}>{calcularPtje()}</Text>
+                        <Text style={styles.label}>Riesgo Braden</Text>
+                        <Text style={styles.textResult}>{obtenerRiesgo()}</Text>
+                    </View>
 
                     <View style={styles.inputRow}>
                         <Button
                             title="Volver"
-                            onPress={() => navigation.navigate('MovilidadContencion', { data: formData })}
+                            onPress={() => navigation.navigate('Alimento', { data: formData })}
                         />
                         <Button 
                             title="Siguiente"

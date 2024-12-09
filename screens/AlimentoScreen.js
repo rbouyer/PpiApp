@@ -146,7 +146,7 @@ const AlimentoScreen = ({navigation, route}) => {
                         />
                         <Button 
                             title="Siguiente"
-                            onPress={() => navigation.navigate('EnviaData', { data: formData })}
+                            onPress={() => navigation.navigate('Braden', { data: formData })}
                         />
                     </View>
                     <Text style={styles.label}></Text>

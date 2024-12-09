@@ -1,16 +1,29 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import { RadioButton } from 'react-native-paper';
 import { Picker } from '@react-native-picker/picker';
 
 import styles from '../Styles';
 
-import dataDropDown from '../../data/dropdown.json';
-import {buscaEnLista} from '../helpers/GralHelper.js'
+import {buscaEnLista} from '../../helpers/GralHelper.js'
 
 
-const BradenComponent = ({braden, lista, seleccion, setSeleccion}) => {
+const BradenComponent = ({braden, lista, seleccion, setSeleccion, puntaje}) => {
  
+    const obtenerPtje = (lista, selItem) => {
+        var res = 0;
+        var item = buscaEnLista(lista, selItem);
+        
+        if(item != null) res = item.ptje;
+
+        return res;
+    }
+
+    const onChangeSelec = (val) => {
+        //console.info("onChangeSel: val: " + val);
+        //setPuntaje(obtenerPtje(lista, val));
+        setSeleccion(val, obtenerPtje(lista, val));
+    }
+
     return (
         <View style={styles.container}>
 
@@ -21,15 +34,14 @@ const BradenComponent = ({braden, lista, seleccion, setSeleccion}) => {
                 <Picker
                     selectedValue={seleccion}
                     style={[styles.picker]}
-                    onValueChange={setSeleccion}
+                    onValueChange={onChangeSelec}
                 >
                     { lista.map((sel)=>
                         <Picker.Item label={sel.label} value={sel.value} key={sel.value} />
                         )}
                 </Picker>
 
-                <Text style={styles.textResult}>{buscaEnLista(lista, seleccion).ptje}</Text>
-
+                <Text style={styles.textResult}>{puntaje}</Text>
 
             </View>
 
