@@ -88,7 +88,7 @@ const LesionScreen = ({navigation, route}) => {
                     {/* Tipo Incontinencia: '', selTipoIncontinencia */}
                     <LesionComponent 
                         descripcion='05 - Tipo de incontinencia' 
-                        lista = {dataDropDown.ubicacion} 
+                        lista = {dataDropDown.incontinencia} 
                         seleccion = {formData.selTipoIncontinencia} 
                         setSeleccion = {(valSel, valLlenado) => {setFormData({ ...formData, 'selUbicacionselTipoIncontinenciaLesion': valSel })}} 
                         llenado = {formData.otraUbicacionLesion} 
@@ -103,13 +103,13 @@ const LesionScreen = ({navigation, route}) => {
                         setNroMedPatologia = {null}
                     ></PatologiaMedicamentoComponent>
 
-                    {/* Prevecion Dermatitis: descPrevecionDermatitis */}
+                    {/* Prevecion Dermatitis: descPrevencionDermatitis */}
                     <View style={styles.inputRow}>
                         <Text style={styles.label}>07 - ¿Qué medidas aplica ?</Text>
                         <TextInput style={[styles.textInput]}
                             textAlign="left"
-                            value={descPrevecionDermatitis}
-                            onChangeText={(val) => {setFormData( {...formData, 'descPrevecionDermatitis': val })}}
+                            value={formData.descPrevencionDermatitis}
+                            onChangeText={(val) => {setFormData( {...formData, 'descPrevencionDermatitis': val })}}
                         />
                     </View>
 
@@ -186,7 +186,7 @@ const LesionScreen = ({navigation, route}) => {
                         <Text style={styles.label}>14. Tipo Cirugia</Text>
                         <TextInput style={[styles.textInput]}
                             textAlign="left"
-                            value={tipoCirugia}
+                            value={formData.tipoCirugia}
                             onChangeText={(val) => {setFormData( {...formData, 'tipoCirugia': val })}}
                         />
                     </View>
@@ -194,7 +194,7 @@ const LesionScreen = ({navigation, route}) => {
                         <Text style={styles.label}>15. Fecha Cirugia</Text>
                         <TextInput style={[styles.textInput]}
                             textAlign="left"
-                            value={fechaCirugia}
+                            value={formData.fechaCirugia}
                             onChangeText={(val) => {setFormData( {...formData, 'fechaCirugia': val })}}
                         />
                     </View>
@@ -202,7 +202,7 @@ const LesionScreen = ({navigation, route}) => {
                         <Text style={styles.label}>16. Nombre Cirugia</Text>
                         <TextInput style={[styles.textInput]}
                             textAlign="left"
-                            value={descCirugia}
+                            value={formData.descCirugia}
                             onChangeText={(val) => {setFormData( {...formData, 'descCirugia': val })}}
                         />
                     </View>

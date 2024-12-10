@@ -44,7 +44,7 @@ const App = () => {
 
       /* Lesión ubicación */
       presentaCuidadoPiel: false, presentaLesionHumedad: false, selUbicacionLesion: '', otraUbicacionLesion: '', presentaIncontinencia: false, selTipoIncontinencia: '',
-      selUbiIncontinencia: '', presentaPrevencionDermatitis: false, descPrevecionDermatitis: '', presentaDermatitisIncontinencia: false, presentaTratamientoDermatitis: false,
+      selUbiIncontinencia: '', presentaPrevencionDermatitis: false, descPrevencionDermatitis: '', presentaDermatitisIncontinencia: false, presentaTratamientoDermatitis: false,
       presentaDispositivoNoInvasivo: false, tipoDispositivoNoInvasivo: '',  descOtroDispositivoNoInvasivo: '', 
       presentaDispositivoInvasivo: false, tipoDispositivoInvasivo: '',  descOtroDispositivoInvasivo: '', 
       presentaCirugia: false, tipoCirugia: '', fechaCirugia: null, descCirugia: '',
