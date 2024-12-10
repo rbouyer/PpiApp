@@ -65,5 +65,39 @@
       { "value": "FB_01", "label": "1-Problema.", "ptje": 1 },
       { "value": "FB_02", "label": "2-Posibles problemas.", "ptje": 2 },
       { "value": "FB_03", "label": "3-Sin problemas aparente.", "ptje": 3 }
-     ]
-}
+     ],
+     "ubicacion": [
+        { "value": "UL_01", "label": "BOCA", "llenado": false },
+        { "value": "UL_02", "label": "NARIZ", "llenado": false },
+        { "value": "UL_03", "label": "CUELLO", "llenado": false },
+        { "value": "UL_04", "label": "OTRAS", "llenado": true }
+       ],
+       "incontinencia": [
+          { "value": "IN_01", "label": "URINARIA", "llenado": false },
+          { "value": "IN_02", "label": "FECAL", "llenado": false },
+          { "value": "IN_03", "label": "MIXTA", "llenado": false }
+       ],
+       "dispositivoNoInvasivo": [
+         { "value": "DI_01", "label": "OXIGENOTERAPIA", "llenado": false },
+         { "value": "DI_02", "label": "SENSOR OXÍGENO", "llenado": false },
+         { "value": "DI_03", "label": "ELECTRODOS", "llenado": false },
+         { "value": "DI_04", "label": "OTROS", "llenado": true }
+       ],
+       "dispositivoInvasivo": [
+         { "value": "DN_01", "label": "SNG", "llenado": false },
+         { "value": "DN_02", "label": "COLOSTOMIA", "llenado": false },
+         { "value": "DN_03", "label": "S.NASOYEYUNAL", "llenado": false },
+         { "value": "DN_04", "label": "OTROS", "llenado": true }
+       ],
+       "lppOC": [
+         { "value": "OC_01", "label": "1", "llenado": false },
+         { "value": "OC_02", "label": "2", "llenado": false },
+         { "value": "OC_03", "label": "3", "llenado": false },
+         { "value": "OC_04", "label": "4", "llenado": false },
+         { "value": "OC_05", "label": "5", "llenado": false },
+         { "value": "OC_06", "label": "6", "llenado": false },
+         { "value": "OC_07", "label": "7", "llenado": false },
+         { "value": "OC_08", "label": "8", "llenado": false },
+         { "value": "OC_09", "label": "9", "llenado": false }
+       ]
+  }

@@ -40,9 +40,24 @@ const App = () => {
       selPercepcion: '', ptjePercepcion: null, selHumedad: '', ptjeHumedad: null, selActividad: '', ptjeActividad: null, selMovilidad: '', ptjeMovilidad: null,
       selNutricion: '', ptjeNutricion: null, selFuerza: '', ptjeFuerza: null,
 
-      usoCrema: false, usoLinovera: false, usoColonia: false, usoHipoglos: false, usoOtraSolucion: false, usoBanoDiario: false, usoNada: false
+      usoCrema: false, usoLinovera: false, usoColonia: false, usoHipoglos: false, usoOtraSolucion: false, usoBanoDiario: false, usoNada: false,
+
+      /* Lesión ubicación */
+      presentaCuidadoPiel: false, presentaLesionHumedad: false, selUbicacionLesion: '', otraUbicacionLesion: '', presentaIncontinencia: false, selTipoIncontinencia: '',
+      selUbiIncontinencia: '', presentaPrevencionDermatitis: false, descPrevecionDermatitis: '', presentaDermatitisIncontinencia: false, presentaTratamientoDermatitis: false,
+      presentaDispositivoNoInvasivo: false, tipoDispositivoNoInvasivo: '',  descOtroDispositivoNoInvasivo: '', 
+      presentaDispositivoInvasivo: false, tipoDispositivoInvasivo: '',  descOtroDispositivoInvasivo: '', 
+      presentaCirugia: false, tipoCirugia: '', fechaCirugia: null, descCirugia: '',
+      presentaLPPC: false, nroLPPC: null, 
+
+      /* examen fisico */
+      sistolicaPresionSentada1: null, sistolicaPresionSentada2: null, sistolicaPresionParada1: null, sistolicaPresionParada2: null, sistolicaPulso: null, presentaBajaPeso: null,
+
+      lppc: new Array()
+
     }
   );
+
 
   const handleInputChange = (field, value) => {
     setFormData({ ...formData, [field]: value });

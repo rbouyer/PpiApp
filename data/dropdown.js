@@ -15,6 +15,13 @@ const dropDownData = {
         { value: "EP_06", label: "Estudios Universitarios completos" }, 
         { value: "EP_07", label: "Estudios Universitarios incompletos" }, 
         { value: "EP_08", label: "Estudios de Postgrado" }, 
+     ],
+     ubicacion: [
+      { value: "EP_01", label: "BOCA" },
+      { value: "EP_02", label: "NARIZ" },
+      { value: "EP_03", label: "CUELLO" },
+      { value: "EP_04", label: "OTRAS" }
+
      ]
 };
   
