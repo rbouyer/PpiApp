@@ -49,11 +49,11 @@ const ExamenFisicoScreen = ({navigation, route}) => {
                     <View style={styles.inputRow}>
                         <Button
                             title="Volver"
-                            onPress={() => navigation.navigate('Braden', { data: formData })}
+                            onPress={() => navigation.navigate('LppcAdmin', { data: formData })}
                         />
                         <Button 
                             title="Siguiente"
-                            onPress={() => navigation.navigate('Lesion', { data: formData })}
+                            onPress={() => navigation.navigate('Barthel', { data: formData })}
                         />
                     </View>
                     <Text style={styles.label}></Text>

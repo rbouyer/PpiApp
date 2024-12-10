@@ -4,24 +4,24 @@ import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
 import styles from './Styles';
 
-const TemplateScreen = ({navigation, route}) => {
+const LppcAdminScreen = ({navigation, route}) => {
     const { data } = route.params;
 
     const [formData, setFormData] = useState(data);
 
     return (
         <View>
-            <Text style={styles.title}>Titulo Screen</Text>
-            <Text style={styles.label}>Detalle examen</Text>
+            <Text style={styles.title}>Administraciín de Características LPPC</Text>
+            <Text style={styles.label}>Agregue Características LPPC</Text>
             <ScrollView>
                 <View style={styles.container}>
 
                     {/* Encabezado */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Examen</Text>
-                        <Text style={styles.label}>No recolectado</Text>
-                        <Text style={styles.label}>F.Examen</Text>
-                        <Text style={styles.label}>Valor</Text>
+                        <Text style={styles.label}>Columna 1</Text>
+                        <Text style={styles.label}>Columna 2</Text>
+                        <Text style={styles.label}>Columna 3</Text>
+                        <Text style={styles.label}>Columna 4</Text>
 
                     </View>
 
@@ -42,11 +42,11 @@ const TemplateScreen = ({navigation, route}) => {
                     <View style={styles.inputRow}>
                         <Button
                             title="Volver"
-                            onPress={() => navigation.navigate('Volver', { data: formData })}
+                            onPress={() => navigation.navigate('Lesion', { data: formData })}
                         />
                         <Button 
                             title="Siguiente"
-                            onPress={() => navigation.navigate('Siguiente', { data: formData })}
+                            onPress={() => navigation.navigate('ExamenFisico', { data: formData })}
                         />
                     </View>
 
@@ -57,4 +57,4 @@ const TemplateScreen = ({navigation, route}) => {
 
 }
 
-export default TemplateScreen;
+export default LppcAdminScreen;

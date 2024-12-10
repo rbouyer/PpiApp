@@ -4,15 +4,15 @@ import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
 import styles from './Styles';
 
-const TemplateScreen = ({navigation, route}) => {
+const ClasificacionLesionScreen = ({navigation, route}) => {
     const { data } = route.params;
 
     const [formData, setFormData] = useState(data);
 
     return (
         <View>
-            <Text style={styles.title}>Titulo Screen</Text>
-            <Text style={styles.label}>Detalle examen</Text>
+            <Text style={styles.title}>Clasificación Lesión/Text>
+            <Text style={styles.label}>Clasificación Lesión</Text>
             <ScrollView>
                 <View style={styles.container}>
 
@@ -42,11 +42,11 @@ const TemplateScreen = ({navigation, route}) => {
                     <View style={styles.inputRow}>
                         <Button
                             title="Volver"
-                            onPress={() => navigation.navigate('Volver', { data: formData })}
+                            onPress={() => navigation.navigate('Zarit', { data: formData })}
                         />
                         <Button 
                             title="Siguiente"
-                            onPress={() => navigation.navigate('Siguiente', { data: formData })}
+                            onPress={() => navigation.navigate('EnviaData', { data: formData })}
                         />
                     </View>
 
@@ -57,4 +57,4 @@ const TemplateScreen = ({navigation, route}) => {
 
 }
 
-export default TemplateScreen;
+export default ClasificacionLesionScreen;

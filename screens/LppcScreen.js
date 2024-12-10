@@ -11,8 +11,8 @@ const TemplateScreen = ({navigation, route}) => {
 
     return (
         <View>
-            <Text style={styles.title}>Titulo Screen</Text>
-            <Text style={styles.label}>Detalle examen</Text>
+            <Text style={styles.title}>Características LPPC</Text>
+            <Text style={styles.label}>Ingrese las características LPPC</Text>
             <ScrollView>
                 <View style={styles.container}>
 
@@ -41,12 +41,12 @@ const TemplateScreen = ({navigation, route}) => {
 
                     <View style={styles.inputRow}>
                         <Button
-                            title="Volver"
-                            onPress={() => navigation.navigate('Volver', { data: formData })}
+                            title="Cancelar"
+                            onPress={alert('¿Esta seguro que desea cancelar el ingreso de las características LPPC?')}
                         />
                         <Button 
-                            title="Siguiente"
-                            onPress={() => navigation.navigate('Siguiente', { data: formData })}
+                            title="Ingresar LPPC"
+                            onPress={() => navigation.navigate('LppcAdmin', { data: formData })}
                         />
                     </View>
 
