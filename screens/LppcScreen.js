@@ -87,6 +87,10 @@ const TemplateScreen = ({navigation, route}) => {
                                 <Picker.Item label={ingreso.label} value={ingreso.value} key={ingreso.value} />
                                 )}
                         </Picker>
+                        <Button 
+                            title="Ver imagenes"
+                            onPress={() => navigation.navigate('ClasificacionLesion', { data: formData })}
+                        />
 
                     </View>
 

@@ -55,7 +55,7 @@ const ExamenScreen = ({navigation, route}) => {
                         </View>
 
                         <View style={{ flex: 1, marginHorizontal: 5 }}>
-                            <Button color='gray'
+                            <Button color='blue'
                             title={formData.fechaExProteinemia != null? format(formData.fechaExProteinemia, 'dd-MM-yyyy'): ''}
                             onPress={() => setShowDatePickerPro(true)}
                             />
@@ -84,7 +84,7 @@ const ExamenScreen = ({navigation, route}) => {
                         </View>
 
                         <View style={{ flex: 1, marginHorizontal: 5 }}>
-                            <Button color='gray'
+                            <Button color='blue'
                             title={formData.fechaExOximetria != null? format(formData.fechaExOximetria, 'dd-MM-yyyy'): ''}
                             onPress={() => setShowDatePickerOxi(true)}
                             />
@@ -113,7 +113,7 @@ const ExamenScreen = ({navigation, route}) => {
                         </View>
 
                         <View style={{ flex: 1, marginHorizontal: 5 }}>
-                            <Button color='gray'
+                            <Button color='blue'
                             title={formData.fechaExGlicemiaV != null? format(formData.fechaExGlicemiaV, 'dd-MM-yyyy'): ''}
                             onPress={() => setShowDatePickerGlV(true)}
                             />
@@ -142,7 +142,7 @@ const ExamenScreen = ({navigation, route}) => {
                         </View>
 
                         <View style={{ flex: 1, marginHorizontal: 5 }}>
-                            <Button color='gray'
+                            <Button color='blue'
                             title={formData.fechaExGlicemiaC != null? format(formData.fechaExGlicemiaC, 'dd-MM-yyyy'): ''}
                             onPress={() => setShowDatePickerGlC(true)}
                             />
@@ -171,7 +171,7 @@ const ExamenScreen = ({navigation, route}) => {
                         </View>
 
                         <View style={{ flex: 1, marginHorizontal: 5 }}>
-                            <Button color='gray'
+                            <Button color='blue'
                             title={formData.fechaExHemoglobina != null? format(formData.fechaExHemoglobina, 'dd-MM-yyyy'): ''}
                             onPress={() => setShowDatePickerHem(true)}
                             />

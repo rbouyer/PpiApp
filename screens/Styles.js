@@ -75,6 +75,10 @@ var styles = StyleSheet.create({
         fontSize: 16,
         color: '#333',
     },
+    imageCategoria: {
+      width: '100%', 
+      height: '250'
+    }
 
     });
 

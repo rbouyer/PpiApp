@@ -5,6 +5,8 @@ import styles from './Styles';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Picker } from '@react-native-picker/picker';
 import { RadioButton } from 'react-native-paper';
+import { format } from 'date-fns';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 import PatologiaMedicamentoComponent from './components/PatologiaMedicamentoComponent';
 import LesionComponent from './components/LesionComponent';
@@ -13,6 +15,8 @@ import dataDropDown from '../data/dropdown.json';
 
 
 const LesionScreen = ({navigation, route}) => {
+    const [showDatePicker, setShowDatePicker] = useState(false);
+
     const { data } = route.params;
 
     const [formData, setFormData] = useState(data);
@@ -20,6 +24,16 @@ const LesionScreen = ({navigation, route}) => {
     const handleInputChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
     };
+ 
+    const handleInputMesesPostracionChange = (value) => {
+      setFormData({ ...formData, "mesesPostracionPaciente": value });
+      //setFormData({ ...formData, "anosPostracionPaciente": calculaAnos(value) });
+  };
+  
+  const handleDateChange = (field, selectedDate) => {
+    setFormData({ ...formData, [field]: selectedDate });
+    setShowDatePicker(false); // Close the picker
+   };
 
     return (
         <View>
@@ -190,14 +204,27 @@ const LesionScreen = ({navigation, route}) => {
                             onChangeText={(val) => {setFormData( {...formData, 'tipoCirugia': val })}}
                         />
                     </View>
+
+                    {/* F.Cirugia */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>15. Fecha Cirugia</Text>
-                        <TextInput style={[styles.textInput]}
-                            textAlign="left"
-                            value={formData.fechaCirugia}
-                            onChangeText={(val) => {setFormData( {...formData, 'fechaCirugia': val })}}
+
+                    <Text style={styles.label}>15. F.Cirugia</Text>
+
+                    <View style={{ flex: 1, marginHorizontal: 5 }}>
+                        <Button color='blue'
+                        title={format(formData.fechaCirugia, 'dd-MM-yyyy')}
+                        onPress={() => setShowDatePicker(true)}
                         />
+                        {showDatePicker && (<DateTimePicker
+                        value={formData.fechaCirugia}
+                        maximumDate={new Date()}
+                        mode="date"
+                        display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
+                        onChange={(event, selectedDate) => handleDateChange('fechaCirugia', selectedDate)}
+                        />)}
                     </View>
+                    </View>
+
                     <View style={styles.inputRow}>
                         <Text style={styles.label}>16. Nombre Cirugia</Text>
                         <TextInput style={[styles.textInput]}

@@ -312,7 +312,7 @@ const ZaritScreen = ({navigation, route}) => {
                         />
                         <Button 
                             title="Siguiente"
-                            onPress={() => navigation.navigate('ClasificacionLesion', { data: formData })}
+                            onPress={() => navigation.navigate('EnviaData', { data: formData })}
                         />
                     </View>
                     <Text style={styles.label}></Text>

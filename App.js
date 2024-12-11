@@ -65,7 +65,7 @@ const App = () => {
       selUbiIncontinencia: '', presentaPrevencionDermatitis: false, descPrevencionDermatitis: '', presentaDermatitisIncontinencia: false, presentaTratamientoDermatitis: false,
       presentaDispositivoNoInvasivo: false, tipoDispositivoNoInvasivo: '',  descOtroDispositivoNoInvasivo: '', 
       presentaDispositivoInvasivo: false, tipoDispositivoInvasivo: '',  descOtroDispositivoInvasivo: '', 
-      presentaCirugia: false, tipoCirugia: '', fechaCirugia: null, descCirugia: '',
+      presentaCirugia: false, tipoCirugia: '', fechaCirugia: new Date(), descCirugia: '',
       presentaLPPC: false, nroLPPC: null, 
 
       /* Lppc */
