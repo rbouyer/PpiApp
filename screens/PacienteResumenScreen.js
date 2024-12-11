@@ -3,6 +3,8 @@ import { Platform } from 'react-native';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { ScrollView } from 'react-native-gesture-handler';
+
 import { format } from 'date-fns';
 import styles from './Styles';
 
@@ -26,8 +28,10 @@ const PacienteResumenScreen = ({navigation, route}) => {
       };
     
     return (
+      <ScrollView>
       <View style={styles.container}>
         <Text style={styles.title}>Resumen Paciente</Text>
+
 
         {/* Identificación */}
         <View style={styles.inputRow}>
@@ -115,7 +119,7 @@ const PacienteResumenScreen = ({navigation, route}) => {
         <View style={styles.inputRow}>
 
           <Text style={[styles.label, {flex: 2}]}>Mayor nivel de estudios que ha obtenido el paciente</Text>
-          <Text style={[styles.textResult, {flex: 2,  textAlign: "left"}]}>{buscaEnArreglo(formData.ingresoPaciente, dataDropDown.estudios)}</Text>
+          <Text style={[styles.textResult, {flex: 2,  textAlign: "left"}]}>{buscaEnArreglo(formData.estudioPaciente, dataDropDown.estudios)}</Text>
 
         </View>
 
@@ -131,6 +135,9 @@ const PacienteResumenScreen = ({navigation, route}) => {
         </View>
 
     </View>
+        
+    </ScrollView>
+
     );
   }
  

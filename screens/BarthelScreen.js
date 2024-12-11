@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import styles from './Styles';
 

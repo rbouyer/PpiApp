@@ -75,7 +75,7 @@ const MovilidadContencionScreen = ({navigation, route}) => {
                     <View style={styles.inputRow}>
                         <Button
                             title="Volver"
-                            onPress={() => navigation.navigate('PatologiaMedicamento', { data: formData })}
+                            onPress={() => navigation.navigate('PatologiaMedicamento2', { data: formData })}
                         />
                         <Button 
                             title="Siguiente"

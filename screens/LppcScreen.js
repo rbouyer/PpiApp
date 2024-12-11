@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import styles from './Styles';
 
@@ -40,13 +41,17 @@ const TemplateScreen = ({navigation, route}) => {
 
 
                     <View style={styles.inputRow}>
-                        <Button
+                        {/* <Button
                             title="Cancelar"
                             onPress={alert('¿Esta seguro que desea cancelar el ingreso de las características LPPC?')}
+                        /> */}
+                        <Button 
+                            title="Volver"
+                            onPress={() => navigation.navigate('Lesion', { data: formData })}
                         />
                         <Button 
-                            title="Ingresar LPPC"
-                            onPress={() => navigation.navigate('LppcAdmin', { data: formData })}
+                            title="Siguiente"
+                            onPress={() => navigation.navigate('ExamenFisico', { data: formData })}
                         />
                     </View>
 

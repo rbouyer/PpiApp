@@ -26,14 +26,25 @@ const ExamenFisicoScreen = ({navigation, route}) => {
 
                     {/* Encabezado */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Pregunta</Text>
-                        <Text style={styles.label}>SI</Text>
-                        <Text style={styles.label}>NO</Text>
+                        <Text style={styles.label}>Item</Text>
+                        <Text style={styles.label}>Sistolica</Text>
+                        <Text style={styles.label}>Diastolica</Text>
                     </View>
 
                     {/* 
                         usoCrema: false, usoLinovera: false, usoColonia: false, usoHipoglos: false, usoOtraSolucion: false, usoBanoDiario: false, usoNada: 
                     */}
+                    <View style={styles.inputRow}>
+                        <TextInput
+                            style={styles.textInput}
+                            keyboardType="numeric"
+                            textAlign="right"
+                            value={formData.pesoPaciente}
+                            onChangeText={(value) => handleInputChange('pesoPaciente', value)}
+                            onEndEditing={(e) => handleInputChange('imcPaciente', calculaIMC(e.nativeEvent.text, formData.tallaPaciente))}
+                        />
+
+                     </View>
  
                     {/* Crema: usoCrema */}
                     <PatologiaMedicamentoComponent 
@@ -49,7 +60,7 @@ const ExamenFisicoScreen = ({navigation, route}) => {
                     <View style={styles.inputRow}>
                         <Button
                             title="Volver"
-                            onPress={() => navigation.navigate('LppcAdmin', { data: formData })}
+                            onPress={() => navigation.navigate('Lppc', { data: formData })}
                         />
                         <Button 
                             title="Siguiente"

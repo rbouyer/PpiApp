@@ -201,6 +201,9 @@ const ExamenScreen = ({navigation, route}) => {
                         />
                     </View>
 
+                    <Text style={styles.label}></Text>
+                    <Text style={styles.label}></Text>
+
                 </View>
             </ScrollView>
         </View>
