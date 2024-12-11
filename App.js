@@ -68,8 +68,42 @@ const App = () => {
       presentaCirugia: false, tipoCirugia: '', fechaCirugia: null, descCirugia: '',
       presentaLPPC: false, nroLPPC: null, 
 
+      /* Lppc */
+      selUbicacionLppc: '', selLadoLppc: '', estaAsocDispositivoLppc: false, descDispositivoLppc: '', selCategoriaLppc: '', enTratamientoLppc: false, estaNotificadaLppc: false,
+
       /* examen fisico */
       sistolicaPresionSentada1: null, sistolicaPresionSentada2: null, sistolicaPresionParada1: null, sistolicaPresionParada2: null, sistolicaPulso: null, presentaBajaPeso: null,
+
+      /* Barthel */
+      dependenciaComer: true, dependenciaLavarse: true, dependenciaVestirse: true, dependenciaArreglarse: true, dependenciaDeposicion: true, 
+      dependenciaMiccion: true, dependenciaRetrete: true, dependenciaTrasladarse:true, dependenciaDeambular: true, dependenciaMovilizarse:true,
+
+      /* Cuidador */
+      tieneCuidador: false, nombreCuidador: '', fechaNacimientoCuidador: new Date(), edadCuidador: 0, selSexoCuidador: '', selRelacionCuidador: '', selEstudioCuidador: '', selSaludCuidador: '',
+
+      /* Zarit */
+      selSolicitaAyuda: '', ptjeSolicitaAyuda: 0,
+      selTiempo: '', ptjeTiempo: 0,
+      selAgobiado: '', ptjeAgobiado: 0,
+      selVerguenza: '', ptjeVerguenza: 0,
+      selEnfadado: '', ptjeEnfadado: 0,
+      selAfecta: '', ptjeAfecta: 0,
+      selMiedo: '', ptjeMiedo: 0,
+      selDepende: '', ptjeDepende: 0,
+      selEmpeorado: '', ptjeEmpeorado: 0,
+      selTenso: '', ptjeTenso: 0,
+      selIntimidad: '', ptjeIntimidad: 0,
+      selSocial: '', ptjeSocial: 0,
+      selIncomodo: '', ptjeIncomodo: 0,
+      selCuidar: '', ptjeCuidar: 0,
+      selIngresos: '', ptjeIngresos: 0,
+      selCapaz: '', ptjeCapaz: 0,
+      selControl: '', ptjeControl: 0,
+      selOtra: '', ptjeOtra: 0,
+      selIndeciso: '', ptjeIndeciso: 0,
+      selHacerMas: '', ptjeHacerMas: 0,
+      selCuidadMejor: '', ptjeCuidarMejor: 0,
+      selGlobalmente: '', ptjeGlobalmente: 0,
 
       lppc: new Array()
 

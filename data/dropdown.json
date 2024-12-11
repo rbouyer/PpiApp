@@ -1,4 +1,9 @@
 {
+    "sexo": [
+        { "value": "SX_01", "label": "Femenino" },
+        { "value": "SX_02", "label": "Masculino" },
+        { "value": "SX_03", "label": "Otro" }
+    ],
     "ingresos": [
         { "value": "IP_01", "label": "Menos a 500.000 pesos" }, 
         { "value": "IP_02", "label": "Entre 500.001 a 1.000.000 pesos" }, 
@@ -99,5 +104,117 @@
          { "value": "OC_07", "label": "7", "llenado": false },
          { "value": "OC_08", "label": "8", "llenado": false },
          { "value": "OC_09", "label": "9", "llenado": false }
+       ],
+       "dependenciaComer": [
+        { "value": "DC_01", "label": "(10) Totalmente independiente.", "ptje": 10 },
+        { "value": "DC_02", "label": "(05) Necesita ayuda para cortar carne, el pan, etc.", "ptje": 5 },
+        { "value": "DC_03", "label": "(00) Dependiente.", "ptje": 0 }
+        
+       ],
+       "dependenciaLavarse": [
+        { "value": "DL_01", "label": "(05) Independiente: entra y sale solo del baño.", "ptje": 5 },
+        { "value": "DL_02", "label": "(00) Dependiente.", "ptje": 0 }
+        
+       ],
+       "dependenciaVestirse": [
+        { "value": "DV_01", "label": "(10) Independiente: capaz de ponerse y de quitarse la ropa, abotonarse, atarse los zapatos.", "ptje": 10 },
+        { "value": "DV_02", "label": "(05) Necesita ayuda.", "ptje": 5 },
+        { "value": "DV_03", "label": "(00) Dependiente.", "ptje": 0 }
+        
+       ],
+       "dependenciaArreglarse": [
+        { "value": "DA_01", "label": "(05) Independiente para lavarse la cara, las manos, peinarse, afeitarse, maquillarse, etc.", "ptje": 5 },
+        { "value": "DA_02", "label": "(00) Dependiente", "ptje": 0 }
+        
+       ],
+       "dependenciaDeposicion": [
+        { "value": "DD_01", "label": "(10) Continencia normal.", "ptje": 10 },
+        { "value": "DD_02", "label": "(05) Ocasionalmente algún episodio de incontinencia, o necesita ayuda para administrarse supositorios o lavativas.", "ptje": 5 },
+        { "value": "DD_03", "label": "(00) Incontinencia.", "ptje": 0 }
+        
+       ],
+       "dependenciaMiccion": [
+        { "value": "DM_01", "label": "(10) Continencia normal, o es capaz de cuidarse de la sonda si tiene una puesta.", "ptje": 10 },
+        { "value": "DM_02", "label": "(05) Un episodio diario como máximo de incontinencia, o necesita ayuda para cuidar de la sonda.", "ptje": 5 },
+        { "value": "DM_03", "label": "(00) Incontinencia.", "ptje": 0 }
+        
+       ],
+       "dependenciaRetrete": [
+        { "value": "DR_01", "label": "(10) Independiente para ir al cuarto de aseo, quitarse y ponerse la ropa", "ptje": 10 },
+        { "value": "DR_02", "label": "(05) Necesita ayuda para ir al retrete, pero se limpia solo.", "ptje": 5 },
+        { "value": "DR_03", "label": "(00) Dependiente.", "ptje": 0 }
+        
+       ],
+       "dependenciaTrasladarse": [
+        { "value": "DT_01", "label": "(15) Independiente para ir del sillón a la cama.", "ptje": 15 },
+        { "value": "DT_02", "label": "(10) Mínima ayuda física o supervisión para hacerlo.", "ptje": 10 },
+        { "value": "DT_03", "label": "(05) Necesita gran ayuda, pero es capaz de mantenerse sentado solo.", "ptje": 5 },
+        { "value": "DT_04", "label": "(00) Dependiente.", "ptje": 0 }
+        
+       ],
+       "dependenciaDeambular": [
+        { "value": "DB_01", "label": "(15) Independiente, camina solo 50 metros.", "ptje": 15 },
+        { "value": "DB_02", "label": "(10) Necesita ayuda física o supervisión para caminar 50 metros.", "ptje": 10 },
+        { "value": "DB_03", "label": "(05) Independiente en silla de ruedas sin ayuda.", "ptje": 5 },
+        { "value": "DB_04", "label": "(00) Dependiente.", "ptje": 0 }
+        
+       ],
+       "dependenciaMovilizarse": [
+        { "value": "DZ_01", "label": "(10) Independiente para bajar y subir escaleras.", "ptje": 10 },
+        { "value": "DZ_02", "label": "(05) Necesita ayuda física o supervisión para hacerlo.", "ptje": 5 },
+        { "value": "DZ_03", "label": "(00) Dependiente.", "ptje": 0 }
+        
+       ],
+       "ubicacionLppc": [
+        { "value": "LU_01", "label": "Talón" },
+        { "value": "LU_02", "label": "Glúteo" },
+        { "value": "LU_03", "label": "Sacra/ Coxis" },
+        { "value": "LU_04", "label": "Glúteo" },
+        { "value": "LU_05", "label": "Pierna," },
+        { "value": "LU_06", "label": "Trocánter" },
+        { "value": "LU_07", "label": "Codo" },
+        { "value": "LU_08", "label": "Oreja" },
+        { "value": "LU_09", "label": "Dedos Del Pie" },
+        { "value": "LU_10", "label": "Omóplatos " },
+        { "value": "LU_11", "label": "Maléolo" },
+        { "value": "LU_12", "label": "Rodilla" },
+        { "value": "LU_13", "label": "Cara" },
+        { "value": "LU_14", "label": "Nariz" }
+       ],
+       "ladoLppc": [
+        { "value": "LL_01", "label": "Derecha" },
+        { "value": "LL_02", "label": "Izquierda" }
+       ],
+       "categoriaLppc": [
+        { "value": "LC_01", "label": "Categoria 1" },
+        { "value": "LC_02", "label": "Categoria 2" },
+        { "value": "LC_03", "label": "Categoria 3" },
+        { "value": "LC_04", "label": "Categoria 4" },
+        { "value": "LC_05", "label": "Categoria 5" },
+        { "value": "LC_06", "label": "Categoria 6" }       
+       ],
+       "relacion": [
+       { "value": "CR_01", "label": "Cónyuge o pareja" },
+       { "value": "CR_02", "label": "Hijo/Hija" },
+       { "value": "CR_03", "label": "Padre/madre" },
+       { "value": "CR_04", "label": "Hermano/hermana" }, 
+       { "value": "CR_05", "label": "Otros familiares" },
+       { "value": "CR_06", "label": "Contratado particular" },
+       { "value": "CR_07", "label": "Vecina" },
+       { "value": "CR_08", "label": "Otra relación" }
+       ],
+       "estadoSalud": [
+       { "value": "CS_01", "label": "Muy bueno" },
+       { "value": "CS_02", "label": "Bueno" },
+       { "value": "CS_03", "label": "Regular" },
+       { "value": "CS_04", "label": "Malo" },
+       { "value": "CS_05", "label": "Muy malo" }
+       ],
+       "zarit": [
+            { "value": "ZT_01", "label": "(1) Nunca.", "ptje": 1 },
+            { "value": "ZT_02", "label": "(2) Rara vez.", "ptje": 2 },
+            { "value": "ZT_03", "label": "(3) Algunas veces.", "ptje": 3 },
+            { "value": "ZT_04", "label": "(4) Bastantes veces.", "ptje": 4 },
+            { "value": "ZT_05", "label": "(5) Casi siempre.", "ptje": 5 }      
        ]
   }

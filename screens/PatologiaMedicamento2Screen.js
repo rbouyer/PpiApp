@@ -13,7 +13,7 @@ const PatologiaMedicamento2Screen = ({navigation, route}) => {
     const [formData, setFormData] = useState(data);
 
     const esAdherenteTratamiento = () => {
-        return formData.olvidaMedicamento && formData.tomaMedicamentosEnHora && formData.dejaDeTomarMedicamentoBien && formData.dejaDeTomarMedicamentoMal;
+        return !formData.olvidaMedicamento && formData.tomaMedicamentosEnHora && !formData.dejaDeTomarMedicamentoBien && !formData.dejaDeTomarMedicamentoMal;
     }
 
     return (

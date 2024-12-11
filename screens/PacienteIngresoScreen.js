@@ -70,12 +70,13 @@ const PacienteIngresoScreen = ({navigation, route}) => {
           <Text style={styles.label}>F.Nacimiento</Text>
 
           <View style={{ flex: 1, marginHorizontal: 5 }}>
-            <Button color='gray'
+            <Button color='blue'
               title={format(formData.fechaNacimientoPaciente, 'dd-MM-yyyy')}
               onPress={() => setShowDatePicker(true)}
             />
             {showDatePicker && (<DateTimePicker
             value={formData.fechaNacimientoPaciente}
+            maximumDate={new Date()}
             mode="date"
             display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
             onChange={(event, selectedDate) => handleDateChange('fechaNacimientoPaciente', selectedDate)}

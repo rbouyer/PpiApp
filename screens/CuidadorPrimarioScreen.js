@@ -2,14 +2,34 @@ import React, { useState } from 'react';
 import { Platform } from 'react-native';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import DateTimePicker from '@react-native-community/datetimepicker';
+
+import CuidadorRBComponent from './components/PatologiaMedicamentoComponent';
+import SelectorSimpleComponent from './components/SelectorSimpleComponent';
 
 import styles from './Styles';
 
+import dataDropDown from '../data/dropdown.json';
+
+import { format } from 'date-fns';
+import calculaEdad from '../helpers/DateHelper.js'
+
+
 const CuidadorPrimarioScreen = ({navigation, route}) => {
     const { data } = route.params;
+    const [showDatePicker, setShowDatePicker] = useState(false);
 
     const [formData, setFormData] = useState(data);
 
+    const handleInputChange = (field, value) => {
+        setFormData({ ...formData, [field]: value });
+    };
+
+    const handleDateChange = (field, selectedDate) => {
+        setShowDatePicker(false); // Close the picker
+        setFormData({ ...formData, [field]: selectedDate, 'edadPaciente': calculaEdad(selectedDate) });
+      };
+  
     return (
         <View>
             <Text style={styles.title}>Cuidador Primario</Text>
@@ -17,28 +37,88 @@ const CuidadorPrimarioScreen = ({navigation, route}) => {
             <ScrollView>
                 <View style={styles.container}>
 
-                    {/* Encabezado */}
+                    {/* tieneCuidador, nombreCuidador, fechaNacimientoCuidador, edadCuidador, selSexoCuidador, selRelacionCuidador, selEstudioCuidador, selSaludCuidador */}
+                    <Text style={[styles.label]}>Pregunta</Text>
+
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Columna 1</Text>
-                        <Text style={styles.label}>Columna 2</Text>
-                        <Text style={styles.label}>Columna 3</Text>
-                        <Text style={styles.label}>Columna 4</Text>
+                        <CuidadorRBComponent 
+                            patologia='01 - ¿El paciente tiene cuidador primario?' 
+                            tienePatologia = {formData.tieneCuidador} 
+                            setTienePatologia = {(val) => {setFormData({ ...formData, 'tieneCuidador': val })}} 
+                            nroMedPatologia = {null} 
+                            setNroMedPatologia = {null}
+                        ></CuidadorRBComponent>
+                    </View>
+
+                    {/* Nombre */}
+                    <View style={styles.inputRow}>
+                        <Text style={styles.label}>02 - Nombre (registre solo iniciales de los nombres y apellidos</Text>
+
+                        <TextInput
+                            style={[styles.textInput]}
+                            textAlign="left"
+                            value={formData.nombreCuidador}
+                            onChangeText={(value) => handleInputChange('nombreCuidador', value)}
+                        />
+                    </View>
+
+                    {/* F.Nacimiento */}
+                    <View style={styles.inputRow}>
+
+                        <Text style={styles.label}>03 - F.Nacimiento</Text>
+
+                        <View style={{ flex: 1, marginHorizontal: 5 }}>
+                            <Button color='blue'
+                            title={format(formData.fechaNacimientoCuidador, 'dd-MM-yyyy')}
+                            onPress={() => setShowDatePicker(true)}
+                            />
+                            {showDatePicker && (<DateTimePicker
+                            value={formData.fechaNacimientoCuidador}
+                            maximumDate={new Date()}
+                            mode="date"
+                            display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
+                            onChange={(event, selectedDate) => handleDateChange('fechaNacimientoCuidador', selectedDate)}
+                            onEndEditing={(e) => setFormData({ ...formData, 'edadCuidador': calculaEdad(e.nativeEvent.text) })}
+                            />)}
+                        </View>
+
+                        <Text style={styles.label}>04 - Edad</Text>
+                        <Text style={styles.text}>{formData.edadCuidador}</Text>
 
                     </View>
 
-                    {/* Proteinemia : noRecolectadoProteinemia, fechaExProteinemia, validezExProteinemia*/}
-                    <View style={styles.inputRow}>
+                    
+                    {/* Sexo */}
+                    <SelectorSimpleComponent 
+                        descripcion='05 - Sexo'
+                        lista={dataDropDown.sexo} 
+                        seleccion = {formData.selSexoCuidador} 
+                        setSeleccion = {(val) => {setFormData({ ...formData, 'selSexoCuidador': val })}} 
+                    ></SelectorSimpleComponent>
 
-                        <Text style={styles.label}>Fila 1 - Columna 1</Text>
+                    {/* Relación */}
+                    <SelectorSimpleComponent 
+                        descripcion='06 - ¿Cuál es la relación del cuidador   con el paciente?' 
+                        lista={dataDropDown.relacion} 
+                        seleccion = {formData.selRelacionCuidador} 
+                        setSeleccion = {(val) => {setFormData({ ...formData, 'selRelacionCuidador': val })}} 
+                    ></SelectorSimpleComponent>
 
-                        <Text style={styles.label}>Fila 1 - Columna 2</Text>
+                    {/* Estudios */}
+                    <SelectorSimpleComponent 
+                        descripcion='07 - Detalle a continuación ¿cuál es el mayor nivel de estudios que usted ha obtenido?' 
+                        lista={dataDropDown.estudios} 
+                        seleccion = {formData.selEstudioCuidador} 
+                        setSeleccion = {(val) => {setFormData({ ...formData, 'selEstudioCuidador': val })}} 
+                    ></SelectorSimpleComponent>
 
-                        <Text style={styles.label}>Fila 1 - Columna 3</Text>
-
-                        <Text style={styles.label}>Fila 1 - Columna 4</Text>
-
-                    </View>
-
+                    {/* Salud */}
+                    <SelectorSimpleComponent 
+                        descripcion='08 - En los últimos doce meses, ¿diría que su estado de salud ha sido?' 
+                        lista={dataDropDown.estadoSalud} 
+                        seleccion = {formData.selSaludCuidador} 
+                        setSeleccion = {(val) => {setFormData({ ...formData, 'selSaludCuidador': val })}} 
+                    ></SelectorSimpleComponent>
 
                     <View style={styles.inputRow}>
                         <Button
@@ -50,6 +130,8 @@ const CuidadorPrimarioScreen = ({navigation, route}) => {
                             onPress={() => navigation.navigate('Zarit', { data: formData })}
                         />
                     </View>
+                    <Text style={styles.label}></Text>
+                    <Text style={styles.label}></Text>
 
                 </View>
             </ScrollView>

@@ -2,8 +2,14 @@ import React, { useState } from 'react';
 import { Platform } from 'react-native';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { Picker } from '@react-native-picker/picker';
+
+import LppcRBComponent from './components/PatologiaMedicamentoComponent';
 
 import styles from './Styles';
+
+import dataDropDown from '../data/dropdown.json';
+
 
 const TemplateScreen = ({navigation, route}) => {
     const { data } = route.params;
@@ -17,26 +23,93 @@ const TemplateScreen = ({navigation, route}) => {
             <ScrollView>
                 <View style={styles.container}>
 
-                    {/* Encabezado */}
+                    <Text style={[styles.label]}>Ubicación</Text>
+
+                    {/* selUbicacionLppc, selLadoLppc, estaAsocDispositivoLppc, descDispositivoLppc, selCategoriaLppc enTratamientoLppc, estaNotificadaLppc */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Examen</Text>
-                        <Text style={styles.label}>No recolectado</Text>
-                        <Text style={styles.label}>F.Examen</Text>
-                        <Text style={styles.label}>Valor</Text>
+                        <Text style={[styles.label]}>01 - Localización de LPPC M</Text>
+
+                        <Picker
+                            selectedValue={formData.selUbicacionLppc}
+                            style={[styles.picker]}
+                            onValueChange={(val) => {setFormData({ ...formData, 'selUbicacionLppc': val })}}
+                        >
+                            { dataDropDown.ubicacionLppc.map((ingreso)=>
+                                <Picker.Item label={ingreso.label} value={ingreso.value} key={ingreso.value} />
+                                )}
+                        </Picker>
+                        <Picker
+                            selectedValue={formData.selLadoLppc}
+                            style={[styles.picker]}
+                            onValueChange={(val) => {setFormData({ ...formData, 'selLadoLppc': val })}}
+                        >
+                            { dataDropDown.ladoLppc.map((ingreso)=>
+                                <Picker.Item label={ingreso.label} value={ingreso.value} key={ingreso.value} />
+                                )}
+                        </Picker>
+                    </View>
+
+                    <Text style={[styles.label]}>Pregunta</Text>
+
+                    <View style={styles.inputRow}>
+                        <LppcRBComponent 
+                            patologia='02 - ¿LPPC - M este asociado a dispositivo medico ?' 
+                            tienePatologia = {formData.estaAsocDispositivoLppc} 
+                            setTienePatologia = {(val) => {setFormData({ ...formData, 'estaAsocDispositivoLppc': val })}} 
+                            nroMedPatologia = {null} 
+                            setNroMedPatologia = {null}
+                        ></LppcRBComponent>
 
                     </View>
 
-                    {/* Proteinemia : noRecolectadoProteinemia, fechaExProteinemia, validezExProteinemia*/}
                     <View style={styles.inputRow}>
+                        <Text style={[styles.label]}>03 - ¿ Qué tipo de dispositivo medico? </Text>
 
-                        <Text style={styles.label}>Fila 1 - Columna 1</Text>
+                        <TextInput
+                            style={[styles.textInput]}
+                            textAlign="left"
+                            value={formData.descDispositivoLppc}
+                            onChangeText={(val) => {setFormData({ ...formData, 'descDispositivoLppc': val })}}
+                        />
+                    </View>
 
-                        <Text style={styles.label}>Fila 1 - Columna 2</Text>
+                    <Text style={[styles.label]}>Categoría</Text>
 
-                        <Text style={styles.label}>Fila 1 - Columna 3</Text>
+                    <View style={styles.inputRow}>
+                        <Text style={[styles.label]}>04 - ¿Cuál es la categoría o estadio de la LPPC - M?</Text>
 
-                        <Text style={styles.label}>Fila 1 - Columna 4</Text>
+                        <Picker
+                            selectedValue={formData.selCategoriaLppc}
+                            style={[styles.picker, { flex: 2 }]}
+                            onValueChange={(val) => {setFormData({ ...formData, 'selCategoriaLppc': val })}}
+                        >
+                            { dataDropDown.categoriaLppc.map((ingreso)=>
+                                <Picker.Item label={ingreso.label} value={ingreso.value} key={ingreso.value} />
+                                )}
+                        </Picker>
 
+                    </View>
+
+                    <Text style={[styles.label]}>Pregunta</Text>
+
+                    <View style={styles.inputRow}>
+                        <LppcRBComponent 
+                            patologia='05 - ¿La LPPC - M se encuentra en tratamiento de acuerdo con clasificación evaluar en Ficha clínica del paciente?' 
+                            tienePatologia = {formData.enTratamientoLppc} 
+                            setTienePatologia = {(val) => {setFormData({ ...formData, 'enTratamientoLppc': val })}} 
+                            nroMedPatologia = {null} 
+                            setNroMedPatologia = {null}
+                        ></LppcRBComponent>
+                    </View>
+
+                    <View style={styles.inputRow}>
+                        <LppcRBComponent 
+                            patologia='06 - ¿La LPPC - M se encuentra notificada al programa PI ACHS?' 
+                            tienePatologia = {formData.estaNotificadaLppc} 
+                            setTienePatologia = {(val) => {setFormData({ ...formData, 'estaNotificadaLppc': val })}} 
+                            nroMedPatologia = {null} 
+                            setNroMedPatologia = {null}
+                        ></LppcRBComponent>
                     </View>
 
 
@@ -54,6 +127,8 @@ const TemplateScreen = ({navigation, route}) => {
                             onPress={() => navigation.navigate('ExamenFisico', { data: formData })}
                         />
                     </View>
+                    <Text style={styles.label}></Text>
+                    <Text style={styles.label}></Text>
 
                 </View>
             </ScrollView>
