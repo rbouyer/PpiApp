@@ -50,7 +50,7 @@ const PacienteResumenScreen = ({navigation, route}) => {
           <Text style={styles.label}>F.Nacimiento</Text>
           <Text style={styles.textResult}>{format(formData.fechaNacimientoPaciente, 'dd-MM-yyyy')}</Text>
 
-          <Text style={styles.label}>Edad</Text>
+          <Text style={styles.label}>      Edad:</Text>
           <Text style={styles.textResult}>{formData.edadPaciente}</Text>
 
         </View>
@@ -83,7 +83,7 @@ const PacienteResumenScreen = ({navigation, route}) => {
           <Text style={styles.label}>Talla [Mtr]</Text>
           <Text style={styles.textResult}>{formData.tallaPaciente}</Text>
 
-          <Text style={styles.label}>IMC</Text>
+          <Text style={styles.label}>      IMC:</Text>
           <Text style={styles.textResult}>{formData.imcPaciente}</Text>
 
         </View>
@@ -94,7 +94,7 @@ const PacienteResumenScreen = ({navigation, route}) => {
           <Text style={styles.label}>Tpo.postración (total, parcial, otra) [Meses]</Text>
           <Text style={styles.textResult}>{formData.mesesPostracionPaciente}</Text>
 
-          <Text style={styles.label}>[Años]</Text>
+          <Text style={styles.label}>      Años:</Text>
           <Text style={styles.textResult}>{formData.anosPostracionPaciente}</Text>
 
         </View>
@@ -123,15 +123,19 @@ const PacienteResumenScreen = ({navigation, route}) => {
 
         </View>
 
-        <View style={styles.inputRow}>
-            <Button
+        <View style={styles.buttonRow}>
+          <View>
+            <Button style={{flex: 1}}
                 title="Volver"
                 onPress={() => navigation.navigate('PacienteIngreso', { data: formData })}
             />
-            <Button 
-              title="Siguiente"
-              onPress={() => navigation.navigate('Examen', { data: formData })}
- />
+          </View>
+          <View>
+            <Button style={{flex: 1}}
+                title="Siguiente"
+                onPress={() => navigation.navigate('Examen', { data: formData })}
+            />
+          </View>
         </View>
 
     </View>

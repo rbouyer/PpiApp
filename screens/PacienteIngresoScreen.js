@@ -85,7 +85,7 @@ const PacienteIngresoScreen = ({navigation, route}) => {
           </View>
 
           <Text style={styles.label}>Edad</Text>
-          <Text style={styles.text}>{formData.edadPaciente}</Text>
+          <Text style={styles.textResult}>{formData.edadPaciente}</Text>
 
         </View>
 
@@ -96,8 +96,8 @@ const PacienteIngresoScreen = ({navigation, route}) => {
           <Text style={styles.label}>Sexo</Text>
 
           <Picker
+            style={styles.picker}
             selectedValue={formData.sexoPaciente}
-            style={{ flex: 1 }}
             onValueChange={(value) => handleInputChange('sexoPaciente', value)}
           >
             <Picker.Item label="Femenino" value="F" />

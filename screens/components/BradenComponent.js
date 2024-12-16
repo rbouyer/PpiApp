@@ -33,7 +33,7 @@ const BradenComponent = ({braden, lista, seleccion, setSeleccion, puntaje}) => {
 
                 <Picker
                     selectedValue={seleccion}
-                    style={[styles.picker]}
+                    style={[styles.picker, {flex: 2}]}
                     onValueChange={onChangeSelec}
                 >
                     { lista.map((sel)=>
@@ -41,7 +41,9 @@ const BradenComponent = ({braden, lista, seleccion, setSeleccion, puntaje}) => {
                         )}
                 </Picker>
 
-                <Text style={styles.textResult}>{puntaje}</Text>
+                <View style={{marginLeft: 10, flex: 1}}>
+                    <Text style={styles.pickerResult}>{puntaje}</Text>
+                </View>
 
             </View>
 

@@ -24,13 +24,16 @@ var styles = StyleSheet.create({
         backgroundColor: '#fff',
       },
       text: {
-        flex: 1, fontSize: 16, borderColor: 'gray', borderWidth: 1,  textAlign: "right", backgroundColor: 'yellow'
+        flex: 1, fontSize: 16, borderColor: 'gray', borderWidth: 1,  textAlign: "right", backgroundColor: 'yellow', height: 30
       },
       label: {
-        flex: 1, fontSize: 16
+        flex: 1, fontSize: 16, padding: 5
       },
       textResult: {
-        flex: 1, fontSize: 16, borderColor: 'gray', borderWidth: 1,  textAlign: "right", backgroundColor: 'yellow' 
+        flex: 1, fontSize: 16, borderColor: 'gray', borderWidth: 1,  textAlign: "right", backgroundColor: 'yellow', height: 35, padding: 5 
+      },
+      pickerResult: {
+        flex: 1, fontSize: 16, borderColor: 'gray', borderWidth: 1,  textAlign: "right", backgroundColor: 'yellow', height: 50, padding: 10 
       },
       inputRow: {
         flexDirection: 'row', marginBottom: 15, alignItems: 'center', justifyContent: 'space-between' 
@@ -44,7 +47,11 @@ var styles = StyleSheet.create({
         borderBottomWidth: StyleSheet.hairlineWidth,
       },
       picker: {
-        flex: 1, fontSize: 16
+        flex: 1, 
+        fontSize: 16,
+        backgroundColor: 'blue',
+        color: 'white',
+        paddingRight: 10
       },
       checkbox: {
         alignSelf: 'center',
@@ -78,6 +85,9 @@ var styles = StyleSheet.create({
     imageCategoria: {
       width: '100%', 
       height: '250'
+    },
+    buttonRow: {
+      flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20
     }
 
     });

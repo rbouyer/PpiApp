@@ -83,7 +83,7 @@ const CuidadorPrimarioScreen = ({navigation, route}) => {
                         </View>
 
                         <Text style={styles.label}>04 - Edad</Text>
-                        <Text style={styles.text}>{formData.edadCuidador}</Text>
+                        <Text style={styles.textResult}>{formData.edadCuidador}</Text>
 
                     </View>
 
