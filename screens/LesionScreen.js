@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
 import styles from './Styles';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Picker } from '@react-native-picker/picker';
-import { RadioButton } from 'react-native-paper';
 import { format } from 'date-fns';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 import PatologiaMedicamentoComponent from './components/PatologiaMedicamentoComponent';
 import LesionComponent from './components/LesionComponent';
 import Navigation from './components/NavigationComponent';
+import Button from './components/ButtonComponent';
 
 import dataDropDown from '../data/dropdown.json';
 

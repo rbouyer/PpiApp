@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 import CuidadorRBComponent from './components/PatologiaMedicamentoComponent';
 import SelectorSimpleComponent from './components/SelectorSimpleComponent';
 import Navigation from './components/NavigationComponent';
+import Button from './components/ButtonComponent';
 
 import styles from './Styles';
 

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Picker } from '@react-native-picker/picker';
 
 import LppcRBComponent from './components/PatologiaMedicamentoComponent';
 import Navigation from './components/NavigationComponent';
+import Selector from './components/SelectorComponent';
+import Button from './components/ButtonComponent';
 
 import styles from './Styles';
 
@@ -30,24 +32,16 @@ const TemplateScreen = ({navigation, route}) => {
                     <View style={styles.inputRow}>
                         <Text style={[styles.label]}>01 - Localización de LPPC M</Text>
 
-                        <Picker
-                            selectedValue={formData.selUbicacionLppc}
-                            style={[styles.picker]}
-                            onValueChange={(val) => {setFormData({ ...formData, 'selUbicacionLppc': val })}}
-                        >
-                            { dataDropDown.ubicacionLppc.map((ingreso)=>
-                                <Picker.Item label={ingreso.label} value={ingreso.value} key={ingreso.value} />
-                                )}
-                        </Picker>
-                        <Picker
-                            selectedValue={formData.selLadoLppc}
-                            style={[styles.picker]}
-                            onValueChange={(val) => {setFormData({ ...formData, 'selLadoLppc': val })}}
-                        >
-                            { dataDropDown.ladoLppc.map((ingreso)=>
-                                <Picker.Item label={ingreso.label} value={ingreso.value} key={ingreso.value} />
-                                )}
-                        </Picker>
+                        <Selector
+                            lista = {dataDropDown.ubicacionLppc} 
+                            seleccion = {formData.selUbicacionLppc} 
+                            setSeleccion = {(val) => {setFormData({ ...formData, 'selUbicacionLppc': val })}} 
+                        />
+                        <Selector
+                            lista = {dataDropDown.ladoLppc} 
+                            seleccion = {formData.selLadoLppc} 
+                            setSeleccion = {(val) => {setFormData({ ...formData, 'selLadoLppc': val })}} 
+                        />
                     </View>
 
                     <Text style={[styles.label]}>Pregunta</Text>
@@ -79,15 +73,11 @@ const TemplateScreen = ({navigation, route}) => {
                     <View style={styles.inputRow}>
                         <Text style={[styles.label]}>04 - ¿Cuál es la categoría o estadio de la LPPC - M?</Text>
 
-                        <Picker
-                            selectedValue={formData.selCategoriaLppc}
-                            style={[styles.picker, { flex: 2 }]}
-                            onValueChange={(val) => {setFormData({ ...formData, 'selCategoriaLppc': val })}}
-                        >
-                            { dataDropDown.categoriaLppc.map((ingreso)=>
-                                <Picker.Item label={ingreso.label} value={ingreso.value} key={ingreso.value} />
-                                )}
-                        </Picker>
+                        <Selector
+                            lista = {dataDropDown.categoriaLppc} 
+                            seleccion = {formData.selCategoriaLppc} 
+                            setSeleccion = {(val) => {setFormData({ ...formData, 'selCategoriaLppc': val })}} 
+                        />
                         <Button 
                             title="Ver imagenes"
                             onPress={() => navigation.navigate('ClasificacionLesion', { data: formData })}

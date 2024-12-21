@@ -3,6 +3,8 @@ import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import { Picker } from '@react-native-picker/picker';
 
+import Selector from './SelectorComponent';
+
 import styles from '../Styles';
 
 import dataDropDown from '../../data/dropdown.json';
@@ -23,15 +25,11 @@ const LesionComponent = ({descripcion, lista, seleccion, setSeleccion, llenado})
 
                 <Text style={styles.label}>{descripcion}</Text>
 
-                <Picker
-                    selectedValue={seleccion}
-                    style={[styles.picker]}
-                    onValueChange={(val) => setSeleccion(val, tieneLlenado()? llenado: null)}
-                >
-                    { lista.map((item)=>
-                        <Picker.Item label={item.label} value={item.value} key={item.value} />
-                        )}
-                </Picker>
+                <Selector
+                    lista={lista}
+                    seleccion={seleccion}
+                    setSeleccion={(val) => setSeleccion(val, tieneLlenado()? llenado: null)}
+                />
 
                 {tieneLlenado() && (<TextInput style={[styles.textInput]}
                     editable={tieneLlenado()}
