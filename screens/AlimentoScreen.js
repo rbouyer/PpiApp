@@ -6,6 +6,7 @@ import { Picker } from '@react-native-picker/picker';
 
 
 import AlimentoComponent from './components/AlimentacionComponent';
+import Navigation from './components/NavigationComponent';
 
 
 const AlimentoScreen = ({navigation, route}) => {
@@ -139,19 +140,10 @@ const AlimentoScreen = ({navigation, route}) => {
                     ></AlimentoComponent>
 
 
-                    <View style={styles.inputRow}>
-                        <Button
-                            title="Volver"
-                            onPress={() => navigation.navigate('MovilidadContencion', { data: formData })}
-                        />
-                        <Button 
-                            title="Siguiente"
-                            onPress={() => navigation.navigate('Braden', { data: formData })}
-                        />
-                    </View>
-                    <Text style={styles.label}></Text>
-                    <Text style={styles.label}></Text>
-
+                    <Navigation 
+                        onPressPrev={() => navigation.navigate('MovilidadContencion', { data: formData })} 
+                        onPressNext={() => navigation.navigate('Braden', { data: formData })}>
+                    </Navigation>
                 </View>
             </ScrollView>
         </View>

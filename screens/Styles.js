@@ -87,7 +87,23 @@ var styles = StyleSheet.create({
       height: '250'
     },
     buttonRow: {
-      flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20
+      flexDirection: 'row', justifyContent: 'space-between', marginBottom: 80
+    },
+    button: {
+      container: {
+        flex: 1,
+        backgroundColor: 'black',
+        borderRadius: 10,
+        padding: 10,
+        marginHorizontal: 90,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 120
+      },
+      text: { 
+        color: 'white',
+        fontWeight: "bold" 
+      }
     }
 
     });

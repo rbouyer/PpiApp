@@ -10,6 +10,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 import PatologiaMedicamentoComponent from './components/PatologiaMedicamentoComponent';
 import LesionComponent from './components/LesionComponent';
+import Navigation from './components/NavigationComponent';
 
 import dataDropDown from '../data/dropdown.json';
 
@@ -255,19 +256,10 @@ const LesionScreen = ({navigation, route}) => {
                     ></LesionComponent>
 
 
-
-                    <View style={styles.inputRow}>
-                        <Button
-                            title="Volver"
-                            onPress={() => navigation.navigate('Piel', { data: formData })}
-                        />
-                        <Button 
-                            title="Siguiente"
-                            onPress={() => navigation.navigate('Lppc', { data: formData })}
-                        />
-                    </View>
-                    <Text style={styles.label}></Text>
-                    <Text style={styles.label}></Text>
+                    <Navigation 
+                        onPressPrev={() => navigation.navigate('Piel', { data: formData })} 
+                        onPressNext={() => navigation.navigate('Lppc', { data: formData })}>
+                    </Navigation>
 
                 </View>
             </ScrollView>

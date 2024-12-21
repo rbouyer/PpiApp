@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { format } from 'date-fns';
 import { Picker } from '@react-native-picker/picker';
 import styles from './Styles';
+import { ScrollView } from 'react-native-gesture-handler';
+
+import Button from './components/ButtonComponent';
 
 import dataDropDown from '../data/dropdown.json';
-import { ScrollView } from 'react-native-gesture-handler';
 
 import {calculaAnos, calculaEdad} from '../helpers/DateHelper.js'
 import {calculaIMC,} from '../helpers/GralHelper.js'
@@ -69,8 +71,8 @@ const PacienteIngresoScreen = ({navigation, route}) => {
 
           <Text style={styles.label}>F.Nacimiento</Text>
 
-          <View style={{ flex: 1, marginHorizontal: 5 }}>
-            <Button color='blue'
+          <View>
+            <Button
               title={format(formData.fechaNacimientoPaciente, 'dd-MM-yyyy')}
               onPress={() => setShowDatePicker(true)}
             />
@@ -215,10 +217,12 @@ const PacienteIngresoScreen = ({navigation, route}) => {
 
         </View>
 
-        <Button
-          title="Siguiente"
-          onPress={() => navigation.navigate('PacienteResumen', { data: formData })}
-        />
+        <View style={styles.inputRow}>
+          <Button
+            title="Siguiente"
+            onPress={() => navigation.navigate('PacienteResumen', { data: formData })}
+          />
+        </View>
         <Text style={styles.label}></Text>
         <Text style={styles.label}></Text>
 

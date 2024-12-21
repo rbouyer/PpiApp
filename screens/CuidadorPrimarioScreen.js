@@ -6,6 +6,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 import CuidadorRBComponent from './components/PatologiaMedicamentoComponent';
 import SelectorSimpleComponent from './components/SelectorSimpleComponent';
+import Navigation from './components/NavigationComponent';
 
 import styles from './Styles';
 
@@ -120,18 +121,11 @@ const CuidadorPrimarioScreen = ({navigation, route}) => {
                         setSeleccion = {(val) => {setFormData({ ...formData, 'selSaludCuidador': val })}} 
                     ></SelectorSimpleComponent>
 
-                    <View style={styles.inputRow}>
-                        <Button
-                            title="Volver"
-                            onPress={() => navigation.navigate('Barthel', { data: formData })}
-                        />
-                        <Button 
-                            title="Siguiente"
-                            onPress={() => navigation.navigate('Zarit', { data: formData })}
-                        />
-                    </View>
-                    <Text style={styles.label}></Text>
-                    <Text style={styles.label}></Text>
+
+                    <Navigation 
+                        onPressPrev={() => navigation.navigate('Barthel', { data: formData })} 
+                        onPressNext={() => navigation.navigate('Zarit', { data: formData })}>
+                    </Navigation>
 
                 </View>
             </ScrollView>

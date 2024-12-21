@@ -12,6 +12,8 @@ import dataDropDown from '../data/dropdown.json';
 import {buscaEnArreglo} from '../helpers/GralHelper.js'
 import {evaluaExamen} from '../helpers/ValidHelper.js'
 
+import Navigation from './components/NavigationComponent';
+
 
 const ExamenScreen = ({navigation, route}) => {
     const { data } = route.params;
@@ -189,20 +191,10 @@ const ExamenScreen = ({navigation, route}) => {
                     </View>
 
 
-
-                    <View style={styles.inputRow}>
-                        <Button
-                            title="Volver"
-                            onPress={() => navigation.navigate('PacienteResumen', { data: formData })}
-                        />
-                        <Button 
-                            title="Siguiente"
-                            onPress={() => navigation.navigate('PatologiaMedicamento', { data: formData })}
-                        />
-                    </View>
-
-                    <Text style={styles.label}></Text>
-                    <Text style={styles.label}></Text>
+                    <Navigation 
+                        onPressPrev={() => navigation.navigate('PacienteResumen', { data: formData })} 
+                        onPressNext={() => navigation.navigate('PatologiaMedicamento', { data: formData })}>
+                    </Navigation>
 
                 </View>
             </ScrollView>

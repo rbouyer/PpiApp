@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import styles from './Styles';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { RadioButton } from 'react-native-paper';
 
 import PatologiaMedicamentoComponent from './components/PatologiaMedicamentoComponent';
+import Navigation from './components/NavigationComponent';
 
 const PatologiaMedicamentoScreen = ({navigation, route}) => {
     const { data } = route.params;
@@ -173,18 +173,10 @@ const PatologiaMedicamentoScreen = ({navigation, route}) => {
                     ></PatologiaMedicamentoComponent>
 
 
-                    <View style={styles.inputRow}>
-                        <Button
-                            title="Volver"
-                            onPress={() => navigation.navigate('Examen', { data: formData })}
-                        />
-                        <Button 
-                            title="Siguiente"
-                            onPress={() => navigation.navigate('PatologiaMedicamento2', { data: formData })}
-                        />
-                    </View>
-                    <Text style={styles.label}></Text>
-                    <Text style={styles.label}></Text>
+                    <Navigation 
+                        onPressPrev={() => navigation.navigate('Examen', { data: formData })} 
+                        onPressNext={() => navigation.navigate('PatologiaMedicamento2', { data: formData })}>
+                    </Navigation>
 
                 </View>
             </ScrollView>

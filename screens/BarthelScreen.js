@@ -4,6 +4,7 @@ import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import BarthelComponent from './components/BradenComponent';
+import Navigation from './components/NavigationComponent';
 
 import styles from './Styles';
 
@@ -147,25 +148,11 @@ const BarthelScreen = ({navigation, route}) => {
                         puntaje = {formData.ptjeDependenciaMovilizarse} 
                     ></BarthelComponent>
 
-                    <View style={styles.inputRow}>
-                        <Text style={styles.label}>Sumatoria Barthel</Text>
-                        <Text style={styles.textResult}>{calcularPtje()}</Text>
-                        <Text style={styles.label}>Calsificación de Dependencia del Paciente</Text>
-                        <Text style={styles.textResult}>{obtenerClasificacion()}</Text>
-                    </View>
 
-                    <View style={styles.inputRow}>
-                        <Button
-                            title="Volver"
-                            onPress={() => navigation.navigate('ExamenFisico', { data: formData })}
-                        />
-                        <Button 
-                            title="Siguiente"
-                            onPress={() => navigation.navigate('CuidadorPrimario', { data: formData })}
-                        />
-                    </View>
-                    <Text style={styles.label}></Text>
-                    <Text style={styles.label}></Text>
+                    <Navigation 
+                        onPressPrev={() => navigation.navigate('ExamenFisico', { data: formData })} 
+                        onPressNext={() => navigation.navigate('CuidadorPrimario', { data: formData })}>
+                    </Navigation>
 
                 </View>
             </ScrollView>

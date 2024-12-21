@@ -7,6 +7,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { RadioButton } from 'react-native-paper';
 
 import PatologiaMedicamentoComponent from './components/PatologiaMedicamentoComponent';
+import Navigation from './components/NavigationComponent';
 
 const ExamenFisicoScreen = ({navigation, route}) => {
     const { data } = route.params;
@@ -95,18 +96,10 @@ const ExamenFisicoScreen = ({navigation, route}) => {
                     ></PatologiaMedicamentoComponent>
 
 
-                    <View style={styles.inputRow}>
-                        <Button
-                            title="Volver"
-                            onPress={() => navigation.navigate('Lppc', { data: formData })}
-                        />
-                        <Button 
-                            title="Siguiente"
-                            onPress={() => navigation.navigate('Barthel', { data: formData })}
-                        />
-                    </View>
-                    <Text style={styles.label}></Text>
-                    <Text style={styles.label}></Text>
+                    <Navigation 
+                        onPressPrev={() => navigation.navigate('Lppc', { data: formData })} 
+                        onPressNext={() => navigation.navigate('Barthel', { data: formData })}>
+                    </Navigation>
 
                 </View>
             </ScrollView>

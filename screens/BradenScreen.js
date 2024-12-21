@@ -5,6 +5,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { Picker } from '@react-native-picker/picker';
 
 import BradenComponent from './components/BradenComponent';
+import Navigation from './components/NavigationComponent';
 
 import dataDropDown from '../data/dropdown.json';
 
@@ -124,18 +125,10 @@ const BradenScreen = ({navigation, route}) => {
                         <Text style={styles.textResult}>{obtenerRiesgo()}</Text>
                     </View>
 
-                    <View style={styles.inputRow}>
-                        <Button
-                            title="Volver"
-                            onPress={() => navigation.navigate('Alimento', { data: formData })}
-                        />
-                        <Button 
-                            title="Siguiente"
-                            onPress={() => navigation.navigate('Piel', { data: formData })}
-                        />
-                    </View>
-                    <Text style={styles.label}></Text>
-                    <Text style={styles.label}></Text>
+                    <Navigation 
+                        onPressPrev={() => navigation.navigate('Alimento', { data: formData })} 
+                        onPressNext={() => navigation.navigate('Piel', { data: formData })}>
+                    </Navigation>
 
                 </View>
             </ScrollView>

@@ -4,6 +4,7 @@ import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import PatologiaMedicamentoComponent from './components/PatologiaMedicamentoComponent';
+import Navigation from './components/NavigationComponent';
 
 import styles from './Styles';
 
@@ -73,19 +74,11 @@ const PatologiaMedicamento2Screen = ({navigation, route}) => {
                         setNroMedPatologia = {null}
                     ></PatologiaMedicamentoComponent>
 
-                    <View style={styles.inputRow}>
-                        <Button
-                            title="Volver"
-                            onPress={() => navigation.navigate('PatologiaMedicamento', { data: formData })}
-                        />
-                        <Button 
-                            title="Siguiente"
-                            onPress={() => navigation.navigate('MovilidadContencion', { data: formData })}
-                        />
-                    </View>
 
-                    <Text style={styles.label}></Text>
-                    <Text style={styles.label}></Text>
+                    <Navigation 
+                        onPressPrev={() => navigation.navigate('PatologiaMedicamento', { data: formData })} 
+                        onPressNext={() => navigation.navigate('MovilidadContencion', { data: formData })}>
+                    </Navigation>
 
                 </View>
             </ScrollView>

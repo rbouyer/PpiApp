@@ -4,6 +4,7 @@ import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import ZaritSelectorComponent from './components/BradenComponent';
+import Navigation from './components/NavigationComponent';
 
 import dataDropDown from '../data/dropdown.json';
 import styles from './Styles';
@@ -305,18 +306,10 @@ const ZaritScreen = ({navigation, route}) => {
                     </View>
 
 
-                    <View style={styles.inputRow}>
-                        <Button
-                            title="Volver"
-                            onPress={() => navigation.navigate('CuidadorPrimario', { data: formData })}
-                        />
-                        <Button 
-                            title="Siguiente"
-                            onPress={() => navigation.navigate('EnviaData', { data: formData })}
-                        />
-                    </View>
-                    <Text style={styles.label}></Text>
-                    <Text style={styles.label}></Text>
+                    <Navigation 
+                        onPressPrev={() => navigation.navigate('CuidadorPrimario', { data: formData })} 
+                        onPressNext={() => navigation.navigate('EnviaData', { data: formData })}>
+                    </Navigation>
 
                 </View>
             </ScrollView>

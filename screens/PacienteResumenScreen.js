@@ -11,6 +11,8 @@ import styles from './Styles';
 import dataDropDown from '../data/dropdown.json';
 import {buscaEnArreglo} from '../helpers/GralHelper.js'
 
+import Navigation from './components/NavigationComponent';
+
 
 const PacienteResumenScreen = ({navigation, route}) => {
     const { data } = route.params;
@@ -123,20 +125,12 @@ const PacienteResumenScreen = ({navigation, route}) => {
 
         </View>
 
-        <View style={styles.buttonRow}>
-          <View>
-            <Button style={{flex: 1}}
-                title="Volver"
-                onPress={() => navigation.navigate('PacienteIngreso', { data: formData })}
-            />
-          </View>
-          <View>
-            <Button style={{flex: 1}}
-                title="Siguiente"
-                onPress={() => navigation.navigate('Examen', { data: formData })}
-            />
-          </View>
-        </View>
+        <Navigation 
+            onPressPrev={() => navigation.navigate('PacienteIngreso', { data: formData })} 
+            onPressNext={() => navigation.navigate('Examen', { data: formData })}
+        >
+        </Navigation>
+
 
     </View>
         

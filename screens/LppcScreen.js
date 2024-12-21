@@ -5,6 +5,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { Picker } from '@react-native-picker/picker';
 
 import LppcRBComponent from './components/PatologiaMedicamentoComponent';
+import Navigation from './components/NavigationComponent';
 
 import styles from './Styles';
 
@@ -117,22 +118,10 @@ const TemplateScreen = ({navigation, route}) => {
                     </View>
 
 
-                    <View style={styles.inputRow}>
-                        {/* <Button
-                            title="Cancelar"
-                            onPress={alert('¿Esta seguro que desea cancelar el ingreso de las características LPPC?')}
-                        /> */}
-                        <Button 
-                            title="Volver"
-                            onPress={() => navigation.navigate('Lesion', { data: formData })}
-                        />
-                        <Button 
-                            title="Siguiente"
-                            onPress={() => navigation.navigate('ExamenFisico', { data: formData })}
-                        />
-                    </View>
-                    <Text style={styles.label}></Text>
-                    <Text style={styles.label}></Text>
+                    <Navigation 
+                        onPressPrev={() => navigation.navigate('Lesion', { data: formData })} 
+                        onPressNext={() => navigation.navigate('ExamenFisico', { data: formData })}>
+                    </Navigation>
 
                 </View>
             </ScrollView>
