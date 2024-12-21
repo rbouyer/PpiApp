@@ -30,16 +30,17 @@ const BradenComponent = ({braden, lista, seleccion, setSeleccion, puntaje}) => {
             <View style={styles.inputRow}>
 
                 <Text style={styles.label}>{braden}</Text>
-
-                <Picker
-                    selectedValue={seleccion}
-                    style={[styles.picker, {flex: 2}]}
-                    onValueChange={onChangeSelec}
-                >
-                    { lista.map((sel)=>
-                        <Picker.Item label={sel.label} value={sel.value} key={sel.value} />
-                        )}
-                </Picker>
+                <View style={styles.selector}>
+                    <Picker
+                        selectedValue={seleccion}
+                        style={[styles.picker, {flex: 2}]}
+                        onValueChange={onChangeSelec}
+                    >
+                        { lista.map((sel)=>
+                            <Picker.Item label={sel.label} value={sel.value} key={sel.value} />
+                            )}
+                    </Picker>
+                </View>
 
                 <View style={{marginLeft: 10, flex: 1}}>
                     <Text style={styles.pickerResult}>{puntaje}</Text>

@@ -30,112 +30,114 @@ const PacienteResumenScreen = ({navigation, route}) => {
       };
     
     return (
-      <ScrollView>
-      <View style={styles.container}>
+      <View>
         <Text style={styles.title}>Resumen Paciente</Text>
 
+        <ScrollView>
+        <View style={styles.container}>
 
-        {/* Identificación */}
-        <View style={styles.inputRow}>
+          {/* Identificación */}
+          <View style={styles.inputRow}>
 
-          <Text style={styles.label}>Identificación</Text>
-          <Text style={styles.textResult}>{formData.idPaciente}</Text>
+            <Text style={styles.label}>Identificación</Text>
+            <Text style={styles.textResult}>{formData.idPaciente}</Text>
 
-          <Text style={styles.label}></Text>
-          <Text style={styles.label}></Text>
+            <Text style={styles.label}></Text>
+            <Text style={styles.label}></Text>
 
-        </View>
+          </View>
 
-        {/* F.Nacimiento*/}
-        <View style={styles.inputRow}>
+          {/* F.Nacimiento*/}
+          <View style={styles.inputRow}>
 
-          <Text style={styles.label}>F.Nacimiento</Text>
-          <Text style={styles.textResult}>{format(formData.fechaNacimientoPaciente, 'dd-MM-yyyy')}</Text>
+            <Text style={styles.label}>F.Nacimiento</Text>
+            <Text style={styles.textResult}>{format(formData.fechaNacimientoPaciente, 'dd-MM-yyyy')}</Text>
 
-          <Text style={styles.label}>      Edad:</Text>
-          <Text style={styles.textResult}>{formData.edadPaciente}</Text>
+            <Text style={styles.label}>      Edad:</Text>
+            <Text style={styles.textResult}>{formData.edadPaciente}</Text>
 
-        </View>
+          </View>
 
-        {/* Sexo */}
-        <View style={styles.inputRow}>
+          {/* Sexo */}
+          <View style={styles.inputRow}>
 
-          <Text style={styles.label}>Sexo</Text>
-          <Text style={styles.textResult}>{formData.sexoPaciente}</Text>
+            <Text style={styles.label}>Sexo</Text>
+            <Text style={styles.textResult}>{formData.sexoPaciente}</Text>
 
-          <Text style={styles.label}></Text>
-          <Text style={styles.label}></Text>
+            <Text style={styles.label}></Text>
+            <Text style={styles.label}></Text>
 
-        </View>
+          </View>
 
-        {/* Peso */}
-        <View style={styles.inputRow}>
+          {/* Peso */}
+          <View style={styles.inputRow}>
 
-          <Text style={styles.label}>Peso [Kg]</Text>
-          <Text style={styles.textResult}>{formData.pesoPaciente}</Text>
+            <Text style={styles.label}>Peso [Kg]</Text>
+            <Text style={styles.textResult}>{formData.pesoPaciente}</Text>
 
-          <Text style={styles.label}></Text>
-          <Text style={styles.label}></Text>
+            <Text style={styles.label}></Text>
+            <Text style={styles.label}></Text>
 
-        </View>
+          </View>
 
-        {/* Talla */}
-        <View style={styles.inputRow}>
+          {/* Talla */}
+          <View style={styles.inputRow}>
 
-          <Text style={styles.label}>Talla [Mtr]</Text>
-          <Text style={styles.textResult}>{formData.tallaPaciente}</Text>
+            <Text style={styles.label}>Talla [Mtr]</Text>
+            <Text style={styles.textResult}>{formData.tallaPaciente}</Text>
 
-          <Text style={styles.label}>      IMC:</Text>
-          <Text style={styles.textResult}>{formData.imcPaciente}</Text>
+            <Text style={styles.label}>      IMC:</Text>
+            <Text style={styles.textResult}>{formData.imcPaciente}</Text>
 
-        </View>
+          </View>
 
-        {/* Postración */}
-        <View style={styles.inputRow}>
+          {/* Postración */}
+          <View style={styles.inputRow}>
 
-          <Text style={styles.label}>Tpo.postración (total, parcial, otra) [Meses]</Text>
-          <Text style={styles.textResult}>{formData.mesesPostracionPaciente}</Text>
+            <Text style={styles.label}>Tpo.postración (total, parcial, otra) [Meses]</Text>
+            <Text style={styles.textResult}>{formData.mesesPostracionPaciente}</Text>
 
-          <Text style={styles.label}>      Años:</Text>
-          <Text style={styles.textResult}>{formData.anosPostracionPaciente}</Text>
+            <Text style={styles.label}>      Años:</Text>
+            <Text style={styles.textResult}>{formData.anosPostracionPaciente}</Text>
 
-        </View>
+          </View>
 
-        {/* Diagnóstico */}
-        <View style={styles.inputRow}>
+          {/* Diagnóstico */}
+          <View style={styles.inputRow}>
 
-          <Text style={styles.label}>Diagnóstico de ingreso al programa PI/ACHS</Text>
-          <Text style={[styles.textResult, {flex: 3,  textAlign: "left"}]}>{formData.diagPaciente}</Text>
+            <Text style={styles.label}>Diagnóstico de ingreso al programa PI/ACHS</Text>
+            <Text style={[styles.textResult, {flex: 3,  textAlign: "left"}]}>{formData.diagPaciente}</Text>
 
-        </View>
+          </View>
 
-        {/* Ingreso */}
-        <View style={styles.inputRow}>
+          {/* Ingreso */}
+          <View style={styles.inputRow}>
 
-          <Text style={[styles.label, {flex: 2}]}>Promedio aproximado de ingreso mensual de todos los integrantes de la vivienda</Text>
-          <Text style={[styles.textResult, {flex: 2,  textAlign: "left"}]}>{buscaEnArreglo(formData.ingresoPaciente, dataDropDown.ingresos)}</Text>
+            <Text style={[styles.label, {flex: 2}]}>Promedio aproximado de ingreso mensual de todos los integrantes de la vivienda</Text>
+            <Text style={[styles.textResult, {flex: 2,  textAlign: "left"}]}>{buscaEnArreglo(formData.ingresoPaciente, dataDropDown.ingresos)}</Text>
 
-        </View>
+          </View>
 
-        {/* Estudio */}
-        <View style={styles.inputRow}>
+          {/* Estudio */}
+          <View style={styles.inputRow}>
 
-          <Text style={[styles.label, {flex: 2}]}>Mayor nivel de estudios que ha obtenido el paciente</Text>
-          <Text style={[styles.textResult, {flex: 2,  textAlign: "left"}]}>{buscaEnArreglo(formData.estudioPaciente, dataDropDown.estudios)}</Text>
+            <Text style={[styles.label, {flex: 2}]}>Mayor nivel de estudios que ha obtenido el paciente</Text>
+            <Text style={[styles.textResult, {flex: 2,  textAlign: "left"}]}>{buscaEnArreglo(formData.estudioPaciente, dataDropDown.estudios)}</Text>
 
-        </View>
+          </View>
 
-        <Navigation 
-            onPressPrev={() => navigation.navigate('PacienteIngreso', { data: formData })} 
-            onPressNext={() => navigation.navigate('Examen', { data: formData })}
-        >
-        </Navigation>
+          <Navigation 
+              onPressPrev={() => navigation.navigate('PacienteIngreso', { data: formData })} 
+              onPressNext={() => navigation.navigate('Examen', { data: formData })}
+          >
+          </Navigation>
 
+
+      </View>
+          
+      </ScrollView>
 
     </View>
-        
-    </ScrollView>
-
     );
   }
  

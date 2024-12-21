@@ -95,7 +95,7 @@ var styles = StyleSheet.create({
         backgroundColor: 'black',
         borderRadius: 10,
         padding: 10,
-        marginHorizontal: 90,
+        marginHorizontal: 20,
         justifyContent: 'center',
         alignItems: 'center',
         width: 120
@@ -104,8 +104,15 @@ var styles = StyleSheet.create({
         color: 'white',
         fontWeight: "bold" 
       }
+    },
+    selector: {
+      flex:1, 
+      borderRadius: 10, 
+      borderWidth: 1, 
+      borderColor: '#bdc3c7', 
+      overflow: 'hidden'
     }
 
-    });
+  });
 
 module.exports = styles;

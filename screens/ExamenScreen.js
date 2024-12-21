@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import CheckBox from 'expo-checkbox';
 import { format } from 'date-fns';
@@ -13,6 +13,7 @@ import {buscaEnArreglo} from '../helpers/GralHelper.js'
 import {evaluaExamen} from '../helpers/ValidHelper.js'
 
 import Navigation from './components/NavigationComponent';
+import Button from './components/ButtonComponent';
 
 
 const ExamenScreen = ({navigation, route}) => {

@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import { RadioButton } from 'react-native-paper';
 import { Picker } from '@react-native-picker/picker';
+
+import SelectorSimple from './SelectorSimpleComponent';
 
 import styles from '../Styles';
 
 import dataDropDown from '../../data/dropdown.json';
 
 
-const AlimentoComponent = ({alimento, seleccion, setSeleccion}) => {
+const AlimentoComponent = ({alimento, lista, seleccion, setSeleccion}) => {
  
-    return (
+    return(
+        <SelectorSimple
+                        descripcion={alimento} 
+                        lista = {lista} 
+                        seleccion = {seleccion} 
+                        setSeleccion = {setSeleccion} 
+        />
+    );
+
+/*     return (
         <View style={styles.container}>
 
             <View style={styles.inputRow}>
@@ -31,7 +41,7 @@ const AlimentoComponent = ({alimento, seleccion, setSeleccion}) => {
 
         </View>
     );
-
+ */
 }
 
 export default AlimentoComponent;

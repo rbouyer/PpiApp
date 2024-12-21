@@ -8,6 +8,8 @@ import styles from './Styles';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import Button from './components/ButtonComponent';
+import Selector from './components/SelectorComponent';
+import SelectorSimple from './components/SelectorSimpleComponent';
 
 import dataDropDown from '../data/dropdown.json';
 
@@ -75,6 +77,7 @@ const PacienteIngresoScreen = ({navigation, route}) => {
             <Button
               title={format(formData.fechaNacimientoPaciente, 'dd-MM-yyyy')}
               onPress={() => setShowDatePicker(true)}
+              color='blue'
             />
             {showDatePicker && (<DateTimePicker
             value={formData.fechaNacimientoPaciente}
@@ -86,7 +89,7 @@ const PacienteIngresoScreen = ({navigation, route}) => {
             />)}
           </View>
 
-          <Text style={styles.label}>Edad</Text>
+          <Text style={styles.label}>      Edad:</Text>
           <Text style={styles.textResult}>{formData.edadPaciente}</Text>
 
         </View>
@@ -97,15 +100,11 @@ const PacienteIngresoScreen = ({navigation, route}) => {
 
           <Text style={styles.label}>Sexo</Text>
 
-          <Picker
-            style={styles.picker}
-            selectedValue={formData.sexoPaciente}
-            onValueChange={(value) => handleInputChange('sexoPaciente', value)}
-          >
-            <Picker.Item label="Femenino" value="F" />
-            <Picker.Item label="Masculino" value="M" />
-            <Picker.Item label="Otro" value="O" />
-          </Picker>
+          <Selector
+                        lista = {dataDropDown.sexo} 
+                        seleccion = {formData.sexoPaciente} 
+                        setSeleccion = {(value) => handleInputChange('sexoPaciente', value)} 
+          />
 
           <Text style={styles.label}></Text>
           <Text style={styles.label}></Text>
@@ -145,7 +144,7 @@ const PacienteIngresoScreen = ({navigation, route}) => {
             onEndEditing={(e) => handleInputChange('imcPaciente', calculaIMC(formData.pesoPaciente, e.nativeEvent.text))}
             />
 
-          <Text style={styles.label}>IMC</Text>
+          <Text style={styles.label}>IMC:</Text>
           <Text style={styles.textResult}>{formData.imcPaciente}</Text>
 
         </View>
@@ -164,7 +163,7 @@ const PacienteIngresoScreen = ({navigation, route}) => {
             onEndEditing={(e) => handleInputChange('anosPostracionPaciente', calculaAnos(e.nativeEvent.text))}
             />
 
-          <Text style={styles.label}>[Años]</Text>
+          <Text style={styles.label}>Años:</Text>
           <Text style={styles.textResult}>{formData.anosPostracionPaciente}</Text>
 
         </View>
@@ -184,38 +183,20 @@ const PacienteIngresoScreen = ({navigation, route}) => {
         </View>
 
         {/* Ingresos */}
-        <View style={styles.inputRow}>
-
-          <Text style={[styles.label, {flex: 2}]}>Por favor, indique a continuación  ¿cuál es el promedio aproximado de ingreso mensual de todos los integrantes de la vivienda?</Text>
-
-          <Picker
-            selectedValue={formData.ingresoPaciente}
-            style={[styles.picker, { flex: 2 }]}
-            onValueChange={(value) => handleInputChange('ingresoPaciente', value)}
-          >
-            { dataDropDown.ingresos.map((ingreso)=>
-                  <Picker.Item label={ingreso.label} value={ingreso.value} key={ingreso.value} />
-                )}
-          </Picker>
-
-        </View>
+        <SelectorSimple
+                        descripcion='Por favor, indique a continuación  ¿cuál es el promedio aproximado de ingreso mensual de todos los integrantes de la vivienda?' 
+                        lista = {dataDropDown.ingresos} 
+                        seleccion = {formData.ingresoPaciente} 
+                        setSeleccion = {(value) => handleInputChange('ingresoPaciente', value)} 
+        />
 
         {/* Estudios */}
-        <View style={styles.inputRow}>
-
-          <Text style={[styles.label, {flex: 2}]}>Por favor, detalle a continuación ¿cuál es el mayor nivel de estudios que ha obtenido el paciente? </Text>
-
-          <Picker
-            selectedValue={formData.estudioPaciente}
-            style={[styles.picker, { flex: 2 }]}
-            onValueChange={(value) => handleInputChange('estudioPaciente', value)}
-          >
-            { dataDropDown.estudios.map((estudio)=>
-                  <Picker.Item label={estudio.label} value={estudio.value} key={estudio.value} />
-                )}
-          </Picker>
-
-        </View>
+        <SelectorSimple
+                        descripcion='Por favor, detalle a continuación ¿cuál es el mayor nivel de estudios que ha obtenido el paciente? ' 
+                        lista = {dataDropDown.estudios} 
+                        seleccion = {formData.estudioPaciente} 
+                        setSeleccion = {(value) => handleInputChange('estudioPaciente', value)} 
+        />
 
         <View style={styles.inputRow}>
           <Button

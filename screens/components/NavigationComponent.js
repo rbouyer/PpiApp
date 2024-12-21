@@ -10,11 +10,11 @@ const NavigationComponent = ({titlePrev, onPressPrev, titleNext, onPressNext}) =
     return (
         <View style={styles.buttonRow}>
             <Button
-                title={titlePrev != undefined? titlePrev: 'Volver'}
+                title={titlePrev ? titlePrev: 'Volver'}
                 onPress={onPressPrev}
             />
             <Button 
-                title={titleNext != undefined? titleNext: "Siguiente"}
+                title={titleNext ? titleNext: "Siguiente"}
                 onPress={onPressNext}
             />
         </View>

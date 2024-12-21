@@ -1,47 +1,48 @@
 import React, { useState } from 'react';
-import { Platform } from 'react-native';
-import { View, Text, StyleSheet } from 'react-native';
-import { format } from 'date-fns';
+import { View, Text } from 'react-native';
 import styles from './Styles';
-
-import dataDropDown from '../data/dropdown.json';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import Navigation from './components/NavigationComponent';
+import Button from './components/ButtonComponent';
+
 
 
 const EnviaDataScreen = ({navigation, route}) => {
     const { data } = route.params;
     const [formData, setFormData] = useState(data);
 
-    const handleInputChange = (field, value) => {
-        setFormData({ ...formData, [field]: value });
-      };
-    
     const enviarFormData = () => {
         alert('Data Enviada');
       };
     
     return (
-      <View >
+      <View>
         <Text style={styles.title}>Envio de Datos</Text>
-        <View style={styles.container}>
-
-
-{/*         <View style={styles.inputRow}>
-            <Button
-                title="Volver"
-                onPress={() => navigation.navigate('Zarit', { data: formData })}
-            />
-            <Button title="Enviar datos" onPress={enviarFormData} />
+        <View>
+          <ScrollView>
+            <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+              <Text style={{textAlign: 'center'}}>Se realizará una validación final antes de enviar la ficha al servidor central.</Text>
+              <Text></Text>
+              <Text style={{textAlign: 'center'}}>Una vez enviada la ficha no se permitiran modificaciones sobre esta.</Text>
+              <Text></Text>
+              <Text></Text>
+            </View>
+            <View style={styles.buttonRow}>
+              <Button
+                  title="Volver"
+                  onPress={() => navigation.navigate('Zarit', { data: formData })}
+              />
+              <Button 
+                title="Enviar datos" 
+                onPress={() => enviarFormData()} 
+              />
+            </View>
+          
+          </ScrollView>
         </View>
- */}        
-          <Navigation 
-              onPressPrev={() => navigation.navigate('Zarit', { data: formData })} 
-              onPressNext={() => navigation.navigate('Zarit', { data: formData })}>
-          </Navigation>
-        </View>
 
-    </View>
+      </View>
     );
   }
  

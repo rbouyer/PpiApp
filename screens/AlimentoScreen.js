@@ -4,10 +4,10 @@ import styles from './Styles';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Picker } from '@react-native-picker/picker';
 
-
 import AlimentoComponent from './components/AlimentacionComponent';
 import Navigation from './components/NavigationComponent';
 
+import dataDropDown from '../data/dropdown.json';
 
 const AlimentoScreen = ({navigation, route}) => {
     const { data } = route.params;
@@ -37,6 +37,7 @@ const AlimentoScreen = ({navigation, route}) => {
                     {/* Fruta: selFruta */}
                     <AlimentoComponent 
                         alimento='01 - Fruta Fresca (excluyendo zumos)' 
+                        lista = {dataDropDown.alimentos}
                         seleccion = {formData.selFruta} 
                         setSeleccion = {(val) => {setFormData({ ...formData, 'selFruta': val })}} 
                     ></AlimentoComponent>
@@ -44,6 +45,7 @@ const AlimentoScreen = ({navigation, route}) => {
                     {/* Carne: selCarne */}
                     <AlimentoComponent 
                         alimento='02 - Carne (pollo, ternera, cerdo, cordero ' 
+                        lista = {dataDropDown.alimentos}
                         seleccion = {formData.selCarne} 
                         setSeleccion = {(val) => {setFormData({ ...formData, 'selCarne': val })}} 
                     ></AlimentoComponent>
@@ -51,6 +53,7 @@ const AlimentoScreen = ({navigation, route}) => {
                     {/* Huevo: selHuevo */}
                     <AlimentoComponent 
                         alimento='03 - Huevos' 
+                        lista = {dataDropDown.alimentos}
                         seleccion = {formData.selHuevo} 
                         setSeleccion = {(val) => {setFormData({ ...formData, 'selHuevo': val })}} 
                     ></AlimentoComponent>
@@ -58,6 +61,7 @@ const AlimentoScreen = ({navigation, route}) => {
                     {/* Pescado: selPescado */}
                     <AlimentoComponent 
                         alimento='04  - Pescado' 
+                        lista = {dataDropDown.alimentos}
                         seleccion = {formData.selPescado} 
                         setSeleccion = {(val) => {setFormData({ ...formData, 'selPescado': val })}} 
                     ></AlimentoComponent>
@@ -65,6 +69,7 @@ const AlimentoScreen = ({navigation, route}) => {
                     {/* Pasta: selPasta */}
                     <AlimentoComponent 
                         alimento='05 - Pasta, Arroz, Papas' 
+                        lista = {dataDropDown.alimentos}
                         seleccion = {formData.selPasta} 
                         setSeleccion = {(val) => {setFormData({ ...formData, 'selPasta': val })}} 
                     ></AlimentoComponent>
@@ -72,6 +77,7 @@ const AlimentoScreen = ({navigation, route}) => {
                     {/* Pan: selPan */}
                     <AlimentoComponent 
                         alimento='06 - Pan, Cereales' 
+                        lista = {dataDropDown.alimentos}
                         seleccion = {formData.selPan} 
                         setSeleccion = {(val) => {setFormData({ ...formData, 'selPan': val })}} 
                     ></AlimentoComponent>
@@ -79,6 +85,7 @@ const AlimentoScreen = ({navigation, route}) => {
                     {/* Pan: selVerdura */}
                     <AlimentoComponent 
                         alimento='07 - Verduras, Ensaladas, Hortalizas' 
+                        lista = {dataDropDown.alimentos}
                         seleccion = {formData.selVerdura} 
                         setSeleccion = {(val) => {setFormData({ ...formData, 'selVerdura': val })}} 
                     ></AlimentoComponent>
@@ -86,6 +93,7 @@ const AlimentoScreen = ({navigation, route}) => {
                     {/* Legumbre: selLegumbre */}
                     <AlimentoComponent 
                         alimento='08  -Legumbres' 
+                        lista = {dataDropDown.alimentos}
                         seleccion = {formData.selLegumbre} 
                         setSeleccion = {(val) => {setFormData({ ...formData, 'selLegumbre': val })}} 
                     ></AlimentoComponent>
@@ -93,6 +101,7 @@ const AlimentoScreen = ({navigation, route}) => {
                     {/* Fiambre: selFiambre */}
                     <AlimentoComponent 
                         alimento='09 - Embutidos y Fiambres' 
+                        lista = {dataDropDown.alimentos}
                         seleccion = {formData.selFiambre} 
                         setSeleccion = {(val) => {setFormData({ ...formData, 'selFiambre': val })}} 
                     ></AlimentoComponent>
@@ -100,6 +109,7 @@ const AlimentoScreen = ({navigation, route}) => {
                     {/* Lacteo: selLacteo */}
                     <AlimentoComponent 
                         alimento='10 - Productos Lacteos ( leche, queso, yogurt )' 
+                        lista = {dataDropDown.alimentos}
                         seleccion = {formData.selLacteo} 
                         setSeleccion = {(val) => {setFormData({ ...formData, 'selLacteo': val })}} 
                     ></AlimentoComponent>
@@ -107,6 +117,7 @@ const AlimentoScreen = ({navigation, route}) => {
                     {/* Dulce: selDulce */}
                     <AlimentoComponent 
                         alimento='11 - Duelces ( galletas, mermeladas, cereales con azucar, caramelos )' 
+                        lista = {dataDropDown.alimentos}
                         seleccion = {formData.selDulce} 
                         setSeleccion = {(val) => {setFormData({ ...formData, 'selDulce': val })}} 
                     ></AlimentoComponent>
@@ -114,6 +125,7 @@ const AlimentoScreen = ({navigation, route}) => {
                     {/* Bebida: selBebida */}
                     <AlimentoComponent 
                         alimento='12 - Bebidas y jugos con azucar' 
+                        lista = {dataDropDown.alimentos}
                         seleccion = {formData.selBebida} 
                         setSeleccion = {(val) => {setFormData({ ...formData, 'selBebida': val })}} 
                     ></AlimentoComponent>
@@ -121,6 +133,7 @@ const AlimentoScreen = ({navigation, route}) => {
                     {/* Rapida: selRapida, selAperitivo, selJugo */}
                     <AlimentoComponent 
                         alimento='13 - Comida rapida ( pollo frito, bocadillos, pizzas, hamburguezas )' 
+                        lista = {dataDropDown.alimentos}
                         seleccion = {formData.selRapida} 
                         setSeleccion = {(val) => {setFormData({ ...formData, 'selRapida': val })}} 
                     ></AlimentoComponent>
@@ -128,6 +141,7 @@ const AlimentoScreen = ({navigation, route}) => {
                     {/* selAperitivo: selAperitivo */}
                     <AlimentoComponent 
                         alimento='14 -  Aperitivos o comidas saladas de picar ( papas fritas, galletitas saladas )' 
+                        lista = {dataDropDown.alimentos}
                         seleccion = {formData.selAperitivo} 
                         setSeleccion = {(val) => {setFormData({ ...formData, 'selAperitivo': val })}} 
                     ></AlimentoComponent>
@@ -135,6 +149,7 @@ const AlimentoScreen = ({navigation, route}) => {
                     {/* Jugo: selJugo */}
                     <AlimentoComponent 
                         alimento='15 - Jugos naturales o de versuras' 
+                        lista = {dataDropDown.alimentos}
                         seleccion = {formData.selJugo} 
                         setSeleccion = {(val) => {setFormData({ ...formData, 'selJugo': val })}} 
                     ></AlimentoComponent>

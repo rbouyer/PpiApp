@@ -14,15 +14,17 @@ const SelectorSimpleComponent = ({descripcion, lista, seleccion, setSeleccion}) 
 
                 <Text style={styles.label}>{descripcion}</Text>
 
-                <Picker
-                    selectedValue={seleccion}
-                    style={[styles.picker]}
-                    onValueChange={setSeleccion}
-                >
-                    { lista.map((sel)=>
-                        <Picker.Item label={sel.label} value={sel.value} key={sel.value} />
-                        )}
-                </Picker>
+                <View style={styles.selector}>
+                    <Picker
+                        selectedValue={seleccion}
+                        style={[styles.picker]}
+                        onValueChange={setSeleccion}
+                    >
+                        { lista.map((sel)=>
+                            <Picker.Item label={sel.label} value={sel.value} key={sel.value} />
+                            )}
+                    </Picker>
+                </View>
 
             </View>
 

@@ -1,8 +1,8 @@
 {
     "sexo": [
-        { "value": "SX_01", "label": "Femenino" },
-        { "value": "SX_02", "label": "Masculino" },
-        { "value": "SX_03", "label": "Otro" }
+        { "value": "F", "label": "Femenino" },
+        { "value": "M", "label": "Masculino" },
+        { "value": "O", "label": "Otro" }
     ],
     "ingresos": [
         { "value": "IP_01", "label": "Menos a 500.000 pesos" }, 
