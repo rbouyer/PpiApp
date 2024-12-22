@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Alert } from 'react-native';
+
+import Button from './components/ButtonComponent';
+
 import styles from './Styles';
 
 const Separator = () => <View style={styles.separator} />;
@@ -54,10 +57,12 @@ const LoginScreen = ({navigation, route}) => {
 
       <Separator />
 
-      <Button
-        title="Siguiente"
-        onPress={() => navigation.navigate('PacienteIngreso', { data: formData })}
-      />
+      <View style={[styles.inputRow, {flex: 1, padding: 5}]}>
+        <Button
+          title="Siguiente"
+          onPress={() => navigation.navigate('PacienteIngreso', { data: formData })}
+        />
+      </View>
     </View>
   );
 }

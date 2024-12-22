@@ -19,7 +19,8 @@ const SelectorSimpleComponent = ({descripcion, lista, seleccion, setSeleccion}) 
                         selectedValue={seleccion}
                         style={[styles.picker]}
                         onValueChange={setSeleccion}
-                    >
+                        dropdownIconColor={'white'}
+                        >
                         { lista.map((sel)=>
                             <Picker.Item label={sel.label} value={sel.value} key={sel.value} />
                             )}

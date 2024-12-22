@@ -35,7 +35,8 @@ const BradenComponent = ({braden, lista, seleccion, setSeleccion, puntaje}) => {
                         selectedValue={seleccion}
                         style={[styles.picker, {flex: 2}]}
                         onValueChange={onChangeSelec}
-                    >
+                        dropdownIconColor={'white'}
+                        >
                         { lista.map((sel)=>
                             <Picker.Item label={sel.label} value={sel.value} key={sel.value} />
                             )}

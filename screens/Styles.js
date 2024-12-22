@@ -97,11 +97,12 @@ var styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'black',
         borderRadius: 10,
-        padding: 10,
+        padding: 5,
         marginHorizontal: 20,
         justifyContent: 'center',
         alignItems: 'center',
-        width: 120
+        width: 120,
+        height: 40
       },
       text: { 
         color: 'white',
