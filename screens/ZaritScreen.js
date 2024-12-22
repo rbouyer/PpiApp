@@ -21,28 +21,28 @@ const ZaritScreen = ({navigation, route}) => {
     const calcularPtje = () => {
         var res = 0;
 
-        res += !isNaN(formData.ptjeSolicitaAyuda)? formData.ptjeSolicitaAyuda: 0;
-        res += !isNaN(formData.ptjeTiempo)? formData.ptjeTiempo: 0;
-        res += !isNaN(formData.selAgobiado)? formData.selAgobiado: 0;
-        res += !isNaN(formData.ptjeVerguenza)? formData.ptjeVerguenza: 0;
-        res += !isNaN(formData.ptjeEnfadado)? formData.ptjeEnfadado: 0;
-        res += !isNaN(formData.ptjeAfecta)? formData.ptjeAfecta: 0;
-        res += !isNaN(formData.ptjeMiedo)? formData.ptjeMiedo: 0;
-        res += !isNaN(formData.ptjeDepende)? formData.ptjeDepende: 0;
-        res += !isNaN(formData.ptjeEmpeorado)? formData.ptjeEmpeorado: 0;
-        res += !isNaN(formData.ptjeTenso)? formData.ptjeTenso: 0;
-        res += !isNaN(formData.ptjeIntimidad)? formData.ptjeIntimidad: 0;
-        res += !isNaN(formData.ptjeSocial)? formData.ptjeSocial: 0;
-        res += !isNaN(formData.ptjeIncomodo)? formData.ptjeIncomodo: 0;
-        res += !isNaN(formData.ptjeCuidar)? formData.ptjeCuidar: 0;
-        res += !isNaN(formData.ptjeIngresos)? formData.ptjeIngresos: 0;
-        res += !isNaN(formData.ptjeCapaz)? formData.ptjeCapaz: 0;
-        res += !isNaN(formData.ptjeControl)? formData.ptjeControl: 0;
-        res += !isNaN(formData.ptjeOtra)? formData.ptjeOtra: 0;
-        res += !isNaN(formData.ptjeIndeciso)? formData.ptjeIndeciso: 0;
-        res += !isNaN(formData.ptjeHacerMas)? formData.ptjeHacerMas: 0;
-        res += !isNaN(formData.ptjeCuidarMejor)? formData.ptjeCuidarMejor: 0;
-        res += !isNaN(formData.ptjeGlobalmente)? formData.ptjeGlobalmente: 0;
+        res += !isNaN(formData.ptjeSolicitaAyuda)? +formData.ptjeSolicitaAyuda: 0;
+        res += !isNaN(formData.ptjeTiempo)? +formData.ptjeTiempo: 0;
+        res += !isNaN(formData.selAgobiado)? +formData.selAgobiado: 0;
+        res += !isNaN(formData.ptjeVerguenza)? +formData.ptjeVerguenza: 0;
+        res += !isNaN(formData.ptjeEnfadado)? +formData.ptjeEnfadado: 0;
+        res += !isNaN(formData.ptjeAfecta)? +formData.ptjeAfecta: 0;
+        res += !isNaN(formData.ptjeMiedo)? +formData.ptjeMiedo: 0;
+        res += !isNaN(formData.ptjeDepende)? +formData.ptjeDepende: 0;
+        res += !isNaN(formData.ptjeEmpeorado)? +formData.ptjeEmpeorado: 0;
+        res += !isNaN(formData.ptjeTenso)? +formData.ptjeTenso: 0;
+        res += !isNaN(formData.ptjeIntimidad)? +formData.ptjeIntimidad: 0;
+        res += !isNaN(formData.ptjeSocial)? +formData.ptjeSocial: 0;
+        res += !isNaN(formData.ptjeIncomodo)? +formData.ptjeIncomodo: 0;
+        res += !isNaN(formData.ptjeCuidar)? +formData.ptjeCuidar: 0;
+        res += !isNaN(formData.ptjeIngresos)? +formData.ptjeIngresos: 0;
+        res += !isNaN(formData.ptjeCapaz)? +formData.ptjeCapaz: 0;
+        res += !isNaN(formData.ptjeControl)? +formData.ptjeControl: 0;
+        res += !isNaN(formData.ptjeOtra)? +formData.ptjeOtra: 0;
+        res += !isNaN(formData.ptjeIndeciso)? +formData.ptjeIndeciso: 0;
+        res += !isNaN(formData.ptjeHacerMas)? +formData.ptjeHacerMas: 0;
+        res += !isNaN(formData.ptjeCuidarMejor)? +formData.ptjeCuidarMejor: 0;
+        res += !isNaN(formData.ptjeGlobalmente)? +formData.ptjeGlobalmente: 0;
 
         return res;
     }
@@ -299,10 +299,10 @@ const ZaritScreen = ({navigation, route}) => {
                     ></ZaritSelectorComponent>
 
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Ptje.Zarit</Text>
+                        <Text style={styles.label}>Ptje.Zarit:</Text>
                         <Text style={styles.textResult}>{calcularPtje()}</Text>
-                        <Text style={styles.label}>Escala Zarit</Text>
-                        <Text style={styles.textResult}>{obtenerSobrecarga()}</Text>
+                        <Text style={styles.label}>Escala Zarit:</Text>
+                        <Text style={[styles.textResult, {flex: 2, width: "100%", textAlign: "left"}]}>{obtenerSobrecarga()}</Text>
                     </View>
 
 
