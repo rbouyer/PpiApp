@@ -45,9 +45,9 @@ const LesionScreen = ({navigation, route}) => {
 
                     {/* Encabezado */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Pregunta</Text>
-                        <Text style={styles.label}>SI</Text>
-                        <Text style={styles.label}>NO</Text>
+                        <Text style={styles.labelBold}>Pregunta</Text>
+                        <Text style={styles.labelBold}></Text>
+                        <Text style={[styles.labelBold, {textAlign: 'center'}]}>SI/NO</Text>
                     </View>
 
                     {/* 
@@ -68,7 +68,7 @@ const LesionScreen = ({navigation, route}) => {
                         setNroMedPatologia = {null}
                     ></PatologiaMedicamentoComponent>
 
-                    <Text style={styles.label}>Humedad</Text>
+                    <Text style={styles.labelBold}>Humedad</Text>
 
                     {/* Presenta Lesion Humedad: presentaLesionHumedad */}
                     <PatologiaMedicamentoComponent 
@@ -89,7 +89,7 @@ const LesionScreen = ({navigation, route}) => {
                     ></LesionComponent>
 
 
-                    <Text style={styles.label}>Incontinencia</Text>
+                    <Text style={styles.labelBold}>Incontinencia</Text>
 
                     {/* Incontinencia: presentaIncontinencia */}
                     <PatologiaMedicamentoComponent 
@@ -146,7 +146,7 @@ const LesionScreen = ({navigation, route}) => {
                         setNroMedPatologia = {null}
                     ></PatologiaMedicamentoComponent>
 
-                    <Text style={styles.label}>Dispositivos médicos</Text>
+                    <Text style={styles.labelBold}>Dispositivos médicos</Text>
 
                     {/* Presenta Dispositivo NoInvasivo: presentaDispositivoNoInvasivo */}
                     <PatologiaMedicamentoComponent 
@@ -185,7 +185,7 @@ const LesionScreen = ({navigation, route}) => {
                     ></LesionComponent>
 
 
-                    <Text style={styles.label}>Cirugia</Text>
+                    <Text style={styles.labelBold}>Cirugia</Text>
 
                     {/* Presenta Cirugia: presentaCirugia */}
                     <PatologiaMedicamentoComponent 
@@ -236,7 +236,7 @@ const LesionScreen = ({navigation, route}) => {
                     </View>
 
 
-                    <Text style={styles.label}>LPPC</Text>
+                    <Text style={styles.labelBold}>LPPC</Text>
 
                     {/* LPP Comunitaria: presentaLPPC */}
                     <PatologiaMedicamentoComponent 

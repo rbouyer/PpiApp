@@ -40,10 +40,10 @@ const ExamenScreen = ({navigation, route}) => {
 
                     {/* Encabezado */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Examen</Text>
-                        <Text style={styles.label}>No recolectado</Text>
-                        <Text style={styles.label}>F.Examen</Text>
-                        <Text style={styles.label}>Valor</Text>
+                        <Text style={styles.labelBold}>Examen</Text>
+                        <Text style={styles.labelBold}>No recolectado</Text>
+                        <Text style={styles.labelBold}>F.Examen</Text>
+                        <Text style={styles.labelBold}>Valor</Text>
 
                     </View>
 

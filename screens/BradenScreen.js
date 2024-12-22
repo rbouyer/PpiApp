@@ -55,9 +55,9 @@ const BradenScreen = ({navigation, route}) => {
 
                     {/* Encabezado */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Criterio</Text>
-                        <Text style={styles.label}>Nivel</Text>
-                        <Text style={styles.label}>Puntaje Item</Text>
+                        <Text style={styles.labelBold}>Criterio</Text>
+                        <Text style={styles.labelBold}>Nivel</Text>
+                        <Text style={styles.labelBold}>Puntaje Item</Text>
                     </View>
 
                     {/* 

@@ -27,9 +27,9 @@ const ExamenFisicoScreen = ({navigation, route}) => {
 
                     {/* Encabezado */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Item</Text>
-                        <Text style={styles.label}>Sistolica</Text>
-                        <Text style={styles.label}>Diastolica</Text>
+                        <Text style={styles.labelBold}>Item</Text>
+                        <Text style={styles.labelBold}>Sistolica</Text>
+                        <Text style={styles.labelBold}>Diastolica</Text>
                     </View>
 
                     {/* 

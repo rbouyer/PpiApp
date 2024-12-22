@@ -26,7 +26,7 @@ const TemplateScreen = ({navigation, route}) => {
             <ScrollView>
                 <View style={styles.container}>
 
-                    <Text style={[styles.label]}>Ubicación</Text>
+                    <Text style={[styles.labelBold]}>Ubicación</Text>
 
                     {/* selUbicacionLppc, selLadoLppc, estaAsocDispositivoLppc, descDispositivoLppc, selCategoriaLppc enTratamientoLppc, estaNotificadaLppc */}
                     <View style={styles.inputRow}>
@@ -44,7 +44,7 @@ const TemplateScreen = ({navigation, route}) => {
                         />
                     </View>
 
-                    <Text style={[styles.label]}>Pregunta</Text>
+                    <Text style={styles.labelBold}>Pregunta</Text>
 
                     <View style={styles.inputRow}>
                         <LppcRBComponent 
@@ -68,7 +68,8 @@ const TemplateScreen = ({navigation, route}) => {
                         />
                     </View>
 
-                    <Text style={[styles.label]}>Categoría</Text>
+                    <Text style={[styles.labelBold]}>Categoría</Text>
+                    <Text style={[styles.label]}></Text>
 
                     <View style={styles.inputRow}>
                         <Text style={[styles.label]}>04 - ¿Cuál es la categoría o estadio de la LPPC - M?</Text>
@@ -85,7 +86,7 @@ const TemplateScreen = ({navigation, route}) => {
 
                     </View>
 
-                    <Text style={[styles.label]}>Pregunta</Text>
+                    <Text style={[styles.labelBold]}>Pregunta</Text>
 
                     <View style={styles.inputRow}>
                         <LppcRBComponent 

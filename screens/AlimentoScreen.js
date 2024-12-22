@@ -26,8 +26,8 @@ const AlimentoScreen = ({navigation, route}) => {
 
                     {/* Encabezado */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Alimentos</Text>
-                        <Text style={styles.label}>Selección</Text>
+                        <Text style={styles.labelBold}>Alimentos</Text>
+                        <Text style={styles.labelBold}>Selección</Text>
                     </View>
 
                     {/* 

@@ -40,7 +40,7 @@ const CuidadorPrimarioScreen = ({navigation, route}) => {
                 <View style={styles.container}>
 
                     {/* tieneCuidador, nombreCuidador, fechaNacimientoCuidador, edadCuidador, selSexoCuidador, selRelacionCuidador, selEstudioCuidador, selSaludCuidador */}
-                    <Text style={[styles.label]}>Pregunta</Text>
+                    <Text style={[styles.labelBold]}>Pregunta</Text>
 
                     <View style={styles.inputRow}>
                         <CuidadorRBComponent 

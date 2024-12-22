@@ -71,9 +71,9 @@ const ZaritScreen = ({navigation, route}) => {
 
                     {/* Encabezado */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Pregunta</Text>
-                        <Text style={styles.label}>Nivel</Text>
-                        <Text style={styles.label}>Puntaje</Text>
+                        <Text style={styles.labelBold}>Pregunta</Text>
+                        <Text style={styles.labelBold}>Nivel</Text>
+                        <Text style={styles.labelBold}>Puntaje</Text>
                     </View>
 
                     {/* 01 selSolicitaAyuda, ptjeSolicitaAyuda,

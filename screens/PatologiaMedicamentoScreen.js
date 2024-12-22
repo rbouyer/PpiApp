@@ -26,10 +26,10 @@ const PatologiaMedicamentoScreen = ({navigation, route}) => {
 
                     {/* Encabezado */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Patología</Text>
-                        <Text style={styles.label}>SI</Text>
-                        <Text style={styles.label}>NO</Text>
-                        <Text style={styles.label}>Nro medicamentos día</Text>
+                        <Text style={styles.labelBold}>Patología</Text>
+                        <Text style={styles.labelBold}></Text>
+                        <Text style={styles.labelBold}>SI/NO</Text>
+                        <Text style={styles.labelBold}>Nro medicamentos día</Text>
                     </View>
 
                     {/* 

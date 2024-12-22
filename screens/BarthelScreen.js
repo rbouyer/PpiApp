@@ -57,9 +57,9 @@ const BarthelScreen = ({navigation, route}) => {
 
                     {/* Encabezado */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Pregunta</Text>
-                        <Text style={styles.label}>Criterio</Text>
-                        <Text style={styles.label}>Puntaje</Text>
+                        <Text style={styles.labelBold}>Pregunta</Text>
+                        <Text style={styles.labelBold}>Criterio</Text>
+                        <Text style={styles.labelBold}>Puntaje</Text>
  
                     </View>
 

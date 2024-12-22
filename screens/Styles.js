@@ -29,6 +29,9 @@ var styles = StyleSheet.create({
       label: {
         flex: 1, fontSize: 16, padding: 5
       },
+      labelBold: {
+        flex: 1, fontSize: 16, padding: 5, fontWeight: 'bold'
+      },
       textResult: {
         flex: 1, fontSize: 16, borderColor: 'gray', borderWidth: 1,  textAlign: "right", backgroundColor: 'yellow', height: 35, padding: 5 
       },

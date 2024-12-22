@@ -26,10 +26,9 @@ const MovilidadContencionScreen = ({navigation, route}) => {
 
                     {/* Encabezado */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Movilidad y Contención</Text>
-                        <Text style={styles.label}>SI</Text>
-                        <Text style={styles.label}>NO</Text>
-                        <Text style={styles.label}>Indique</Text>
+                        <Text style={styles.labelBold}>Movilidad y Contención</Text>
+                        <Text style={[styles.labelBold, {textAlign: "center"}]}>SI/NO</Text>
+                        <Text style={styles.labelBold}>Indique</Text>
                     </View>
 
                     {/* 
