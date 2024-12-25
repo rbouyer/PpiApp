@@ -17,7 +17,7 @@ const SelectorComponent = ({lista, seleccion, setSeleccion}) => {
                     dropdownIconColor={'white'}
                 >
                     { lista.map((sel)=>
-                        <Picker.Item label={sel.label} value={sel.value} key={sel.value} />
+                        <Picker.Item label={sel.label} value={sel.value} key={sel.value}/>
                         )}
                 </Picker>
             </View>

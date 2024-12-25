@@ -14,7 +14,7 @@ import styles from './Styles';
 import dataDropDown from '../data/dropdown.json';
 
 import { format } from 'date-fns';
-import calculaEdad from '../helpers/DateHelper.js'
+import { calculaEdad } from '../helpers/DateHelper';
 
 
 const CuidadorPrimarioScreen = ({navigation, route}) => {
@@ -29,7 +29,10 @@ const CuidadorPrimarioScreen = ({navigation, route}) => {
 
     const handleDateChange = (field, selectedDate) => {
         setShowDatePicker(false); // Close the picker
-        setFormData({ ...formData, [field]: selectedDate, 'edadPaciente': calculaEdad(selectedDate) });
+        //console.log('field: ' + field + ', value: ' + selectedDate);
+        var edad = calculaEdad(selectedDate);
+        //console.log('Edad: ' + edad)
+        setFormData({ ...formData, [field]: selectedDate, 'edadCuidador': edad});
       };
   
     return (
@@ -54,7 +57,7 @@ const CuidadorPrimarioScreen = ({navigation, route}) => {
 
                     {/* Nombre */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>02 - Nombre (registre solo iniciales de los nombres y apellidos</Text>
+                        <Text style={styles.label}>02 - Nombre (registre solo iniciales de los nombres y apellidos)</Text>
 
                         <TextInput
                             style={[styles.textInput]}
@@ -79,8 +82,7 @@ const CuidadorPrimarioScreen = ({navigation, route}) => {
                             maximumDate={new Date()}
                             mode="date"
                             display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
-                            onChange={(event, selectedDate) => handleDateChange('fechaNacimientoCuidador', selectedDate)}
-                            onEndEditing={(e) => setFormData({ ...formData, 'edadCuidador': calculaEdad(e.nativeEvent.text) })}
+                            onChange={(event, selectedDate) => {handleDateChange('fechaNacimientoCuidador', selectedDate);}}
                             />)}
                         </View>
 

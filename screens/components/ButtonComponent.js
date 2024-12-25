@@ -4,7 +4,7 @@ import styles from '../Styles';
 
 
 const ButtonComponent = ({title, onPress, color}) => {
-    console.info(color);
+    //console.info(color);
     return (
         <TouchableOpacity onPress={onPress}>
             <View style={[styles.button.container, {backgroundColor: color? color: 'black' }]}>
