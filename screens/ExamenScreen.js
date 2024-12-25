@@ -24,6 +24,10 @@ const ExamenScreen = ({navigation, route}) => {
     const [showDatePickerGlC, setShowDatePickerGlC] = useState(false);
     const [showDatePickerHem, setShowDatePickerHem] = useState(false);
 
+    const [showDatePickerProc, setShowDatePickerProc] = useState(false);
+    const [showDatePickerProt, setShowDatePickerProt] = useState(false);
+    const [showDatePickerCrea, setShowDatePickerCrea] = useState(false);
+
     const [formData, setFormData] = useState(data);
 
     const handleCheckChange = (field, value, fieldValidez, fechaEx) => {
@@ -188,6 +192,94 @@ const ExamenScreen = ({navigation, route}) => {
                         </View>
 
                         <Text style={[styles.textResult, {textAlign: "left"}]}>{buscaEnArreglo(formData.validezExHemoglobina, dataDropDown.validezExamenes)}</Text>
+
+                    </View>
+
+
+
+                    {/* Procalcitonina Sérica : noRecolectadoProcalcitonina, fechaExProcalcitonina, validezExProcalcitonina */}
+                    <View style={styles.inputRow}>
+
+                        <Text style={styles.label}>Procalcitonina Sérica</Text>
+
+                        <View style={[styles.inputRow, {flex: 1, alignItems: 'center'}]}>
+                            <CheckBox style={styles.checkbox} value={formData.noRecolectadoProcalcitonina} 
+                            onValueChange={() => handleCheckChange('noRecolectadoProcalcitonina', formData.noRecolectadoProcalcitonina, 'validezExProcalcitonina', formData.fechaExProcalcitonina)}/>
+                        </View>
+
+                        <View style={{ flex: 1, marginHorizontal: 5 }}>
+                            <Button color='blue'
+                            title={formData.fechaExProcalcitonina != null? format(formData.fechaExProcalcitonina, 'dd-MM-yyyy'): ''}
+                            onPress={() => setShowDatePickerProc(true)}
+                            />
+                            {showDatePickerProc && (<DateTimePicker
+                            maximumDate={new Date()}
+                            value={formData.fechaExProcalcitonina}
+                            mode="date"
+                            display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
+                            onChange={(event, selectedDate) => {setShowDatePickerProc(false); console.info(selectedDate); setFormData({ ...formData, 'fechaExProcalcitonina': selectedDate, 'validezExProcalcitonina': evaluaExamen(formData.noRecolectadoProcalcitonina, selectedDate) });}}
+                            />)}
+                        </View>
+
+                        <Text style={[styles.textResult, {textAlign: "left"}]}>{buscaEnArreglo(formData.validezExProcalcitonina, dataDropDown.validezExamenes)}</Text>
+
+                    </View>
+
+
+                    {/* Proteína C Reactiva : noRecolectadoProteina, fechaExProteina, validezExProteina */}
+                    <View style={styles.inputRow}>
+
+                        <Text style={styles.label}>Proteína C Reactiva</Text>
+
+                        <View style={[styles.inputRow, {flex: 1, alignItems: 'center'}]}>
+                            <CheckBox style={styles.checkbox} value={formData.noRecolectadoProteina} 
+                            onValueChange={() => handleCheckChange('noRecolectadoProteina', formData.noRecolectadoProteina, 'validezExProteina', formData.fechaExProteina)}/>
+                        </View>
+
+                        <View style={{ flex: 1, marginHorizontal: 5 }}>
+                            <Button color='blue'
+                            title={formData.fechaExProteina != null? format(formData.fechaExProteina, 'dd-MM-yyyy'): ''}
+                            onPress={() => setShowDatePickerProt(true)}
+                            />
+                            {showDatePickerProt && (<DateTimePicker
+                            maximumDate={new Date()}
+                            value={formData.fechaExProteina}
+                            mode="date"
+                            display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
+                            onChange={(event, selectedDate) => {setShowDatePickerProt(false); console.info(selectedDate); setFormData({ ...formData, 'fechaExProteina': selectedDate, 'validezExProteina': evaluaExamen(formData.noRecolectadoProteina, selectedDate) });}}
+                            />)}
+                        </View>
+
+                        <Text style={[styles.textResult, {textAlign: "left"}]}>{buscaEnArreglo(formData.validezExProteina, dataDropDown.validezExamenes)}</Text>
+
+                    </View>
+
+
+                    {/* Creatinina Sérica : noRecolectadoCreatinina: false, fechaExCreatinina: new Date(), validezExCreatinina */}
+                    <View style={styles.inputRow}>
+
+                        <Text style={styles.label}>Creatinina Sérica</Text>
+
+                        <View style={[styles.inputRow, {flex: 1, alignItems: 'center'}]}>
+                            <CheckBox style={styles.checkbox} value={formData.noRecolectadoCreatinina} 
+                            onValueChange={() => handleCheckChange('noRecolectadoCreatinina', formData.noRecolectadoCreatinina, 'validezExCreatinina', formData.fechaExCreatinina)}/>
+                        </View>
+
+                        <View style={{ flex: 1, marginHorizontal: 5 }}>
+                            <Button color='blue'
+                            title={formData.fechaExCreatinina != null? format(formData.fechaExCreatinina, 'dd-MM-yyyy'): ''}
+                            onPress={() => setShowDatePickerCrea(true)}
+                            />
+                            {showDatePickerCrea && (<DateTimePicker
+                            maximumDate={new Date()}
+                            value={formData.fechaExCreatinina}
+                            mode="date"
+                            display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
+                            onChange={(event, selectedDate) => {setShowDatePickerCrea(false); console.info(selectedDate); setFormData({ ...formData, 'fechaExCreatinina': selectedDate, 'validezExCreatinina': evaluaExamen(formData.noRecolectadoCreatinina, selectedDate) });}}
+                            />)}
+                        </View>
+
+                        <Text style={[styles.textResult, {textAlign: "left"}]}>{buscaEnArreglo(formData.validezExCreatinina, dataDropDown.validezExamenes)}</Text>
 
                     </View>
 

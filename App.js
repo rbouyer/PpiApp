@@ -36,12 +36,16 @@ const App = () => {
       noRecolectadoGlicemiaV: false, fechaExGlicemiaV: new Date(), validezExGlicemiaV: 'VE_SI_VAL', 
       noRecolectadoGlicemiaC: false, fechaExGlicemiaC: new Date(), validezExGlicemiaC: 'VE_SI_VAL', 
       noRecolectadoHemoglobina: false, fechaExHemoglobina: new Date(), validezExHemoglobina: 'VE_SI_VAL', 
-      
+
+      noRecolectadoProcalcitonina: false, fechaExProcalcitonina: new Date(), validezExProcalcitonina: 'VE_SI_VAL', 
+      noRecolectadoProteina: false, fechaExProteina: new Date(), validezExProteina: 'VE_SI_VAL', 
+      noRecolectadoCreatinina: false, fechaExCreatinina: new Date(), validezExCreatinina: 'VE_SI_VAL', 
+
       /* Patologia y Medicamentos */
       tieneArtritis: false, nroMedArtritis: 0, tieneDiabetes: false, nroMedDiabetes: 0, tieneDisplidemia: false, nroMedDisplidemia: 0, tieneCardio: false, nroMedCardio: 0,
       tieneEPOC: false, nroMedEPOC: 0, tieneHipArterial: false, nroMedHipArterial: 0, tieneInUrinaria: false, nroMedInUrinaria: 0, tieneInfarto: false, nroMedInfarto: 0,
       tieneInsufCardiaca: false, nroMedInsufCardiaca: 0, tieneOsteoporosis: false, nroMedOsteoporosis: 0, tieneHepatico: false, nroMedHepatico: 0, tieneResInsulina: false, nroMedResInsulina: 0,
-      tieneSecuelaACV: false, nroMedSecuelaACV: 0, tieneAudicionReducida: false, tieneVisionReducida: false,
+      tieneSecuelaACV: false, nroMedSecuelaACV: 0, tieneAudicionReducida: false, tieneVisionReducida: false, tieneAlcohol: false, tiene: false,
 
       /* Patologia y Medicamentos 2 */
       olvidaMedicamento: false, tomaMedicamentosEnHora: false, dejaDeTomarMedicamentoBien: false, dejaDeTomarMedicamentoMal: false, adherenteTratamiento: false,
@@ -51,7 +55,7 @@ const App = () => {
 
       /* Alimentación */
       selFruta: '', selCarne: '', selHuevo: '', selPescado: '', selPasta: '', selPan: '', selVerdura: '', selLegumbre: '', selFiambre: '', 
-      selLacteo: '', selDulce: '', selBebida: '', selRapida: '', selAperitivo: '', selJugo: '',
+      selLacteo: '', selDulce: '', selBebida: '', selRapida: '', selAperitivo: '', selJugo: '', tienePlanAlimentacion: false, 
 
       /* Riesgo Braden */
       selPercepcion: '', ptjePercepcion: null, selHumedad: '', ptjeHumedad: null, selActividad: '', ptjeActividad: null, selMovilidad: '', ptjeMovilidad: null,
