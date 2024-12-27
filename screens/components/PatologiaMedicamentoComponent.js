@@ -50,6 +50,9 @@ const PatologiaMedicamentoComponent = ({patologia, tienePatologia, setTienePatol
                     onChangeText={(val) =>  setNroMedPatologia(val)}
                     onEndEditing={(e) => setNroMedPatologia(e.nativeEvent.text)}
                 />)}
+                {/* else */}
+                {nroMedPatologia == null && (<Text  style={styles.label}
+                />)}
 
             </View>
 

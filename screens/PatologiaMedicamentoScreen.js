@@ -172,6 +172,25 @@ const PatologiaMedicamentoScreen = ({navigation, route}) => {
                         setNroMedPatologia = {null}
                     ></PatologiaMedicamentoComponent>
 
+                    {/* Alcohol: tieneAlcohol */}
+                    <PatologiaMedicamentoComponent 
+                        patologia='Alcohol' 
+                        tienePatologia = {formData.tieneAlcohol} 
+                        setTienePatologia = {(val) => {setFormData({ ...formData, 'tieneAlcohol': val })}} 
+                        nroMedPatologia = {null} 
+                        setNroMedPatologia = {null}
+                    ></PatologiaMedicamentoComponent>
+
+
+                    {/* Tabaco/Cigarro: tieneTabaco */}
+                    <PatologiaMedicamentoComponent 
+                        patologia='Tabaco/Cigarro' 
+                        tienePatologia = {formData.tieneTabaco} 
+                        setTienePatologia = {(val) => {setFormData({ ...formData, 'tieneTabaco': val })}} 
+                        nroMedPatologia = {null} 
+                        setNroMedPatologia = {null}
+                    ></PatologiaMedicamentoComponent>
+
 
                     <Navigation 
                         onPressPrev={() => navigation.navigate('Examen', { data: formData })} 

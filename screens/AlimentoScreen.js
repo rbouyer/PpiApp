@@ -6,6 +6,7 @@ import { Picker } from '@react-native-picker/picker';
 
 import AlimentoComponent from './components/AlimentacionComponent';
 import Navigation from './components/NavigationComponent';
+import AlimentoRadioComponent from './components/PatologiaMedicamentoComponent';
 
 import dataDropDown from '../data/dropdown.json';
 
@@ -148,11 +149,22 @@ const AlimentoScreen = ({navigation, route}) => {
 
                     {/* Jugo: selJugo */}
                     <AlimentoComponent 
-                        alimento='15 - Jugos naturales o de versuras' 
+                        alimento='15 - Jugos naturales o de verduras' 
                         lista = {dataDropDown.alimentos}
                         seleccion = {formData.selJugo} 
                         setSeleccion = {(val) => {setFormData({ ...formData, 'selJugo': val })}} 
                     ></AlimentoComponent>
+
+
+                    {/* Pregunta: plan alimentacion prev: tienePlanAlimentacion */}
+                    <AlimentoRadioComponent 
+                        patologia='¿El paciente tiene un plan de alimentación para prevenir las LPPC?' 
+                        tienePatologia = {formData.tienePlanAlimentacion} 
+                        setTienePatologia = {(val) => {setFormData({ ...formData, 'tienePlanAlimentacion': val })}} 
+                        nroMedPatologia = {null} 
+                        setNroMedPatologia = {null}
+                    ></AlimentoRadioComponent>
+
 
 
                     <Navigation 

@@ -30,7 +30,7 @@ var styles = StyleSheet.create({
         flex: 1, fontSize: 16, padding: 5
       },
       labelBold: {
-        flex: 1, fontSize: 16, padding: 5, fontWeight: 'bold'
+        flex: 1, fontSize: 16, padding: 5, fontWeight: 'bold',  textAlign: "left"
       },
       textResult: {
         flex: 1, fontSize: 16, borderColor: 'gray', borderWidth: 1,  textAlign: "right", backgroundColor: 'yellow', height: 35, padding: 5 
@@ -39,7 +39,7 @@ var styles = StyleSheet.create({
         flex: 1, fontSize: 16, borderColor: 'gray', borderWidth: 1,  textAlign: "right", backgroundColor: 'yellow', height: 50, padding: 10 
       },
       inputRow: {
-        flexDirection: 'row', marginBottom: 15, alignItems: 'center', justifyContent: 'space-between' 
+        flexDirection: 'row', marginBottom: 15, alignItems: 'center' 
       },
       textInput: {
         flex: 1, borderColor: 'gray', borderWidth: 1, padding: 5, marginHorizontal: 5, backgroundColor: 'white'

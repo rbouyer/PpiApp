@@ -45,7 +45,7 @@ const App = () => {
       tieneArtritis: false, nroMedArtritis: 0, tieneDiabetes: false, nroMedDiabetes: 0, tieneDisplidemia: false, nroMedDisplidemia: 0, tieneCardio: false, nroMedCardio: 0,
       tieneEPOC: false, nroMedEPOC: 0, tieneHipArterial: false, nroMedHipArterial: 0, tieneInUrinaria: false, nroMedInUrinaria: 0, tieneInfarto: false, nroMedInfarto: 0,
       tieneInsufCardiaca: false, nroMedInsufCardiaca: 0, tieneOsteoporosis: false, nroMedOsteoporosis: 0, tieneHepatico: false, nroMedHepatico: 0, tieneResInsulina: false, nroMedResInsulina: 0,
-      tieneSecuelaACV: false, nroMedSecuelaACV: 0, tieneAudicionReducida: false, tieneVisionReducida: false, tieneAlcohol: false, tiene: false,
+      tieneSecuelaACV: false, nroMedSecuelaACV: 0, tieneAudicionReducida: false, tieneVisionReducida: false, tieneAlcohol: false, tieneTabaco: false,
 
       /* Patologia y Medicamentos 2 */
       olvidaMedicamento: false, tomaMedicamentosEnHora: false, dejaDeTomarMedicamentoBien: false, dejaDeTomarMedicamentoMal: false, adherenteTratamiento: false,

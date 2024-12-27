@@ -27,10 +27,6 @@ const PatologiaMedicamento2Screen = ({navigation, route}) => {
                     {/* Encabezado */}
                     <View style={styles.inputRow}>
                         <Text style={styles.labelBold}>Patología</Text>
-                        <Text style={styles.labelBold}></Text>
-                        <Text style={styles.labelBold}></Text>
-                        <Text style={styles.labelBold}></Text>
-                        <Text style={styles.labelBold}></Text>
                         <Text style={styles.labelBold}>SI/NO</Text>
 
                     </View>
