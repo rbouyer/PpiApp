@@ -109,7 +109,7 @@ const App = () => {
       selCuidadMejor: '', ptjeCuidarMejor: 0,
       selGlobalmente: '', ptjeGlobalmente: 0,
 
-      lppc: new Array()
+      lppc: null
 
     }
   );
