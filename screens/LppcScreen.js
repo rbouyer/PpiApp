@@ -32,7 +32,8 @@ const TemplateScreen = ({navigation, route}) => {
                                                                                 descDispositivoLppc: '', 
                                                                                 selCategoriaLppc: '', 
                                                                                 enTratamientoLppc: false, 
-                                                                                estaNotificadaLppc: false })));
+                                                                                estaNotificadaLppc: false,
+                                                                                errors: {} })));
 
     if(formData.lppc == null) setFormData({ ...formData, 'lppc': lpp });
 
@@ -44,7 +45,7 @@ const TemplateScreen = ({navigation, route}) => {
 
                     {lpp.map((entry, index) => (
                         <View key={index} style={[styles.container, {justifyContent: 'left', alignItems: 'left'}]}>
-                            <Text style={styles.title}>LPPC {index + 1}</Text>
+                            <Text style={[styles.title, {color: 'red'}]}>LPPC {index + 1}</Text>
 
                             {/* selUbicacionLppc, selLadoLppc, estaAsocDispositivoLppc, descDispositivoLppc, selCategoriaLppc enTratamientoLppc, estaNotificadaLppc */}
                              <View style={styles.inputRow}>

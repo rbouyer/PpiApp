@@ -53,6 +53,7 @@ var styles = StyleSheet.create({
         flex: 1, 
         fontSize: 16,
         backgroundColor: 'blue',
+        borderColor: '#bdc3c7', 
         color: 'white',
         paddingRight: 10
       },
@@ -115,6 +116,14 @@ var styles = StyleSheet.create({
       borderWidth: 1, 
       borderColor: '#bdc3c7', 
       overflow: 'hidden'
+    },
+    errorInput: {
+        borderColor: 'red',
+    },
+    errorText: {
+        color: 'red',
+        fontSize: 12,
+        marginBottom: 10,
     }
 
   });

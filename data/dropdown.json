@@ -1,10 +1,12 @@
 {
     "sexo": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "F", "label": "Femenino" },
         { "value": "M", "label": "Masculino" },
         { "value": "O", "label": "Otro" }
     ],
     "ingresos": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "IP_01", "label": "Menos a 500.000 pesos" }, 
         { "value": "IP_02", "label": "Entre 500.001 a 1.000.000 pesos" }, 
         { "value": "IP_03", "label": "Entre 1.000.001 a 1.500.000 pesos" }, 
@@ -12,6 +14,7 @@
         { "value": "IP_05", "label": "Mayor a 2.000.001" } 
     ],
     "estudios": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "EP_01", "label": "Enseñanza básica completa" }, 
         { "value": "EP_02", "label": "Enseñanza básica incompleta" }, 
         { "value": "EP_03", "label": "Enseñanza media Completa" }, 
@@ -22,11 +25,13 @@
         { "value": "EP_08", "label": "Estudios de Postgrado" }
      ],
      "validezExamenes": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "VE_NO_VAL", "label": "No Valido"},
         { "value": "VE_SI_VAL", "label": "Valido"},
         { "value": "VE_NO_REC", "label": "No se ha recolectado"}
      ],
      "alimentos": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "AP_01", "label": "Una o mas veces al dia" }, 
         { "value": "AP_02", "label": "De 4 a 6 veces a las semana" }, 
         { "value": "AP_03", "label": "3 veces a la seman" }, 
@@ -37,64 +42,75 @@
         { "value": "AP_08", "label": "No contesta" }
      ],
      "percepcion": [
+         { "value": "0", "label": "(Seleccione)" },
          { "value": "SB_01", "label": "1-Componente limitado.", "ptje": 1 },
          { "value": "SB_02", "label": "2-Muy limitado.", "ptje": 2 },
          { "value": "SB_03", "label": "3-Ligeramente limitado.", "ptje": 3 },
          { "value": "SB_04", "label": "4-No limitado", "ptje": 4 }      
      ],
      "humedad": [
+      { "value": "0", "label": "(Seleccione)" },
       { "value": "HB_01", "label": "1-Constantemente húmeda.", "ptje": 1 },
       { "value": "HB_02", "label": "2-Muy húmeda.", "ptje": 2 },
       { "value": "HB_03", "label": "3-Ocasionalmente húmeda.", "ptje": 3 },
       { "value": "HB_04", "label": "4-Raramente Húmeda.", "ptje": 4 }
      ],
      "actividad": [
+      { "value": "0", "label": "(Seleccione)" },
       { "value": "AB_01", "label": "1-Postrado en cama." , "ptje": 1},
       { "value": "AB_02", "label": "2-En silla de ruedas.", "ptje": 2 },
       { "value": "AB_03", "label": "3-Anda ocasionalmente.", "ptje": 3 },
       { "value": "AB_04", "label": "4-Anda con frecuencia.", "ptje": 4 }
      ],
      "movilidad": [
+      { "value": "0", "label": "(Seleccione)" },
       { "value": "MB_01", "label": "1-Completamente inmóvil.", "ptje": 1 },
       { "value": "MB_02", "label": "2-Muy limitado.", "ptje": 2 },
       { "value": "MB_03", "label": "3-Ligeramente limitado.", "ptje": 3 },
       { "value": "MB_04", "label": "4-Sin limitación.", "ptje": 4 }
      ],
      "nutricion": [
+      { "value": "0", "label": "(Seleccione)" },
       { "value": "NB_01", "label": "1-Muy deficiente.", "ptje": 1 },
       { "value": "NB_02", "label": "2-Probablemente inadecuada.", "ptje": 2 },
       { "value": "NB_03", "label": "3-Adecuado.", "ptje": 3 },
       { "value": "NB_04", "label": "4-Excelente.", "ptje": 4 }
      ],
      "fzaFriccion": [
+      { "value": "0", "label": "(Seleccione)" },
       { "value": "FB_01", "label": "1-Problema.", "ptje": 1 },
       { "value": "FB_02", "label": "2-Posibles problemas.", "ptje": 2 },
       { "value": "FB_03", "label": "3-Sin problemas aparente.", "ptje": 3 }
      ],
      "ubicacion": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "UL_01", "label": "BOCA", "llenado": false },
         { "value": "UL_02", "label": "NARIZ", "llenado": false },
         { "value": "UL_03", "label": "CUELLO", "llenado": false },
         { "value": "UL_04", "label": "OTRAS", "llenado": true }
        ],
        "incontinencia": [
+        { "value": "0", "label": "(Seleccione)" },
           { "value": "IN_01", "label": "URINARIA", "llenado": false },
           { "value": "IN_02", "label": "FECAL", "llenado": false },
           { "value": "IN_03", "label": "MIXTA", "llenado": false }
        ],
        "dispositivoNoInvasivo": [
+        { "value": "0", "label": "(Seleccione)" },
          { "value": "DI_01", "label": "OXIGENOTERAPIA", "llenado": false },
          { "value": "DI_02", "label": "SENSOR OXÍGENO", "llenado": false },
          { "value": "DI_03", "label": "ELECTRODOS", "llenado": false },
          { "value": "DI_04", "label": "OTROS", "llenado": true }
        ],
        "dispositivoInvasivo": [
+        { "value": "0", "label": "(Seleccione)" },
          { "value": "DN_01", "label": "SNG", "llenado": false },
          { "value": "DN_02", "label": "COLOSTOMIA", "llenado": false },
          { "value": "DN_03", "label": "S.NASOYEYUNAL", "llenado": false },
          { "value": "DN_04", "label": "OTROS", "llenado": true }
        ],
        "lppOC": [
+        { "value": "0", "label": "(Seleccione)" },
          { "value": "OC_01", "label": "1", "llenado": false },
          { "value": "OC_02", "label": "2", "llenado": false },
          { "value": "OC_03", "label": "3", "llenado": false },
@@ -106,46 +122,54 @@
          { "value": "OC_09", "label": "9", "llenado": false }
        ],
        "dependenciaComer": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "DC_01", "label": "(10) Totalmente independiente.", "ptje": 10 },
         { "value": "DC_02", "label": "(05) Necesita ayuda para cortar carne, el pan, etc.", "ptje": 5 },
         { "value": "DC_03", "label": "(00) Dependiente.", "ptje": 0 }
         
        ],
        "dependenciaLavarse": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "DL_01", "label": "(05) Independiente: entra y sale solo del baño.", "ptje": 5 },
         { "value": "DL_02", "label": "(00) Dependiente.", "ptje": 0 }
         
        ],
        "dependenciaVestirse": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "DV_01", "label": "(10) Independiente: capaz de ponerse y de quitarse la ropa, abotonarse, atarse los zapatos.", "ptje": 10 },
         { "value": "DV_02", "label": "(05) Necesita ayuda.", "ptje": 5 },
         { "value": "DV_03", "label": "(00) Dependiente.", "ptje": 0 }
         
        ],
        "dependenciaArreglarse": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "DA_01", "label": "(05) Independiente para lavarse la cara, las manos, peinarse, afeitarse, maquillarse, etc.", "ptje": 5 },
         { "value": "DA_02", "label": "(00) Dependiente", "ptje": 0 }
         
        ],
        "dependenciaDeposicion": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "DD_01", "label": "(10) Continencia normal.", "ptje": 10 },
         { "value": "DD_02", "label": "(05) Ocasionalmente algún episodio de incontinencia, o necesita ayuda para administrarse supositorios o lavativas.", "ptje": 5 },
         { "value": "DD_03", "label": "(00) Incontinencia.", "ptje": 0 }
         
        ],
        "dependenciaMiccion": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "DM_01", "label": "(10) Continencia normal, o es capaz de cuidarse de la sonda si tiene una puesta.", "ptje": 10 },
         { "value": "DM_02", "label": "(05) Un episodio diario como máximo de incontinencia, o necesita ayuda para cuidar de la sonda.", "ptje": 5 },
         { "value": "DM_03", "label": "(00) Incontinencia.", "ptje": 0 }
         
        ],
        "dependenciaRetrete": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "DR_01", "label": "(10) Independiente para ir al cuarto de aseo, quitarse y ponerse la ropa", "ptje": 10 },
         { "value": "DR_02", "label": "(05) Necesita ayuda para ir al retrete, pero se limpia solo.", "ptje": 5 },
         { "value": "DR_03", "label": "(00) Dependiente.", "ptje": 0 }
         
        ],
        "dependenciaTrasladarse": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "DT_01", "label": "(15) Independiente para ir del sillón a la cama.", "ptje": 15 },
         { "value": "DT_02", "label": "(10) Mínima ayuda física o supervisión para hacerlo.", "ptje": 10 },
         { "value": "DT_03", "label": "(05) Necesita gran ayuda, pero es capaz de mantenerse sentado solo.", "ptje": 5 },
@@ -153,6 +177,7 @@
         
        ],
        "dependenciaDeambular": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "DB_01", "label": "(15) Independiente, camina solo 50 metros.", "ptje": 15 },
         { "value": "DB_02", "label": "(10) Necesita ayuda física o supervisión para caminar 50 metros.", "ptje": 10 },
         { "value": "DB_03", "label": "(05) Independiente en silla de ruedas sin ayuda.", "ptje": 5 },
@@ -160,12 +185,14 @@
         
        ],
        "dependenciaMovilizarse": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "DZ_01", "label": "(10) Independiente para bajar y subir escaleras.", "ptje": 10 },
         { "value": "DZ_02", "label": "(05) Necesita ayuda física o supervisión para hacerlo.", "ptje": 5 },
         { "value": "DZ_03", "label": "(00) Dependiente.", "ptje": 0 }
         
        ],
        "ubicacionLppc": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "LU_01", "label": "Talón" },
         { "value": "LU_02", "label": "Glúteo" },
         { "value": "LU_03", "label": "Sacra/ Coxis" },
@@ -182,10 +209,12 @@
         { "value": "LU_14", "label": "Nariz" }
        ],
        "ladoLppc": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "LL_01", "label": "Derecha" },
         { "value": "LL_02", "label": "Izquierda" }
        ],
        "categoriaLppc": [
+        { "value": "0", "label": "(Seleccione)" },
         { "value": "LC_01", "label": "Categoria 1" },
         { "value": "LC_02", "label": "Categoria 2" },
         { "value": "LC_03", "label": "Categoria 3" },
@@ -194,6 +223,7 @@
         { "value": "LC_06", "label": "Categoria 6" }       
        ],
        "relacion": [
+      { "value": "0", "label": "(Seleccione)" },
        { "value": "CR_01", "label": "Cónyuge o pareja" },
        { "value": "CR_02", "label": "Hijo/Hija" },
        { "value": "CR_03", "label": "Padre/madre" },
@@ -204,6 +234,7 @@
        { "value": "CR_08", "label": "Otra relación" }
        ],
        "estadoSalud": [
+       { "value": "0", "label": "(Seleccione)" },
        { "value": "CS_01", "label": "Muy bueno" },
        { "value": "CS_02", "label": "Bueno" },
        { "value": "CS_03", "label": "Regular" },
@@ -211,6 +242,7 @@
        { "value": "CS_05", "label": "Muy malo" }
        ],
        "zarit": [
+            { "value": "0", "label": "(Seleccione)" },
             { "value": "ZT_01", "label": "(1) Nunca.", "ptje": 1 },
             { "value": "ZT_02", "label": "(2) Rara vez.", "ptje": 2 },
             { "value": "ZT_03", "label": "(3) Algunas veces.", "ptje": 3 },

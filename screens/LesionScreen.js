@@ -14,6 +14,8 @@ import Button from './components/ButtonComponent';
 
 import dataDropDown from '../data/dropdown.json';
 
+import {buscaEnArreglo} from '../helpers/GralHelper.js';
+
 
 const LesionScreen = ({navigation, route}) => {
     const [showDatePicker, setShowDatePicker] = useState(false);
@@ -21,6 +23,9 @@ const LesionScreen = ({navigation, route}) => {
     const { data } = route.params;
 
     const [formData, setFormData] = useState(data);
+
+    const [errors, setErrors] = useState({fld01: '', fld02: '', fld03: '', fld04: '', fld05: '', fld06: '', fld07: '', fld08: '', fld09: '', fld10: '', 
+                                            fld11: '', fld12: '', fld13: '', fld14: '', fld15: '', fld16: '', fld17: '', fld18: ''});
  
     const handleInputChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
@@ -29,12 +34,36 @@ const LesionScreen = ({navigation, route}) => {
     const handleInputMesesPostracionChange = (value) => {
       setFormData({ ...formData, "mesesPostracionPaciente": value });
       //setFormData({ ...formData, "anosPostracionPaciente": calculaAnos(value) });
-  };
+    };
   
-  const handleDateChange = (field, selectedDate) => {
-    setFormData({ ...formData, [field]: selectedDate });
-    setShowDatePicker(false); // Close the picker
-   };
+    const handleDateChange = (field, selectedDate) => {
+        setFormData({ ...formData, [field]: selectedDate });
+        setShowDatePicker(false); // Close the picker
+    };
+
+    const handleNextScreen = () => {
+ 
+        if(validateInputs()){
+            navigation.navigate('Lppc', { data: formData });
+        } else
+            alert("Se detectaron errores de ingreso, favor revisar y completar o corregir data ingresada.");
+    }
+
+    const validateInputs = () => {
+        let isValid = true;
+        var nroLPPC = formData.nroLPPC && formData.nroLPPC != '0'? +buscaEnArreglo(formData.nroLPPC, dataDropDown.lppOC): 0;
+
+        console.log('nroLPPC: ' + nroLPPC);
+
+        errors.fld18 = null;
+        if (nroLPPC <= 0) {
+            errors.fld18 = "Debe seleccionar campo 18: 'Número de LPP de origen comunitario'";
+            setErrors({ ...errors, 'fld18': 'Debe seleccionar campo 18: Número de LPP de origen comunitario' });
+            isValid = false;
+        }
+
+        return isValid;
+    };
 
     return (
         <View>
@@ -252,13 +281,15 @@ const LesionScreen = ({navigation, route}) => {
                         descripcion='18 - Número de LPP de origen comunitario (LPPC) hoy en día' 
                         lista = {dataDropDown.lppOC} 
                         seleccion = {formData.nroLPPC} 
-                        setSeleccion = {(valSel, valLlenado) => {setFormData({ ...formData, 'nroLPPC': valSel })}} 
+                        setSeleccion = {(valSel, valLlenado) => {setErrors({ ...errors, 'fld18': '' });setFormData({ ...formData, 'nroLPPC': valSel })}} 
                     ></LesionComponent>
-
+                    <View style={styles.inputRow}>
+                        {errors.fld18 && <Text style={styles.errorText}>{errors.fld18}</Text>}
+                    </View>
 
                     <Navigation 
                         onPressPrev={() => navigation.navigate('Piel', { data: formData })} 
-                        onPressNext={() => navigation.navigate('Lppc', { data: formData })}>
+                        onPressNext={handleNextScreen}>
                     </Navigation>
 
                 </View>
