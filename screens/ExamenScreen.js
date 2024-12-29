@@ -11,6 +11,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import dataDropDown from '../data/dropdown.json';
 import {buscaEnArreglo} from '../helpers/GralHelper.js'
 import {evaluaExamen} from '../helpers/ValidHelper.js'
+import {formatearFecha} from '../helpers/DateHelper.js'
 
 import Navigation from './components/NavigationComponent';
 import Button from './components/ButtonComponent';
@@ -63,12 +64,12 @@ const ExamenScreen = ({navigation, route}) => {
 
                         <View style={{ flex: 1, marginHorizontal: 5 }}>
                             <Button color='blue'
-                            title={formData.fechaExProteinemia != null? format(formData.fechaExProteinemia, 'dd-MM-yyyy'): ''}
+                            title={formatearFecha(formData.fechaExProteinemia)}
                             onPress={() => setShowDatePickerPro(true)}
                             />
                             {showDatePickerPro && (<DateTimePicker
                             maximumDate={new Date()}
-                            value={formData.fechaExProteinemia}
+                            value={formData.fechaExProteinemia || new Date()}
                             mode="date"
                             display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
                             onChange={(event, selectedDate) => {setShowDatePickerPro(false); console.info(selectedDate); setFormData({ ...formData, 'fechaExProteinemia': selectedDate, 'validezExProteinemia': evaluaExamen(formData.noRecolectadoProteinemia, selectedDate) });}}
@@ -92,12 +93,12 @@ const ExamenScreen = ({navigation, route}) => {
 
                         <View style={{ flex: 1, marginHorizontal: 5 }}>
                             <Button color='blue'
-                            title={formData.fechaExOximetria != null? format(formData.fechaExOximetria, 'dd-MM-yyyy'): ''}
+                            title={formatearFecha(formData.fechaExOximetria)}
                             onPress={() => setShowDatePickerOxi(true)}
                             />
                             {showDatePickerOxi && (<DateTimePicker
                             maximumDate={new Date()}
-                            value={formData.fechaExOximetria}
+                            value={formData.fechaExOximetria || new Date()}
                             mode="date"
                             display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
                             onChange={(event, selectedDate) => {setShowDatePickerOxi(false); console.info(selectedDate); setFormData({ ...formData, 'fechaExOximetria': selectedDate, 'validezExOximetria': evaluaExamen(formData.noRecolectadoOximetria, selectedDate) });}}
@@ -121,12 +122,12 @@ const ExamenScreen = ({navigation, route}) => {
 
                         <View style={{ flex: 1, marginHorizontal: 5 }}>
                             <Button color='blue'
-                            title={formData.fechaExGlicemiaV != null? format(formData.fechaExGlicemiaV, 'dd-MM-yyyy'): ''}
+                            title={formatearFecha(formData.fechaExGlicemiaV)}
                             onPress={() => setShowDatePickerGlV(true)}
                             />
                             {showDatePickerGlV && (<DateTimePicker
                             maximumDate={new Date()}
-                            value={formData.fechaExGlicemiaV}
+                            value={formData.fechaExGlicemiaV || new Date()}
                             mode="date"
                             display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
                             onChange={(event, selectedDate) => {setShowDatePickerGlV(false); console.info(selectedDate); setFormData({ ...formData, 'fechaExGlicemiaV': selectedDate, 'validezExGlicemiaV': evaluaExamen(formData.noRecolectadoGlicemiaV, selectedDate) });}}
@@ -150,12 +151,12 @@ const ExamenScreen = ({navigation, route}) => {
 
                         <View style={{ flex: 1, marginHorizontal: 5 }}>
                             <Button color='blue'
-                            title={formData.fechaExGlicemiaC != null? format(formData.fechaExGlicemiaC, 'dd-MM-yyyy'): ''}
+                            title={formatearFecha(formData.fechaExGlicemiaC)}
                             onPress={() => setShowDatePickerGlC(true)}
                             />
                             {showDatePickerGlC && (<DateTimePicker
                             maximumDate={new Date()}
-                            value={formData.fechaExGlicemiaC}
+                            value={formData.fechaExGlicemiaC || new Date()}
                             mode="date"
                             display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
                             onChange={(event, selectedDate) => {setShowDatePickerGlC(false); console.info(selectedDate); setFormData({ ...formData, 'fechaExGlicemiaC': selectedDate, 'validezExGlicemiaC': evaluaExamen(formData.noRecolectadoGlicemiaC, selectedDate) });}}
@@ -179,12 +180,12 @@ const ExamenScreen = ({navigation, route}) => {
 
                         <View style={{ flex: 1, marginHorizontal: 5 }}>
                             <Button color='blue'
-                            title={formData.fechaExHemoglobina != null? format(formData.fechaExHemoglobina, 'dd-MM-yyyy'): ''}
+                            title={formatearFecha(formData.fechaExHemoglobina)}
                             onPress={() => setShowDatePickerHem(true)}
                             />
                             {showDatePickerHem && (<DateTimePicker
                             maximumDate={new Date()}
-                            value={formData.fechaExHemoglobina}
+                            value={formData.fechaExHemoglobina || new Date()}
                             mode="date"
                             display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
                             onChange={(event, selectedDate) => {setShowDatePickerHem(false); console.info(selectedDate); setFormData({ ...formData, 'fechaExHemoglobina': selectedDate, 'validezExHemoglobina': evaluaExamen(formData.noRecolectadoHemoglobina, selectedDate) });}}
@@ -209,12 +210,12 @@ const ExamenScreen = ({navigation, route}) => {
 
                         <View style={{ flex: 1, marginHorizontal: 5 }}>
                             <Button color='blue'
-                            title={formData.fechaExProcalcitonina != null? format(formData.fechaExProcalcitonina, 'dd-MM-yyyy'): ''}
+                            title={formatearFecha(formData.fechaExProcalcitonina)}
                             onPress={() => setShowDatePickerProc(true)}
                             />
                             {showDatePickerProc && (<DateTimePicker
                             maximumDate={new Date()}
-                            value={formData.fechaExProcalcitonina}
+                            value={formData.fechaExProcalcitonina || new Date()}
                             mode="date"
                             display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
                             onChange={(event, selectedDate) => {setShowDatePickerProc(false); console.info(selectedDate); setFormData({ ...formData, 'fechaExProcalcitonina': selectedDate, 'validezExProcalcitonina': evaluaExamen(formData.noRecolectadoProcalcitonina, selectedDate) });}}
@@ -238,12 +239,12 @@ const ExamenScreen = ({navigation, route}) => {
 
                         <View style={{ flex: 1, marginHorizontal: 5 }}>
                             <Button color='blue'
-                            title={formData.fechaExProteina != null? format(formData.fechaExProteina, 'dd-MM-yyyy'): ''}
+                            title={formatearFecha(formData.fechaExProteina)}
                             onPress={() => setShowDatePickerProt(true)}
                             />
                             {showDatePickerProt && (<DateTimePicker
                             maximumDate={new Date()}
-                            value={formData.fechaExProteina}
+                            value={formData.fechaExProteina || new Date()}
                             mode="date"
                             display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
                             onChange={(event, selectedDate) => {setShowDatePickerProt(false); console.info(selectedDate); setFormData({ ...formData, 'fechaExProteina': selectedDate, 'validezExProteina': evaluaExamen(formData.noRecolectadoProteina, selectedDate) });}}
@@ -267,12 +268,12 @@ const ExamenScreen = ({navigation, route}) => {
 
                         <View style={{ flex: 1, marginHorizontal: 5 }}>
                             <Button color='blue'
-                            title={formData.fechaExCreatinina != null? format(formData.fechaExCreatinina, 'dd-MM-yyyy'): ''}
+                            title={formatearFecha(formData.fechaExCreatinina)}
                             onPress={() => setShowDatePickerCrea(true)}
                             />
                             {showDatePickerCrea && (<DateTimePicker
                             maximumDate={new Date()}
-                            value={formData.fechaExCreatinina}
+                            value={formData.fechaExCreatinina || new Date()}
                             mode="date"
                             display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
                             onChange={(event, selectedDate) => {setShowDatePickerCrea(false); console.info(selectedDate); setFormData({ ...formData, 'fechaExCreatinina': selectedDate, 'validezExCreatinina': evaluaExamen(formData.noRecolectadoCreatinina, selectedDate) });}}

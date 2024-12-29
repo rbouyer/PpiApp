@@ -18,7 +18,7 @@ const MovilidadContencionComponent = ({movilidad, tieneMovilidad, setTieneMovili
                     <View style={styles.radioButton}>
                         <RadioButton.Android
                             value="true"
-                            status={tieneMovilidad ? 'checked' : 'unchecked'}
+                            status={tieneMovilidad === true ? 'checked' : 'unchecked'}
                             onPress={() => setTieneMovilidad(true)}
                             color="#007BFF"
                         />
@@ -30,7 +30,7 @@ const MovilidadContencionComponent = ({movilidad, tieneMovilidad, setTieneMovili
                     <View style={styles.radioButton}>
                         <RadioButton.Android
                             value="false"
-                            status={!tieneMovilidad ? 'checked' : 'unchecked'}
+                            status={tieneMovilidad === false ? 'checked' : 'unchecked'}
                             onPress={() => setTieneMovilidad(false)}
                             color="#007BFF"
                         />

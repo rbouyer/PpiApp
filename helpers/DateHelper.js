@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 
 
 export function calculaAnos(meses) {
@@ -81,4 +82,12 @@ export function daysInMonth(anyDateInMonth) {
     return new Date(anyDateInMonth.getFullYear(), 
                     anyDateInMonth.getMonth()+1, 
                     0).getDate();
+}
+
+export function formatearFecha(fecha){
+    var res = 'dd-MM-aaaa';
+
+    if(fecha != null) res = format(fecha, 'dd-MM-yyyy')
+
+    return res;
 }

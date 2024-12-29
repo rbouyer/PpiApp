@@ -27,53 +27,53 @@ const Stack = createStackNavigator();
 const App = () => {
   const [formData, setFormData] = useState(
     { emailUsuario: '', claveUsuario: '', 
-      fechaNacimientoPaciente: new Date(), edadPaciente: 0, idPaciente: 0, sexoPaciente: '', pesoPaciente: 0, tallaPaciente: 0, 
+      fechaNacimientoPaciente: null, edadPaciente: 0, idPaciente: 0, sexoPaciente: '', pesoPaciente: 0, tallaPaciente: 0, 
       mesesPostracionPaciente: 0, anosPostracionPaciente: 0, diagPaciente: '', ingresoPaciente: '', estudioPaciente: '', imcPaciente: 0,
       
       /* Examenes */
-      noRecolectadoProteinemia: false, fechaExProteinemia: new Date(), validezExProteinemia: 'VE_SI_VAL', 
-      noRecolectadoOximetria: false, fechaExOximetria: new Date(), validezExOximetria: 'VE_SI_VAL', 
-      noRecolectadoGlicemiaV: false, fechaExGlicemiaV: new Date(), validezExGlicemiaV: 'VE_SI_VAL', 
-      noRecolectadoGlicemiaC: false, fechaExGlicemiaC: new Date(), validezExGlicemiaC: 'VE_SI_VAL', 
-      noRecolectadoHemoglobina: false, fechaExHemoglobina: new Date(), validezExHemoglobina: 'VE_SI_VAL', 
+      noRecolectadoProteinemia: false, fechaExProteinemia: null, validezExProteinemia: 'VE_SI_VAL', 
+      noRecolectadoOximetria: false, fechaExOximetria: null, validezExOximetria: 'VE_SI_VAL', 
+      noRecolectadoGlicemiaV: false, fechaExGlicemiaV: null, validezExGlicemiaV: 'VE_SI_VAL', 
+      noRecolectadoGlicemiaC: false, fechaExGlicemiaC: null, validezExGlicemiaC: 'VE_SI_VAL', 
+      noRecolectadoHemoglobina: false, fechaExHemoglobina: null, validezExHemoglobina: 'VE_SI_VAL', 
 
-      noRecolectadoProcalcitonina: false, fechaExProcalcitonina: new Date(), validezExProcalcitonina: 'VE_SI_VAL', 
-      noRecolectadoProteina: false, fechaExProteina: new Date(), validezExProteina: 'VE_SI_VAL', 
-      noRecolectadoCreatinina: false, fechaExCreatinina: new Date(), validezExCreatinina: 'VE_SI_VAL', 
+      noRecolectadoProcalcitonina: false, fechaExProcalcitonina: null, validezExProcalcitonina: 'VE_SI_VAL', 
+      noRecolectadoProteina: false, fechaExProteina: null, validezExProteina: 'VE_SI_VAL', 
+      noRecolectadoCreatinina: false, fechaExCreatinina: null, validezExCreatinina: 'VE_SI_VAL', 
 
       /* Patologia y Medicamentos */
-      tieneArtritis: false, nroMedArtritis: 0, tieneDiabetes: false, nroMedDiabetes: 0, tieneDisplidemia: false, nroMedDisplidemia: 0, tieneCardio: false, nroMedCardio: 0,
-      tieneEPOC: false, nroMedEPOC: 0, tieneHipArterial: false, nroMedHipArterial: 0, tieneInUrinaria: false, nroMedInUrinaria: 0, tieneInfarto: false, nroMedInfarto: 0,
-      tieneInsufCardiaca: false, nroMedInsufCardiaca: 0, tieneOsteoporosis: false, nroMedOsteoporosis: 0, tieneHepatico: false, nroMedHepatico: 0, tieneResInsulina: false, nroMedResInsulina: 0,
-      tieneSecuelaACV: false, nroMedSecuelaACV: 0, tieneAudicionReducida: false, tieneVisionReducida: false, tieneAlcohol: false, tieneTabaco: false,
+      tieneArtritis: null, nroMedArtritis: 0, tieneDiabetes: null, nroMedDiabetes: 0, tieneDisplidemia: null, nroMedDisplidemia: 0, tieneCardio: null, nroMedCardio: 0,
+      tieneEPOC: null, nroMedEPOC: 0, tieneHipArterial: null, nroMedHipArterial: 0, tieneInUrinaria: null, nroMedInUrinaria: 0, tieneInfarto: null, nroMedInfarto: 0,
+      tieneInsufCardiaca: null, nroMedInsufCardiaca: 0, tieneOsteoporosis: null, nroMedOsteoporosis: 0, tieneHepatico: null, nroMedHepatico: 0, tieneResInsulina: null, nroMedResInsulina: 0,
+      tieneSecuelaACV: null, nroMedSecuelaACV: 0, tieneAudicionReducida: null, tieneVisionReducida: null, tieneAlcohol: null, tieneTabaco: null,
 
       /* Patologia y Medicamentos 2 */
-      olvidaMedicamento: false, tomaMedicamentosEnHora: false, dejaDeTomarMedicamentoBien: false, dejaDeTomarMedicamentoMal: false, adherenteTratamiento: false,
+      olvidaMedicamento: null, tomaMedicamentosEnHora: null, dejaDeTomarMedicamentoBien: null, dejaDeTomarMedicamentoMal: null, adherenteTratamiento: null,
 
-      /* */
-      tieneTraccion: false, descTraccion: '', tieneInmovilidad: false, descInmovilidad: '', tieneContencion: false, descContencion: '', tieneTipoContencion: false, tipoContencion: '',
+      /* Movilidad y contención */
+      tieneTraccion: null, descTraccion: '', tieneInmovilidad: null, descInmovilidad: '', tieneContencion: null, descContencion: '', tieneTipoContencion: null, tipoContencion: '',
 
       /* Alimentación */
       selFruta: '', selCarne: '', selHuevo: '', selPescado: '', selPasta: '', selPan: '', selVerdura: '', selLegumbre: '', selFiambre: '', 
-      selLacteo: '', selDulce: '', selBebida: '', selRapida: '', selAperitivo: '', selJugo: '', tienePlanAlimentacion: false, 
+      selLacteo: '', selDulce: '', selBebida: '', selRapida: '', selAperitivo: '', selJugo: '', tienePlanAlimentacion: null, 
 
       /* Riesgo Braden */
       selPercepcion: '', ptjePercepcion: null, selHumedad: '', ptjeHumedad: null, selActividad: '', ptjeActividad: null, selMovilidad: '', ptjeMovilidad: null,
       selNutricion: '', ptjeNutricion: null, selFuerza: '', ptjeFuerza: null,
 
       /* Mantención Piel */
-      usoCrema: false, usoLinovera: false, usoColonia: false, usoHipoglos: false, usoOtraSolucion: false, usoBanoDiario: false, usoNada: false,
+      usoCrema: null, usoLinovera: null, usoColonia: null, usoHipoglos: null, usoOtraSolucion: null, usoBanoDiario: null, usoNada: null,
 
       /* Lesión ubicación */
-      presentaCuidadoPiel: false, presentaLesionHumedad: false, selUbicacionLesion: '', otraUbicacionLesion: '', presentaIncontinencia: false, selTipoIncontinencia: '',
-      selUbiIncontinencia: '', presentaPrevencionDermatitis: false, descPrevencionDermatitis: '', presentaDermatitisIncontinencia: false, presentaTratamientoDermatitis: false,
-      presentaDispositivoNoInvasivo: false, tipoDispositivoNoInvasivo: '',  descOtroDispositivoNoInvasivo: '', 
-      presentaDispositivoInvasivo: false, tipoDispositivoInvasivo: '',  descOtroDispositivoInvasivo: '', 
-      presentaCirugia: false, tipoCirugia: '', fechaCirugia: new Date(), descCirugia: '',
-      presentaLPPC: false, nroLPPC: null, 
+      presentaCuidadoPiel: null, presentaLesionHumedad: null, selUbicacionLesion: '', otraUbicacionLesion: '', presentaIncontinencia: null, selTipoIncontinencia: '',
+      selUbiIncontinencia: '', presentaPrevencionDermatitis: null, descPrevencionDermatitis: '', presentaDermatitisIncontinencia: null, presentaTratamientoDermatitis: null,
+      presentaDispositivoNoInvasivo: null, tipoDispositivoNoInvasivo: '',  descOtroDispositivoNoInvasivo: '', 
+      presentaDispositivoInvasivo: null, tipoDispositivoInvasivo: '',  descOtroDispositivoInvasivo: '', 
+      presentaCirugia: null, tipoCirugia: '', fechaCirugia: null, descCirugia: '',
+      presentaLPPC: null, nroLPPC: null, 
 
       /* Lppc */
-      selUbicacionLppc: '', selLadoLppc: '', estaAsocDispositivoLppc: false, descDispositivoLppc: '', selCategoriaLppc: '', enTratamientoLppc: false, estaNotificadaLppc: false,
+      selUbicacionLppc: '', selLadoLppc: '', estaAsocDispositivoLppc: null, descDispositivoLppc: '', selCategoriaLppc: '', enTratamientoLppc: null, estaNotificadaLppc: null,
 
       /* examen fisico */
       sistolicaPresionSentada1: null, sistolicaPresionSentada2: null, sistolicaPresionParada1: null, sistolicaPresionParada2: null, sistolicaPulso: null, presentaBajaPeso: null,
@@ -83,7 +83,7 @@ const App = () => {
       dependenciaMiccion: true, dependenciaRetrete: true, dependenciaTrasladarse:true, dependenciaDeambular: true, dependenciaMovilizarse:true,
 
       /* Cuidador */
-      tieneCuidador: false, nombreCuidador: '', fechaNacimientoCuidador: new Date(), edadCuidador: 0, selSexoCuidador: '', selRelacionCuidador: '', selEstudioCuidador: '', selSaludCuidador: '',
+      tieneCuidador: null, nombreCuidador: '', fechaNacimientoCuidador: null, edadCuidador: 0, selSexoCuidador: '', selRelacionCuidador: '', selEstudioCuidador: '', selSaludCuidador: '',
 
       /* Zarit */
       selSolicitaAyuda: '', ptjeSolicitaAyuda: 0,

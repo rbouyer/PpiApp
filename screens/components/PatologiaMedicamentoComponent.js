@@ -5,7 +5,7 @@ import { RadioButton } from 'react-native-paper';
 import styles from '../Styles';
 
 
-const PatologiaMedicamentoComponent = ({patologia, tienePatologia, setTienePatologia, nroMedPatologia, setNroMedPatologia}) => {
+const PatologiaMedicamentoComponent = ({patologia, tienePatologia, setTienePatologia, nroMedPatologia, setNroMedPatologia, colorFondo}) => {
  
     return (
         <View style={styles.container}>
@@ -14,11 +14,11 @@ const PatologiaMedicamentoComponent = ({patologia, tienePatologia, setTienePatol
 
                 <Text style={styles.label}>{patologia}</Text>
 
-                <View style={styles.radioGroup}>
+                <View style={[styles.radioGroup, {backgroundColor: colorFondo? colorFondo: 'white'}]}>
                     <View style={styles.radioButton}>
                         <RadioButton.Android
                             value="true"
-                            status={tienePatologia ? 'checked' : 'unchecked'}
+                            status={tienePatologia === true ? 'checked' : 'unchecked'}
                             onPress={() => setTienePatologia(true)}
                             color="#007BFF"
                         />
@@ -30,7 +30,7 @@ const PatologiaMedicamentoComponent = ({patologia, tienePatologia, setTienePatol
                     <View style={styles.radioButton}>
                         <RadioButton.Android
                             value="false"
-                            status={!tienePatologia ? 'checked' : 'unchecked'}
+                            status={tienePatologia === false ? 'checked' : 'unchecked'}
                             onPress={() => setTienePatologia(false)}
                             color="#007BFF"
                         />

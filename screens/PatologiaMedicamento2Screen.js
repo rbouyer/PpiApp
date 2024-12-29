@@ -71,6 +71,7 @@ const PatologiaMedicamento2Screen = ({navigation, route}) => {
                         setTienePatologia = {(val) => {setFormData({ ...formData, 'adherenteTratamiento': val })}} 
                         nroMedPatologia = {null} 
                         setNroMedPatologia = {null}
+                        colorFondo='yellow'
                     ></PatologiaMedicamentoComponent>
 
 

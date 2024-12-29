@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Platform } from 'react-native';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { format } from 'date-fns';
 import { Picker } from '@react-native-picker/picker';
 import styles from './Styles';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -13,7 +12,7 @@ import SelectorSimple from './components/SelectorSimpleComponent';
 
 import dataDropDown from '../data/dropdown.json';
 
-import {calculaAnos, calculaEdad} from '../helpers/DateHelper.js';
+import {calculaAnos, calculaEdad, formatearFecha} from '../helpers/DateHelper.js';
 import {calculaIMC,} from '../helpers/GralHelper.js';
 
 const PacienteIngresoScreen = ({navigation, route}) => {
@@ -75,12 +74,12 @@ const PacienteIngresoScreen = ({navigation, route}) => {
 
           <View>
             <Button
-              title={format(formData.fechaNacimientoPaciente, 'dd-MM-yyyy')}
+              title={formatearFecha(formData.fechaNacimientoPaciente)}
               onPress={() => setShowDatePicker(true)}
               color='blue'
             />
             {showDatePicker && (<DateTimePicker
-            value={formData.fechaNacimientoPaciente}
+            value={formData.fechaNacimientoPaciente? formData.fechaNacimientoPaciente: new Date()}
             maximumDate={new Date()}
             mode="date"
             display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}

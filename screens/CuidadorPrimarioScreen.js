@@ -14,7 +14,7 @@ import styles from './Styles';
 import dataDropDown from '../data/dropdown.json';
 
 import { format } from 'date-fns';
-import { calculaEdad } from '../helpers/DateHelper';
+import { calculaEdad, formatearFecha } from '../helpers/DateHelper';
 
 
 const CuidadorPrimarioScreen = ({navigation, route}) => {
@@ -74,11 +74,11 @@ const CuidadorPrimarioScreen = ({navigation, route}) => {
 
                         <View style={{ flex: 1, marginHorizontal: 5 }}>
                             <Button color='blue'
-                            title={format(formData.fechaNacimientoCuidador, 'dd-MM-yyyy')}
+                            title={formatearFecha(formData.fechaNacimientoCuidador)}
                             onPress={() => setShowDatePicker(true)}
                             />
                             {showDatePicker && (<DateTimePicker
-                            value={formData.fechaNacimientoCuidador}
+                            value={formData.fechaNacimientoCuidador || new Date()}
                             maximumDate={new Date()}
                             mode="date"
                             display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
