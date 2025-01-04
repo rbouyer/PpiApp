@@ -26,17 +26,29 @@ const TemplateScreen = ({navigation, route}) => {
     //console.log('nro LPPC: ' + formData.nroLPPC);
 
     // State to store data for each iteration
-    const [lpp, setLpp] = useState(Array.from({ length: repetitions }, () => ({ selUbicacionLppc: '', 
+    const [lpp, setLpp] = useState(formData.lppc == null? Array.from({ length: repetitions }, () => ({ selUbicacionLppc: '', 
                                                                                 selLadoLppc: '', 
                                                                                 estaAsocDispositivoLppc: false, 
                                                                                 descDispositivoLppc: '', 
                                                                                 selCategoriaLppc: '', 
                                                                                 enTratamientoLppc: false, 
                                                                                 estaNotificadaLppc: false,
-                                                                                errors: {} })));
+                                                                                errors: {} })): formData.lppc);
 
-    if(formData.lppc == null) setFormData({ ...formData, 'lppc': lpp });
+    if(formData.lppc == null) 
+        setFormData({ ...formData, 'lppc': lpp });
+    // else
+    //     setLpp(formData.lppc);
 
+
+    // Function to handle input change
+    const handleInputChange = (index, field, value) => {
+        const updatedData = [...lpp];
+        updatedData[index][field] = value;
+        updatedData[index].errors[field] = '';
+        setLpp(updatedData);
+    };
+    
     return (
         <View>
             <Text style={styles.title}>Ingrese las características LPPC</Text>
@@ -53,13 +65,13 @@ const TemplateScreen = ({navigation, route}) => {
 
                                 <Selector
                                     lista = {dataDropDown.ubicacionLppc} 
-                                    seleccion = {formData.selUbicacionLppc} 
-                                    setSeleccion = {(val) => {setFormData({ ...formData, 'selUbicacionLppc': val })}} 
+                                    seleccion = {entry.selUbicacionLppc} 
+                                    setSeleccion = {(val) => {handleInputChange(index, 'selUbicacionLppc', val )}} 
                                 />
                                 <Selector
                                     lista = {dataDropDown.ladoLppc} 
-                                    seleccion = {formData.selLadoLppc} 
-                                    setSeleccion = {(val) => {setFormData({ ...formData, 'selLadoLppc': val })}} 
+                                    seleccion = {entry.selLadoLppc} 
+                                    setSeleccion = {(val) => {handleInputChange(index, 'selLadoLppc', val )}} 
                                 />
                             </View>
 
@@ -68,8 +80,8 @@ const TemplateScreen = ({navigation, route}) => {
                             <View style={styles.inputRow}>
                                 <LppcRBComponent 
                                     patologia={(index + 1) + '.02 - ¿LPPC - ' + (index + 1) + ' este asociado a dispositivo medico ?'} 
-                                    tienePatologia = {formData.estaAsocDispositivoLppc} 
-                                    setTienePatologia = {(val) => {setFormData({ ...formData, 'estaAsocDispositivoLppc': val })}} 
+                                    tienePatologia = {entry.estaAsocDispositivoLppc} 
+                                    setTienePatologia = {(val) => {handleInputChange( index, 'estaAsocDispositivoLppc', val )}} 
                                     nroMedPatologia = {null} 
                                     setNroMedPatologia = {null}
                                 ></LppcRBComponent>
@@ -82,8 +94,8 @@ const TemplateScreen = ({navigation, route}) => {
                                 <TextInput
                                     style={[styles.textInput]}
                                     textAlign="left"
-                                    value={formData.descDispositivoLppc}
-                                    onChangeText={(val) => {setFormData({ ...formData, 'descDispositivoLppc': val })}}
+                                    value={entry.descDispositivoLppc}
+                                    onChangeText={(val) => {handleInputChange(index, 'descDispositivoLppc', val )}}
                                 />
                             </View>
 
@@ -95,8 +107,8 @@ const TemplateScreen = ({navigation, route}) => {
 
                                 <Selector
                                     lista = {dataDropDown.categoriaLppc} 
-                                    seleccion = {formData.selCategoriaLppc} 
-                                    setSeleccion = {(val) => {setFormData({ ...formData, 'selCategoriaLppc': val })}} 
+                                    seleccion = {entry.selCategoriaLppc} 
+                                    setSeleccion = {(val) => {handleInputChange(index, 'selCategoriaLppc', val )}} 
                                 />
                                 <Button 
                                     title="Ver imagenes"
@@ -110,8 +122,8 @@ const TemplateScreen = ({navigation, route}) => {
                             <View style={styles.inputRow}>
                                 <LppcRBComponent 
                                     patologia={(index + 1) + '.05 - ¿La LPPC - ' + (index + 1) + ' se encuentra en tratamiento de acuerdo con clasificación evaluar en Ficha clínica del paciente?'} 
-                                    tienePatologia = {formData.enTratamientoLppc} 
-                                    setTienePatologia = {(val) => {setFormData({ ...formData, 'enTratamientoLppc': val })}} 
+                                    tienePatologia = {entry.enTratamientoLppc} 
+                                    setTienePatologia = {(val) => {handleInputChange(index, 'enTratamientoLppc', val )}} 
                                     nroMedPatologia = {null} 
                                     setNroMedPatologia = {null}
                                 ></LppcRBComponent>
@@ -120,8 +132,8 @@ const TemplateScreen = ({navigation, route}) => {
                             <View style={styles.inputRow}>
                                 <LppcRBComponent 
                                     patologia={(index + 1) + '.06 - ¿La LPPC - ' + (index + 1) + ' se encuentra notificada al programa PI ACHS?'}
-                                    tienePatologia = {formData.estaNotificadaLppc} 
-                                    setTienePatologia = {(val) => {setFormData({ ...formData, 'estaNotificadaLppc': val })}} 
+                                    tienePatologia = {entry.estaNotificadaLppc} 
+                                    setTienePatologia = {(val) => {handleInputChange(index, 'estaNotificadaLppc', val )}} 
                                     nroMedPatologia = {null} 
                                     setNroMedPatologia = {null}
                                 ></LppcRBComponent>
@@ -130,8 +142,6 @@ const TemplateScreen = ({navigation, route}) => {
 
                         </View>
                     ))}
-
-
 
 
                     <Navigation 
