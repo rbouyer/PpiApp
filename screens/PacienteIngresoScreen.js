@@ -52,14 +52,14 @@ const PacienteIngresoScreen = ({navigation, route}) => {
         {/* Identificación */}
         <View style={styles.inputRow}>
 
-          <Text style={styles.label}>Identificación</Text>
+          <Text style={styles.label}>Id.Visita</Text>
 
           <TextInput
             style={styles.textInput}
             keyboardType="numeric"
             textAlign="right"
             value={formData.idPaciente}
-            onChangeText={(value) => handleInputChange('idPaciente', value)}
+            onChangeText={(value) => handleInputChange('idVisita', value)}
           />
 
           <Text style={styles.label}></Text>

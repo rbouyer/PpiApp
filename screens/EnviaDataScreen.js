@@ -13,8 +13,31 @@ const EnviaDataScreen = ({navigation, route}) => {
     const [formData, setFormData] = useState(data);
 
     const enviarFormData = () => {
-        alert('Data Enviada');
-      };
+      var urlPost = 'https://ppiapi.akasoft.cl/api/ficha/idVisita/' + formData.idVisita; 
+      var errPost = null;
+
+      try {
+        const response = fetch(urlPost, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        console.log(response);
+      } catch(error){
+        errPost = error;
+      } finally {
+        if(errPost == null){
+          alert('Data Enviada');
+        } else {
+          alert('Error al enviar datos a servidor: ' + errPost);
+        }
+      }
+
+    };
     
     return (
       <View>
