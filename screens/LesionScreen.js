@@ -15,6 +15,7 @@ import Button from './components/ButtonComponent';
 import dataDropDown from '../data/dropdown.json';
 
 import {buscaEnArreglo} from '../helpers/GralHelper.js';
+import {calculaAnos, calculaEdad, formatearFecha} from '../helpers/DateHelper.js';
 
 
 const LesionScreen = ({navigation, route}) => {
@@ -242,11 +243,11 @@ const LesionScreen = ({navigation, route}) => {
 
                     <View style={{ flex: 1, marginHorizontal: 5 }}>
                         <Button color='blue'
-                        title={format(formData.fechaCirugia, 'dd-MM-yyyy')}
+                        title={formatearFecha(formData.fechaCirugia)}
                         onPress={() => setShowDatePicker(true)}
                         />
                         {showDatePicker && (<DateTimePicker
-                        value={formData.fechaCirugia}
+                        value={formData.fechaCirugia? formData.fechaCirugia: new Date()}
                         maximumDate={new Date()}
                         mode="date"
                         display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
