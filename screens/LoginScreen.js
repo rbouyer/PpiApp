@@ -19,17 +19,45 @@ const LoginScreen = ({navigation, route}) => {
   };
 
   const handleLogin = (formData, setFormData) => {
+    console.info('formData.emailUsuario: ' + formData.emailUsuario);
+    console.info('formData.claveUsuario: ' + formData.claveUsuario);
+
+
     // Validación credenciales)
     if (formData.emailUsuario.trim() === '' || formData.claveUsuario.trim() === '') {
       Alert.alert('Error', 'Debe ingresar ambos campos!');
       return;
     }
 
-    //if (email === 'user@example.com' && password === 'password123') {
-    //  Alert.alert('Success', 'Login Successful!');
-    //} else {
-    //  Alert.alert('Error', 'Invalid email or password!');
-    //}
+    getUsuarioFromApi(formData, setFormData).then(usuario => {
+      console.log('Usuario: ' + JSON.stringify(usuario));
+
+      console.info('usuario.email: ' + usuario.email);
+      console.info('usuario.password: ' + usuario.password);
+      console.info('usuario.role: ' + usuario.role);
+  
+      if (!(formData.emailUsuario === usuario.email && formData.claveUsuario === usuario.password)) {
+        Alert.alert('Error', 'Usuario o clave invalida');
+      } else {
+        // Siguiente screen depende de tipo usuario
+        if(usuario.role === 'user')
+          navigation.navigate('Examen', { data: formData });
+        else if(usuario.role === 'admin')
+          navigation.navigate('PacienteIngreso', { data: formData });
+    }
+    });
+  };
+
+  const getUsuarioFromApi = (formData, setFormData) => {
+
+    return fetch('https://ppiapi.akasoft.cl/api/usuario/email/' + formData.emailUsuario.trim())
+      .then(response => response.json())
+      .then(json => {
+        return json.data;
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   return (
@@ -60,7 +88,8 @@ const LoginScreen = ({navigation, route}) => {
       <View style={[styles.inputRow, {flex: 1, padding: 5}]}>
         <Button
           title="Siguiente"
-          onPress={() => navigation.navigate('PacienteIngreso', { data: formData })}
+          //onPress={() => navigation.navigate('PacienteIngreso', { data: formData })}
+          onPress={() => handleLogin(formData, setFormData)}
         />
       </View>
     </View>
