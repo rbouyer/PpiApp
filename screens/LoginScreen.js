@@ -30,21 +30,24 @@ const LoginScreen = ({navigation, route}) => {
     }
 
     getUsuarioFromApi(formData, setFormData).then(usuario => {
+      const idUsuario = usuario.id;
       console.log('Usuario: ' + JSON.stringify(usuario));
 
+      console.info('usuario.id: ' + usuario.id);
       console.info('usuario.email: ' + usuario.email);
       console.info('usuario.password: ' + usuario.password);
       console.info('usuario.role: ' + usuario.role);
   
       if (!(formData.emailUsuario === usuario.email && formData.claveUsuario === usuario.password)) {
+        console.log('Login invalido');
         Alert.alert('Error', 'Usuario o clave invalida');
       } else {
-        handleInputChange('idUsuario', usuario.id);
+        handleInputChange('idUsuario', idUsuario);
         // Siguiente screen depende de tipo usuario
         if(usuario.role === 'user')
           navigation.navigate('VisitaId', { data: formData });
         else if(usuario.role === 'admin')
-          navigation.navigate('PacienteIngreso', { data: formData });
+          navigation.navigate('Admin', { data: formData });
     }
     });
   };

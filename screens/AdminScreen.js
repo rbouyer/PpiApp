@@ -6,7 +6,7 @@ import Button from './components/ButtonComponent';
 import styles from './Styles';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const VisitaIdScreen = ({navigation, route}) => {
+const AdminScreen = ({navigation, route}) => {
     const { data } = route.params;
 
     const [formData, setFormData] = useState(data);
@@ -17,7 +17,6 @@ const VisitaIdScreen = ({navigation, route}) => {
 
 
     const handleVisita = (formData, setFormData) => {
-        const idUsuario = formData.idUsuario;
         console.info('formData.idVisita: ' + formData.idVisita);
     
 
@@ -30,19 +29,16 @@ const VisitaIdScreen = ({navigation, route}) => {
         getVisitaFromApi(formData, setFormData).then(visita => {
             console.log('Visita: ' + JSON.stringify(visita));
 
-            console.info('formData.idUsuario: ' + idUsuario);
-
             console.info('visita.usuario_id: ' + visita.usuario_id);
             console.info('visita.ficha_id: ' + visita.ficha_id);
             console.info('visita.estado: ' + visita.estado);
         
             if(visita == null){
                 Alert.alert('Error', 'ID visita invalido');
-            } else if(visita.usuario_id !== idUsuario){
-                Alert.alert('Error', 'ID visita no autorizado');
-            } else if (visita.estado !== 'P') {
-                Alert.alert('Error', 'Visita ya enviada, sin permiso para ingreso');
+            } else if (visita.estado === 'P') {
+                Alert.alert('Error', 'Visita no recibida, sin datos');
             } else {
+                //Cargar ficha
                 navigation.navigate('PacienteIngreso', { data: formData });
             }
         });
@@ -61,8 +57,8 @@ const VisitaIdScreen = ({navigation, route}) => {
     
     return (
         <View>
-            <Text style={styles.title}>Visita</Text>
-            <Text style={styles.label}>Ingreso ID Visita</Text>
+            <Text style={styles.title}>Administración Sistema</Text>
+            <Text style={styles.label}>seleccione la acción deseada</Text>
             <ScrollView>
                 <View style={styles.container}>
 
@@ -79,7 +75,7 @@ const VisitaIdScreen = ({navigation, route}) => {
                         />
 
                         <Button
-                            title="Iniciar Visita"
+                            title="Editar Visita"
                             onPress={() => handleVisita(formData, setFormData)}
                         />
 
@@ -92,4 +88,4 @@ const VisitaIdScreen = ({navigation, route}) => {
 
 }
 
-export default VisitaIdScreen;
+export default AdminScreen;
