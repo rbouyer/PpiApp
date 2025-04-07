@@ -286,7 +286,7 @@ const ExamenScreen = ({navigation, route}) => {
 
 
                     <Navigation 
-                        onPressPrev={() => navigation.navigate('PacienteResumen', { data: formData })} 
+                        //onPressPrev={() => navigation.navigate('PacienteResumen', { data: formData })} 
                         onPressNext={() => navigation.navigate('PatologiaMedicamento', { data: formData })}>
                     </Navigation>
 

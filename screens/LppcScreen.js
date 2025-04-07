@@ -15,7 +15,7 @@ import dataDropDown from '../data/dropdown.json';
 
 import {buscaEnArreglo} from '../helpers/GralHelper.js';
 
-const TemplateScreen = ({navigation, route}) => {
+const LppScreen = ({navigation, route}) => {
     const { data } = route.params;
 
     const [formData, setFormData] = useState(data);
@@ -156,4 +156,4 @@ const TemplateScreen = ({navigation, route}) => {
 
 }
 
-export default TemplateScreen;
+export default LppScreen;

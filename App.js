@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './screens/LoginScreen';
+import VisitaIdScreen from './screens/VisitaIdScreen';
 import PacienteIngresoScreen from './screens/PacienteIngresoScreen';
 import PacienteResumenScreen from './screens/PacienteResumenScreen';
 import ExamenScreen from './screens/ExamenScreen';
@@ -26,7 +27,7 @@ const Stack = createStackNavigator();
 
 const App = () => {
   const [formData, setFormData] = useState(
-    { emailUsuario: '', claveUsuario: '', 
+    { emailUsuario: '', claveUsuario: '', idUsuario: 0,
       fechaNacimientoPaciente: null, edadPaciente: 0, idPaciente: 0, idVisita: 0, sexoPaciente: '', pesoPaciente: 0, tallaPaciente: 0, 
       mesesPostracionPaciente: 0, anosPostracionPaciente: 0, diagPaciente: '', ingresoPaciente: '', estudioPaciente: '', imcPaciente: 0,
       
@@ -123,6 +124,9 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Login" component={LoginScreen} initialParams={{ data: formData }}/>
+
+        <Stack.Screen name="VisitaId" component={VisitaIdScreen} initialParams={{ data: formData }}/>
+
         <Stack.Screen name="PacienteIngreso" component={PacienteIngresoScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="PacienteResumen" component={PacienteResumenScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="Examen" component={ExamenScreen} initialParams={{ data: formData }}/>

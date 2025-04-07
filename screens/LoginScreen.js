@@ -39,9 +39,10 @@ const LoginScreen = ({navigation, route}) => {
       if (!(formData.emailUsuario === usuario.email && formData.claveUsuario === usuario.password)) {
         Alert.alert('Error', 'Usuario o clave invalida');
       } else {
+        handleInputChange('idUsuario', usuario.id);
         // Siguiente screen depende de tipo usuario
         if(usuario.role === 'user')
-          navigation.navigate('Examen', { data: formData });
+          navigation.navigate('VisitaId', { data: formData });
         else if(usuario.role === 'admin')
           navigation.navigate('PacienteIngreso', { data: formData });
     }
