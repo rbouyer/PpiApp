@@ -64,6 +64,42 @@ const AdminScreen = ({navigation, route}) => {
 
                     <View style={styles.inputRow}>
 
+                        <Text style={styles.label}>Ingresar nuevo usuario</Text>
+
+                        <Button
+                            title="Crear Usuario"
+                            ancho="200"
+                            onPress={() => navigation.navigate('AdminUsuario', { data: formData })}
+                        />
+
+                    </View>
+
+                    <View style={styles.inputRow}>
+
+                        <Text style={styles.label}>Ingresar nuevo paciente</Text>
+
+                        <Button
+                            title="Crear Paciente"
+                            ancho="200"
+                            onPress={() => navigation.navigate('AdminPaciente', { data: formData })}
+                        />
+
+                    </View>
+
+                    <View style={styles.inputRow}>
+
+                        <Text style={styles.label}>Ingresar nueva visita</Text>
+
+                        <Button
+                            title="Crear Visita"
+                            ancho="200"
+                            onPress={() => navigation.navigate('AdminVisita', { data: formData })}
+                        />
+
+                    </View>
+
+                    <View style={styles.inputRow}>
+
                         <Text style={styles.label}>Ingrese ID de visita</Text>
 
                         <TextInput
@@ -76,6 +112,7 @@ const AdminScreen = ({navigation, route}) => {
 
                         <Button
                             title="Editar Visita"
+                            ancho="200"
                             onPress={() => handleVisita(formData, setFormData)}
                         />
 
