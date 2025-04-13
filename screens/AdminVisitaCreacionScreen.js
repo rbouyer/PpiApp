@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Platform } from 'react-native';
-import { View, Text, TextInput, Button, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TextInput, StyleSheet, ScrollView, ActivityIndicator, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 import styles from './Styles';
 
 import dataDropDown from '../data/dropdown.json';
 
-import {obtenerData} from '../helpers/RestApiHelper.js'
+import Button from './components/ButtonComponent';
 
-const AdminPacienteCreacionScreen = ({navigation, route}) => {
+import {obtenerData, crearEntidad} from '../helpers/RestApiHelper.js'
+
+const AdminVisitaCreacionScreen = ({navigation, route}) => {
     const [formData, setFormData] = useState({
         id: null,
         paciente_id: null,
@@ -19,26 +21,36 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
     });
 
     const [usuarios, setUsuarios] = useState([]);
-    const [pacientes, sePacientes] = useState([]);
+    const [pacientes, setPacientes] = useState([]);
     const [loading, setLoading] = useState({
         usuarios: true,
         pacientes: true
     });
     const [error, setError] = useState(null);
-    
+
     // Fetch all data on component mount
     useEffect(() => {
         const fetchData = async () => {
         try {
-            const usrsResponse = obtenerData('https://ppiapi.akasoft.cl/api/usuario');
-            const pacsResponse = obtenerData('https://ppiapi.akasoft.cl/api/paciente');
+            const usrsResponse = await obtenerData('https://ppiapi.akasoft.cl/api/usuario');
+            console.log(usrsResponse);
+            // Validate the response is an array
+            if (!Array.isArray(usrsResponse)) {
+                throw new Error('Invalid API response format usuarios - expected array');
+            }
+  
+            const pacsResponse = await obtenerData('https://ppiapi.akasoft.cl/api/paciente');
+            console.log(pacsResponse);
+            // Validate the response is an array
+            if (!Array.isArray(pacsResponse)) {
+                throw new Error('Invalid API response format pacientes - expected array');
+            }
 
             setUsuarios(usrsResponse);
-            setLoading(prev => ({...prev, usuarios: false}));
+            setLoading(prev => ({...prev, 'usuarios': false}));
 
             setPacientes(pacsResponse);
-            setLoading(prev => ({...prev, pacientes: false}));
-
+            setLoading(prev => ({...prev, 'pacientes': false}));
 
         } catch (err) {
             setError(err.message);
@@ -77,16 +89,15 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
         });
       };
      
-      const handleSubmit = () => {
+      const handleSubmit = async () => {
         // Here you would typically send the data to an API
-        console.log('Form submitted:', {
-          ...formData,
-          identificador: parseInt(formData.identificador), // Convert to integer
-          fechaNacimiento: formData.fechaNacimiento.toISOString().split('T')[0] // Format date as YYYY-MM-DD
-        });
+        const nuevaVisita = await crearEntidad("https://ppiapi.akasoft.cl/api/visita", formData);
+
       };
 
-      
+      const nombreCompleto = (o) => {
+        return o? `${o.nombre} ${o.apellido}`: '';
+      }
 
     return (
         <View>
@@ -114,7 +125,7 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
                             >
                             <Picker.Item label="Seleccione un usuario..." value={null} />
                             {usuarios.map(user => (
-                                <Picker.Item key={`user-${user.id}`} label={user.nombre} value={user.id} />
+                                <Picker.Item key={`user-${user.id}`} label={nombreCompleto(user)} value={user.id} />
                             ))}
                         </Picker>
                     </View>
@@ -131,7 +142,7 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
                             >
                             <Picker.Item label="Seleccione un paciente..." value={null} />
                             {pacientes.map(pac => (
-                                <Picker.Item key={`pac-${pac.id}`} label={pac.nombre} value={pac.id} />
+                                <Picker.Item key={`pac-${pac.id}`} label={nombreCompleto(pac)} value={pac.id} />
                             ))}
                         </Picker>
                     </View>
@@ -140,7 +151,7 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
                     <View style={styles.inputRow}>
                         <Text style={styles.label}>Dirección:</Text>
                         <TextInput
-                            style={styles.input}
+                            style={styles.textInput}
                             value={formData.direccion}
                             onChangeText={(text) => handleInputChange('direccion', text)}
                             placeholder="Ingrese dirección paciente"
@@ -159,6 +170,9 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
                             onPress={() => handleSubmit()}
                         />
                     </View>
+                    
+                    <Text style={styles.label}></Text>
+                    <Text style={styles.label}></Text>
 
                 </View>
             </ScrollView>
@@ -167,4 +181,4 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
 
 }
 
-export default AdminPacienteCreacionScreen;
+export default AdminVisitaCreacionScreen;

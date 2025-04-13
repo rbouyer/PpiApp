@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
-import { View, Text, TextInput, Button, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TextInput, StyleSheet, ScrollView } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+
+import Selector from './components/SelectorComponent';
+import Button from './components/ButtonComponent';
+
+import {obtenerData, crearEntidad} from '../helpers/RestApiHelper.js'
 
 import styles from './Styles';
 
@@ -14,7 +19,11 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
         identificador: '',
         direccion: '',
         fechaNacimiento: new Date(),
-        genero: ''
+        genero: '',
+        diagnostico: '',
+        fullName: function() {
+            return `${this.nombre} ${this.apellido}`;
+          }
       });
     
       const [showDatePicker, setShowDatePicker] = useState(false);
@@ -33,13 +42,9 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
         }
       };
     
-      const handleSubmit = () => {
+      const handleSubmit = async () => {
         // Here you would typically send the data to an API
-        console.log('Form submitted:', {
-          ...formData,
-          identificador: parseInt(formData.identificador), // Convert to integer
-          fechaNacimiento: formData.fechaNacimiento.toISOString().split('T')[0] // Format date as YYYY-MM-DD
-        });
+        const nuevoPaciente = await crearEntidad("https://ppiapi.akasoft.cl/api/paciente", formData);
       };
 
       
@@ -60,9 +65,9 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
 
                     {/* Nombre */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Nombre:</Text>
+                        <Text style={styles.label}>Nombre</Text>
                         <TextInput
-                            style={styles.input}
+                            style={styles.textInput}
                             value={formData.nombre}
                             onChangeText={(text) => handleInputChange('nombre', text)}
                             placeholder="Ingrese nombre paciente"
@@ -71,9 +76,9 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
 
                     {/* Apellido */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Apellido:</Text>
+                        <Text style={styles.label}>Apellido</Text>
                         <TextInput
-                            style={styles.input}
+                            style={styles.textInput}
                             value={formData.apellido}
                             onChangeText={(text) => handleInputChange('apellido', text)}
                             placeholder="Ingrese apellido paciente"
@@ -94,16 +99,19 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
 
                     {/* Fecha Nacimiento */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Fecha de Nacimiento:</Text>
+                        <Text style={styles.label}>Fecha de Nacimiento</Text>
                         <Button 
-                            title={`Seleccionar fecha: ${formData.fechaNacimiento.toLocaleDateString()}`} 
+                            title={`${formData.fechaNacimiento.toLocaleDateString()}`} 
                             onPress={() => setShowDatePicker(true)} 
+                            ancho="300"
+                            color='blue'
                         />
                         {showDatePicker && (
                             <DateTimePicker
                             value={formData.fechaNacimiento}
+                            maximumDate={new Date()}
                             mode="date"
-                            display="default"
+                            display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
                             onChange={handleDateChange}
                             />
                         )}
@@ -111,9 +119,9 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
 
                     {/* Identificador */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Identificador (número):</Text>
+                        <Text style={styles.label}>Identificador (número)</Text>
                         <TextInput
-                            style={styles.input}
+                            style={styles.textInput}
                             value={formData.identificador}
                             onChangeText={(text) => handleInputChange('identificador', text)}
                             placeholder="Ingrese identificador numerico paciente"
@@ -121,11 +129,22 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
                         />
                     </View>
 
+                    {/* Diagnostico */}
+                    <View style={styles.inputRow}>
+                        <Text style={styles.label}>Diagnostico</Text>
+                        <TextInput
+                            style={styles.textInput}
+                            value={formData.diagnostico}
+                            onChangeText={(text) => handleInputChange('diagnostico', text)}
+                            placeholder="Ingrese diagnostico paciente"
+                        />
+                    </View>
+
                     {/* Dirección */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Dirección:</Text>
+                        <Text style={styles.label}>Dirección</Text>
                         <TextInput
-                            style={styles.input}
+                            style={styles.textInput}
                             value={formData.direccion}
                             onChangeText={(text) => handleInputChange('direccion', text)}
                             placeholder="Ingrese dirección paciente"
@@ -144,6 +163,9 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
                             onPress={() => handleSubmit()}
                         />
                     </View>
+
+                    <Text style={styles.label}></Text>
+                    <Text style={styles.label}></Text>
 
                 </View>
             </ScrollView>
