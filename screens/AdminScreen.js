@@ -81,7 +81,7 @@ const AdminScreen = ({navigation, route}) => {
                         <Button
                             title="Crear Paciente"
                             ancho="200"
-                            onPress={() => navigation.navigate('AdminPaciente', { data: formData })}
+                            onPress={() => navigation.navigate('AdminPacienteCreacion', { data: formData })}
                         />
 
                     </View>
@@ -93,7 +93,7 @@ const AdminScreen = ({navigation, route}) => {
                         <Button
                             title="Crear Visita"
                             ancho="200"
-                            onPress={() => navigation.navigate('AdminVisita', { data: formData })}
+                            onPress={() => navigation.navigate('AdminVisitaCreacion', { data: formData })}
                         />
 
                     </View>

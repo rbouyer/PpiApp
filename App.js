@@ -3,7 +3,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './screens/LoginScreen';
 import VisitaIdScreen from './screens/VisitaIdScreen';
+
 import AdminScreen from './screens/AdminScreen';
+import AdminPacienteCreacionScreen from './screens/AdminPacienteCreacionScreen';
+
 import PacienteIngresoScreen from './screens/PacienteIngresoScreen';
 import PacienteResumenScreen from './screens/PacienteResumenScreen';
 import ExamenScreen from './screens/ExamenScreen';
@@ -128,6 +131,7 @@ const App = () => {
 
         <Stack.Screen name="VisitaId" component={VisitaIdScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="Admin" component={AdminScreen} initialParams={{ data: formData }}/>
+        <Stack.Screen name="AdminPacienteCreacion" component={AdminPacienteCreacionScreen} initialParams={{ data: formData }}/>
 
         <Stack.Screen name="PacienteIngreso" component={PacienteIngresoScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="PacienteResumen" component={PacienteResumenScreen} initialParams={{ data: formData }}/>
