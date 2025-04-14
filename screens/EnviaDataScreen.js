@@ -6,6 +6,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import Navigation from './components/NavigationComponent';
 import Button from './components/ButtonComponent';
 
+import { URL_API } from '../data/constants'
 
 
 const EnviaDataScreen = ({navigation, route}) => {
@@ -13,7 +14,7 @@ const EnviaDataScreen = ({navigation, route}) => {
     const [formData, setFormData] = useState(data);
 
     const enviarFormData = () => {
-      var urlPost = 'https://ppiapi.akasoft.cl/api/ficha/idVisita/' + formData.idVisita; 
+      var urlPost = URL_API  + 'api/ficha/idVisita/' + formData.idVisita; 
       var errPost = null;
 
       try {
@@ -31,7 +32,7 @@ const EnviaDataScreen = ({navigation, route}) => {
         errPost = error;
       } finally {
         if(errPost == null){
-          alert('Data Enviada');
+          alert('Data enviada exitosamente al servidor');
         } else {
           alert('Error al enviar datos a servidor: ' + errPost);
         }

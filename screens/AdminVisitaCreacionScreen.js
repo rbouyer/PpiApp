@@ -6,6 +6,7 @@ import { Picker } from '@react-native-picker/picker';
 import styles from './Styles';
 
 import dataDropDown from '../data/dropdown.json';
+import { URL_API } from '../data/constants'
 
 import Button from './components/ButtonComponent';
 
@@ -16,7 +17,7 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
         id: null,
         paciente_id: null,
         usuario_id: null,
-        direccion: null,
+        direccion: '',
         estado: 'P'
     });
 
@@ -32,14 +33,14 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
     useEffect(() => {
         const fetchData = async () => {
         try {
-            const usrsResponse = await obtenerData('https://ppiapi.akasoft.cl/api/usuario');
+            const usrsResponse = await obtenerData(URL_API  + 'api/usuario');
             console.log(usrsResponse);
             // Validate the response is an array
             if (!Array.isArray(usrsResponse)) {
                 throw new Error('Invalid API response format usuarios - expected array');
             }
   
-            const pacsResponse = await obtenerData('https://ppiapi.akasoft.cl/api/paciente');
+            const pacsResponse = await obtenerData(URL_API + 'api/paciente');
             console.log(pacsResponse);
             // Validate the response is an array
             if (!Array.isArray(pacsResponse)) {
@@ -55,7 +56,7 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
         } catch (err) {
             setError(err.message);
             setLoading({ users: false, cars: false, persons: false });
-            Alert.alert('Error', 'Failed to fetch data');
+            Alert.alert('Error', 'No pudo obtener data del servidor');
         }
         };
 
@@ -90,9 +91,26 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
       };
      
       const handleSubmit = async () => {
-        // Here you would typically send the data to an API
-        const nuevaVisita = await crearEntidad("https://ppiapi.akasoft.cl/api/visita", formData);
+        console.log('handleSubmit');
+        if(formData != null && formData.id != null){
+            console.log('Reenvio denegado');
+            Alert.alert('Error', 'No se permite el reenvio de data que ya habia sido enviada al servidor');
+        } else {
+            // Validaciones
+            if(formData.usuario_id == null)
+                Alert.alert('Error', 'Debe seleccionar usuario');
+            else if(formData.paciente_id == null)
+                Alert.alert('Error', 'Debe seleccionar paciente');
+            else if(formData.direccion == '' )
+                Alert.alert('Error', 'Debe ingresar dirección');
+            else {
+                console.log('Envio exitoso');
+                // Here you would typically send the data to an API
+                const nuevaVisita = await crearEntidad(URL_API + "api/visita", formData);
 
+                if(nuevaVisita != null) setFormData(nuevaVisita);
+            }
+        }
       };
 
       const nombreCompleto = (o) => {
@@ -162,7 +180,7 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
 
                     <View style={styles.inputRow}>
                         <Button
-                            title="Cancelar"
+                            title="Volver"
                             onPress={() => navigation.navigate('Admin', { data: formData })}
                         />
                         <Button 

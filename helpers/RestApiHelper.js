@@ -37,12 +37,13 @@ export async function crearEntidad(urlPost, body) {
       } catch(error){
         errPost = error;
       } finally {
-        if(errPost == null){
-          alert('Data exitosamente enviada al servidor, ID: ' + resp.data.id);
+        if(errPost == null && resp.status){
+          Alert.alert('Información','Data exitosamente enviada al servidor, ID: ' + resp.data.id);
         } else {
-          alert('Error al enviar datos a servidor: ' + errPost);
+            Alert.alert('Error','Data no pudo ser enviada al servidor, detalle: ' + (errPost != null? errPost: resp.error.message));
+            //throw errPost;
         }
       }
 
-      return resp? resp.data: null;
+      return resp && resp.status? resp.data: null;
 };

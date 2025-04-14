@@ -54,15 +54,18 @@ const PacienteIngresoScreen = ({navigation, route}) => {
 
           <Text style={styles.label}>Id.Visita</Text>
 
-          <TextInput
+{/*           <TextInput
             style={styles.textInput}
             keyboardType="numeric"
             textAlign="right"
-            value={formData.idPaciente}
+            value={formData.idVisita}
+            editable={false}
             onChangeText={(value) => handleInputChange('idVisita', value)}
           />
+ */}
+         <Text style={styles.textResult}>{formData.idVisita}</Text>
 
-          <Text style={styles.label}></Text>
+         <Text style={styles.label}></Text>
           <Text style={styles.label}></Text>
 
         </View>

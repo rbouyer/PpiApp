@@ -13,15 +13,14 @@ import styles from './Styles';
 import dataDropDown from '../data/dropdown.json';
 import { URL_API } from '../data/constants'
 
-const AdminPacienteCreacionScreen = ({navigation, route}) => {
+const AdminUsuarioCreacionScreen = ({navigation, route}) => {
     const [formData, setFormData] = useState({
         nombre: '',
         apellido: '',
-        identificador: '',
-        direccion: '',
-        fechaNacimiento: new Date(),
-        genero: '',
-        diagnostico: '',
+        email: '',
+        password: '',
+        password2: '',
+        role: 'user',
         fullName: function() {
             return `${this.nombre} ${this.apellido}`;
           }
@@ -36,16 +35,22 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
         });
       };
     
-      const handleDateChange = (event, selectedDate) => {
-        setShowDatePicker(false);
-        if (selectedDate) {
-          handleInputChange('fechaNacimiento', selectedDate);
-        }
-      };
-    
       const handleSubmit = async () => {
-        // Here you would typically send the data to an API
-        const nuevoPaciente = await crearEntidad(URL_API + "api/paciente", formData);
+        // Validaciones
+        if(formData.email == '' || formData.email.trim() == '')
+            Alert.alert('Error', 'Debe ingresar email');
+        else if(formData.nombre == '' || formData.apellido == '')
+            Alert.alert('Error', 'Debe ingresar nombre y apellido');
+        else if(formData.password == '' || formData.password != formData.password2)
+            Alert.alert('Error', 'Debe ingresar contraseña y repetirla en campo de reingreso');
+        else {
+            // Here you would typically send the data to an API
+            try {
+                const nuevoUsuario = await crearEntidad(URL_API + "api/usuario", formData);
+            } catch (error){
+                Alert.alert('Error servidor', 'Detalle: ' + error.message);
+            }
+        }
       };
 
       
@@ -64,6 +69,18 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
 
                     </View>
 
+                    {/* Email */}
+                    <View style={styles.inputRow}>
+                        <Text style={styles.label}>Email</Text>
+                        <TextInput
+                            style={styles.textInput}
+                            keyboardType="email-address"
+                            value={formData.email}
+                            onChangeText={(text) => handleInputChange('email', text)}
+                            placeholder="Ingrese correo electrónico de usuario"
+                        />
+                    </View>
+
                     {/* Nombre */}
                     <View style={styles.inputRow}>
                         <Text style={styles.label}>Nombre</Text>
@@ -71,7 +88,7 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
                             style={styles.textInput}
                             value={formData.nombre}
                             onChangeText={(text) => handleInputChange('nombre', text)}
-                            placeholder="Ingrese nombre paciente"
+                            placeholder="Ingrese nombre usuario"
                         />
                     </View>
 
@@ -82,73 +99,43 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
                             style={styles.textInput}
                             value={formData.apellido}
                             onChangeText={(text) => handleInputChange('apellido', text)}
-                            placeholder="Ingrese apellido paciente"
+                            placeholder="Ingrese apellido usuario"
                         />
                     </View>
 
-                    {/* Genero */}
+                    {/* Role */}
                     <View style={styles.inputRow}>
 
-                        <Text style={styles.label}>Sexo</Text>
+                        <Text style={styles.label}>Tipo de usuario</Text>
 
                         <Selector
-                                        lista = {dataDropDown.sexo} 
-                                        seleccion = {formData.genero} 
-                                        setSeleccion = {(value) => handleInputChange('genero', value)} 
+                                        lista = {dataDropDown.role} 
+                                        seleccion = {formData.role} 
+                                        setSeleccion = {(value) => handleInputChange('role', value)} 
                         />
                     </View>
 
-                    {/* Fecha Nacimiento */}
+                    {/* Password */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Fecha de Nacimiento</Text>
-                        <Button 
-                            title={`${formData.fechaNacimiento.toLocaleDateString()}`} 
-                            onPress={() => setShowDatePicker(true)} 
-                            ancho="300"
-                            color='blue'
-                        />
-                        {showDatePicker && (
-                            <DateTimePicker
-                            value={formData.fechaNacimiento}
-                            maximumDate={new Date()}
-                            mode="date"
-                            display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
-                            onChange={handleDateChange}
-                            />
-                        )}
-                    </View>
-
-                    {/* Identificador */}
-                    <View style={styles.inputRow}>
-                        <Text style={styles.label}>Identificador (número)</Text>
+                        <Text style={styles.label}>Contraseña</Text>
                         <TextInput
                             style={styles.textInput}
+                            secureTextEntry={true}
                             value={formData.identificador}
-                            onChangeText={(text) => handleInputChange('identificador', text)}
-                            placeholder="Ingrese identificador numerico paciente"
-                            keyboardType="numeric"
+                            onChangeText={(text) => handleInputChange('password', text)}
+                            placeholder="Ingrese contraseña usuario"
                         />
                     </View>
 
-                    {/* Diagnostico */}
+                    {/* Password 2 */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Diagnostico</Text>
+                        <Text style={styles.label}>Reingrese Contraseña</Text>
                         <TextInput
                             style={styles.textInput}
-                            value={formData.diagnostico}
-                            onChangeText={(text) => handleInputChange('diagnostico', text)}
-                            placeholder="Ingrese diagnostico paciente"
-                        />
-                    </View>
-
-                    {/* Dirección */}
-                    <View style={styles.inputRow}>
-                        <Text style={styles.label}>Dirección</Text>
-                        <TextInput
-                            style={styles.textInput}
-                            value={formData.direccion}
-                            onChangeText={(text) => handleInputChange('direccion', text)}
-                            placeholder="Ingrese dirección paciente"
+                            secureTextEntry={true}
+                            value={formData.identificador}
+                            onChangeText={(text) => handleInputChange('password2', text)}
+                            placeholder="Reingrese contraseña usuario"
                         />
                     </View>
 
@@ -175,4 +162,4 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
 
 }
 
-export default AdminPacienteCreacionScreen;
+export default AdminUsuarioCreacionScreen;

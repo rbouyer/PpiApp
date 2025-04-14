@@ -1,23 +1,31 @@
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Alert } from 'react-native';
 import Button from './components/ButtonComponent';
 
 import styles from './Styles';
 import { ScrollView } from 'react-native-gesture-handler';
+
+import { URL_API } from '../data/constants'
+
+import {obtenerData, crearEntidad} from '../helpers/RestApiHelper.js'
+
 
 const VisitaIdScreen = ({navigation, route}) => {
     const { data } = route.params;
 
     const [formData, setFormData] = useState(data);
 
+    console.log('formData: ' + JSON.stringify(formData));
+
     const handleInputChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
     };
 
 
-    const handleVisita = (formData, setFormData) => {
+    const handleVisita = async () => {
         const idUsuario = formData.idUsuario;
+        console.info('formData.idUsuario: ' + formData.idUsuario);
         console.info('formData.idVisita: ' + formData.idVisita);
     
 
@@ -26,7 +34,31 @@ const VisitaIdScreen = ({navigation, route}) => {
             Alert.alert('Error', 'Debe ingresar ID de visita');
             return;
         }
+        var visita = await obtenerData(URL_API + 'api/visita/id/' + formData.idVisita);
 
+        if(visita != null) console.log('visita: ' + JSON.stringify(visita));
+
+        if(visita == null){
+            Alert.alert('Error', 'ID visita invalido');
+        } else if(parseInt(visita.usuario_id) != idUsuario){
+            console.info('formData.idUsuario: ' + idUsuario);
+            console.info('visita.usuario_id: ' + visita.usuario_id);
+           Alert.alert('Error', 'ID visita no autorizado');
+        } else if (visita.estado !== 'P') {
+            Alert.alert('Error', 'Visita ya enviada, sin permiso para ingreso');
+        } else {
+            console.log('Visita: ' + JSON.stringify(visita));
+            console.info('formData.idUsuario: ' + idUsuario);
+            console.info('visita.usuario_id: ' + visita.usuario_id);
+            console.info('visita.ficha_id: ' + visita.ficha_id);
+            console.info('visita.estado: ' + visita.estado);
+
+    
+            handleInputChange('idPaciente', formData.idPaciente);
+            navigation.navigate('PacienteIngreso', { data: formData });
+        }
+
+/* 
         getVisitaFromApi(formData, setFormData).then(visita => {
             console.log('Visita: ' + JSON.stringify(visita));
 
@@ -46,10 +78,12 @@ const VisitaIdScreen = ({navigation, route}) => {
                 navigation.navigate('PacienteIngreso', { data: formData });
             }
         });
+ */    
     };
 
+/*
     const getVisitaFromApi = (formData, setFormData) => {
-        return fetch('https://ppiapi.akasoft.cl/api/visita/id/' + formData.idVisita)
+        return fetch(URL_API + 'api/visita/id/' + formData.idVisita)
             .then(response => response.json())
             .then(json => {
                 return json.status? json.data: null;
@@ -58,7 +92,7 @@ const VisitaIdScreen = ({navigation, route}) => {
                 console.error(error);
             });
     };
-    
+ */    
     return (
         <View>
             <Text style={styles.title}>Visita</Text>
@@ -80,7 +114,7 @@ const VisitaIdScreen = ({navigation, route}) => {
 
                         <Button
                             title="Iniciar Visita"
-                            onPress={() => handleVisita(formData, setFormData)}
+                            onPress={() => handleVisita()}
                         />
 
                     </View>

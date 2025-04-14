@@ -248,5 +248,9 @@
             { "value": "ZT_03", "label": "(3) Algunas veces.", "ptje": 3 },
             { "value": "ZT_04", "label": "(4) Bastantes veces.", "ptje": 4 },
             { "value": "ZT_05", "label": "(5) Casi siempre.", "ptje": 5 }      
+       ],
+       "role": [
+          {"value": "user", "label": "Usuario sistema"},
+          {"value": "admin", "label": "Administrador sistema"}
        ]
   }

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Alert } from 'react-native';
 import Button from './components/ButtonComponent';
 
 import styles from './Styles';
 import { ScrollView } from 'react-native-gesture-handler';
+import { URL_API } from '../data/constants';
+
+import {obtenerData, crearEntidad} from '../helpers/RestApiHelper.js'
 
 const AdminScreen = ({navigation, route}) => {
     const { data } = route.params;
@@ -16,44 +19,86 @@ const AdminScreen = ({navigation, route}) => {
     };
 
 
-    const handleVisita = (formData, setFormData) => {
+    const handleVisita = async (formData, setFormData) => {
         console.info('formData.idVisita: ' + formData.idVisita);
     
-
         // Validación credenciales)
-        if (formData.idVisita.trim() === '') {
+        if (formData.idVisita === '' || formData.idVisita == 0) {
             Alert.alert('Error', 'Debe ingresar ID de visita');
             return;
         }
 
-        getVisitaFromApi(formData, setFormData).then(visita => {
-            console.log('Visita: ' + JSON.stringify(visita));
+        var visita = await obtenerData(URL_API + 'api/visita/id/' + formData.idVisita);
 
-            console.info('visita.usuario_id: ' + visita.usuario_id);
-            console.info('visita.ficha_id: ' + visita.ficha_id);
-            console.info('visita.estado: ' + visita.estado);
-        
-            if(visita == null){
-                Alert.alert('Error', 'ID visita invalido');
-            } else if (visita.estado === 'P') {
-                Alert.alert('Error', 'Visita no recibida, sin datos');
-            } else {
-                //Cargar ficha
-                navigation.navigate('PacienteIngreso', { data: formData });
+        if(visita == null) {
+            Alert.alert('Error', 'ID de visita invalido');
+            return;
+        }
+
+        console.log('Visita: ' + JSON.stringify(visita));
+
+        console.info('visita.usuario_id: ' + visita.usuario_id);
+        console.info('visita.ficha_id: ' + visita.ficha_id);
+        console.info('visita.estado: ' + visita.estado);
+    
+        if(visita == null){
+            Alert.alert('Error', 'ID visita invalido');
+        } else if (visita.estado === 'P') {
+            Alert.alert('Error', 'Visita no recibida, sin datos');
+        } else {
+            //Cargar ficha
+            console.log('Cargar ficha');
+            var ficha = await obtenerData(URL_API + 'api/ficha/id/' + visita.ficha_id);
+            console.log('Ficha: ' + JSON.stringify(ficha));
+            console.log('Data: ' + JSON.stringify(ficha.data));
+
+            if(ficha != null) {
+                var idVisita = formData.idVisita, idUsuario = formData.idUsuario;
+                //setFormData(ficha.data);
+
+                //console.log('FormData: ' + JSON.stringify(formData));
+
+                handleInputChange('idVisita', idVisita);
+                handleInputChange('idUsuario', idUsuario);
+                navigation.navigate('PacienteIngreso', { data: ficha.data });
             }
-        });
+        }
+
+         
+        // getVisitaFromApi(formData, setFormData).then(visita => {
+        //     console.log('Visita: ' + JSON.stringify(visita));
+
+        //     console.info('visita.usuario_id: ' + visita.usuario_id);
+        //     console.info('visita.ficha_id: ' + visita.ficha_id);
+        //     console.info('visita.estado: ' + visita.estado);
+        
+        //     if(visita == null){
+        //         Alert.alert('Error', 'ID visita invalido');
+        //     } else if (visita.estado === 'P') {
+        //         Alert.alert('Error', 'Visita no recibida, sin datos');
+        //     } else {
+        //         //Cargar ficha
+        //         console.log('Cargar ficha');
+        //         var ficha = await obtenerData(URL_API + 'api/ficha/id/' + visita.ficha_id);
+        //         console.log('Ficha: ' + JSON.stringify(ficha));
+        //         if(ficha != null) setFormData(ficha.data.data)
+        //         navigation.navigate('PacienteIngreso', { data: formData });
+        //     }
+        // });
+
     };
 
-    const getVisitaFromApi = (formData, setFormData) => {
-        return fetch('https://ppiapi.akasoft.cl/api/visita/id/' + formData.idVisita)
-            .then(response => response.json())
-            .then(json => {
-                return json.status? json.data: null;
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    };
+    // const getVisitaFromApi = (formData, setFormData) => {
+    //     return fetch(URL_API + 'api/visita/id/' + formData.idVisita)
+    //         .then(response => response.json())
+    //         .then(json => {
+    //             return json.status? json.data: null;
+    //         })
+    //         .catch(error => {
+    //             console.error(error);
+    //         });
+    // };
+     
     
     return (
         <View>
@@ -69,7 +114,7 @@ const AdminScreen = ({navigation, route}) => {
                         <Button
                             title="Crear Usuario"
                             ancho="200"
-                            onPress={() => navigation.navigate('AdminUsuario', { data: formData })}
+                            onPress={() => navigation.navigate('AdminUsuarioCreacion', { data: formData })}
                         />
 
                     </View>
@@ -106,7 +151,7 @@ const AdminScreen = ({navigation, route}) => {
                             style={styles.textInput}
                             keyboardType="numeric"
                             textAlign="right"
-                            value={formData.pesoPaciente}
+                            value={formData.idVisita}
                             onChangeText={(value) => handleInputChange('idVisita', value)}
                         />
 

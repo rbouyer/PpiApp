@@ -5,6 +5,10 @@ import Button from './components/ButtonComponent';
 
 import styles from './Styles';
 
+import { URL_API } from '../data/constants'
+import {obtenerData, crearEntidad} from '../helpers/RestApiHelper.js'
+
+
 const Separator = () => <View style={styles.separator} />;
 
 const LoginScreen = ({navigation, route}) => {
@@ -18,7 +22,7 @@ const LoginScreen = ({navigation, route}) => {
     setFormData({ ...formData, [field]: value });
   };
 
-  const handleLogin = (formData, setFormData) => {
+  const handleLogin = async (formData, setFormData) => {
     console.info('formData.emailUsuario: ' + formData.emailUsuario);
     console.info('formData.claveUsuario: ' + formData.claveUsuario);
 
@@ -29,7 +33,29 @@ const LoginScreen = ({navigation, route}) => {
       return;
     }
 
-    getUsuarioFromApi(formData, setFormData).then(usuario => {
+    var usuario = await obtenerData(URL_API + 'api/usuario/email/' + formData.emailUsuario.trim());
+    
+    handleInputChange('idUsuario', usuario.id);
+    console.log('Usuario: ' + JSON.stringify(usuario));
+
+    console.info('usuario.id: ' + usuario.id);
+    console.info('usuario.email: ' + usuario.email);
+    console.info('usuario.password: ' + usuario.password);
+    console.info('usuario.role: ' + usuario.role);
+
+    if (!(formData.emailUsuario === usuario.email && formData.claveUsuario === usuario.password)) {
+      console.log('Login invalido');
+      Alert.alert('Error', 'Usuario o clave invalida');
+    } else {
+      // Siguiente screen depende de tipo usuario
+      if(usuario.role === 'user')
+        navigation.navigate('VisitaId', { data: formData });
+      else if(usuario.role === 'admin')
+        navigation.navigate('Admin', { data: formData });
+    }
+
+
+/*     getUsuarioFromApi(formData, setFormData).then(usuario => {
       const idUsuario = usuario.id;
       console.log('Usuario: ' + JSON.stringify(usuario));
 
@@ -50,11 +76,12 @@ const LoginScreen = ({navigation, route}) => {
           navigation.navigate('Admin', { data: formData });
     }
     });
+ */
   };
 
-  const getUsuarioFromApi = (formData, setFormData) => {
+/*   const getUsuarioFromApi = (formData, setFormData) => {
 
-    return fetch('https://ppiapi.akasoft.cl/api/usuario/email/' + formData.emailUsuario.trim())
+    return fetch(URL_API + 'api/usuario/email/' + formData.emailUsuario.trim())
       .then(response => response.json())
       .then(json => {
         return json.data;
@@ -63,7 +90,7 @@ const LoginScreen = ({navigation, route}) => {
         console.error(error);
       });
   };
-
+ */
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
