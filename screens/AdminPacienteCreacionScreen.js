@@ -7,6 +7,7 @@ import Selector from './components/SelectorComponent';
 import Button from './components/ButtonComponent';
 
 import {obtenerData, crearEntidad} from '../helpers/RestApiHelper.js'
+import {calculaAnos, calculaEdad, formatearFecha} from '../helpers/DateHelper.js';
 
 import styles from './Styles';
 
@@ -102,7 +103,7 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
                     <View style={styles.inputRow}>
                         <Text style={styles.label}>Fecha de Nacimiento</Text>
                         <Button 
-                            title={`${formData.fechaNacimiento.toLocaleDateString()}`} 
+                            title={formatearFecha(formData.fechaNacimiento)} 
                             onPress={() => setShowDatePicker(true)} 
                             ancho="300"
                             color='blue'

@@ -12,7 +12,8 @@ export function evaluaExamen(noRecolectado, fechaEx){
             res = "VE_NO_REC";
         else
             res = evaluaEsMenor(fechaEx, new Date(), -3) ? "VE_SI_VAL": "VE_NO_VAL";
-    }
+    } else
+        res = "VE_NO_VAL";
 
     console.log("Res: " + res);
 
