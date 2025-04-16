@@ -33,26 +33,36 @@ const LoginScreen = ({navigation, route}) => {
       return;
     }
 
-    var usuario = await obtenerData(URL_API + 'api/usuario/email/' + formData.emailUsuario.trim());
+    try {
+      var usuario = await obtenerData(URL_API + 'api/usuario/email/' + formData.emailUsuario.trim());
     
-    handleInputChange('idUsuario', usuario.id);
-    console.log('Usuario: ' + JSON.stringify(usuario));
+      console.log('Usuario: ' + JSON.stringify(usuario));
+  
+      console.info('usuario.id: ' + usuario.id);
+      console.info('usuario.email: ' + usuario.email);
+      console.info('usuario.password: ' + usuario.password);
+      console.info('usuario.role: ' + usuario.role);
+  
+      if (!(formData.emailUsuario === usuario.email && formData.claveUsuario === usuario.password)) {
+        console.log('Login invalido');
+        Alert.alert('Error', 'Usuario o clave invalida');
+      } else {
+        const updatedFormData = { ...formData, idUsuario: usuario.id };
+        //handleInputChange('idUsuario', usuario.id);
+        // Siguiente screen depende de tipo usuario
+        console.log('Login formData: ' + JSON.stringify(updatedFormData));
+  
+        if(usuario.role === 'user')
+          navigation.navigate('VisitaId', { data: updatedFormData });
+        else if(usuario.role === 'admin')
+          navigation.navigate('Admin', { data: updatedFormData });
+      }
+  
+    } catch(err) {
+      Alert.alert('Error', 'Fallo la conexión al servidor: ' + err.message);
 
-    console.info('usuario.id: ' + usuario.id);
-    console.info('usuario.email: ' + usuario.email);
-    console.info('usuario.password: ' + usuario.password);
-    console.info('usuario.role: ' + usuario.role);
-
-    if (!(formData.emailUsuario === usuario.email && formData.claveUsuario === usuario.password)) {
-      console.log('Login invalido');
-      Alert.alert('Error', 'Usuario o clave invalida');
-    } else {
-      // Siguiente screen depende de tipo usuario
-      if(usuario.role === 'user')
-        navigation.navigate('VisitaId', { data: formData });
-      else if(usuario.role === 'admin')
-        navigation.navigate('Admin', { data: formData });
     }
+
 
 
 /*     getUsuarioFromApi(formData, setFormData).then(usuario => {

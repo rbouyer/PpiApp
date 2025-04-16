@@ -28,7 +28,7 @@
         { "value": "0", "label": "(Seleccione)" },
         { "value": "VE_NO_VAL", "label": "No Valido"},
         { "value": "VE_SI_VAL", "label": "Valido"},
-        { "value": "VE_NO_REC", "label": "No se ha recolectado"}
+        { "value": "VE_NO_REC", "label": "No recolectado"}
      ],
      "alimentos": [
         { "value": "0", "label": "(Seleccione)" },

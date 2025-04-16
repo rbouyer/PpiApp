@@ -165,7 +165,7 @@ const PacienteIngresoScreen = ({navigation, route}) => {
             onEndEditing={(e) => handleInputChange('anosPostracionPaciente', calculaAnos(e.nativeEvent.text))}
             />
 
-          <Text style={styles.label}>Años:</Text>
+          <Text style={styles.label}>Postración [Años]:</Text>
           <Text style={styles.textResult}>{formData.anosPostracionPaciente}</Text>
 
         </View>

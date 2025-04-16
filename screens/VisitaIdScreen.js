@@ -16,7 +16,7 @@ const VisitaIdScreen = ({navigation, route}) => {
 
     const [formData, setFormData] = useState(data);
 
-    console.log('formData: ' + JSON.stringify(formData));
+    //console.log('VisitaId formData: ' + JSON.stringify(formData));
 
     const handleInputChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
