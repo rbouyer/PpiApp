@@ -18,7 +18,7 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
     const [formData, setFormData] = useState({
         nombre: '',
         apellido: '',
-        identificador: '',
+        identificador: 0,
         direccion: '',
         fechaNacimiento: new Date(),
         genero: '',
@@ -121,12 +121,12 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
 
                     {/* Identificador */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Identificador (número)</Text>
+                        <Text style={styles.label}>Identificador (RUT parte numérica)</Text>
                         <TextInput
                             style={styles.textInput}
                             value={formData.identificador}
-                            onChangeText={(text) => handleInputChange('identificador', text)}
-                            placeholder="Ingrese identificador numerico paciente"
+                            onChangeText={(text) => handleInputChange('identificador', Number(text))}
+                            placeholder="Ingrese identificador paciente: parte numérica RUT"
                             keyboardType="numeric"
                         />
                     </View>

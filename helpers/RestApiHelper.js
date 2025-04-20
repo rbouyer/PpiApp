@@ -22,6 +22,8 @@ export async function crearEntidad(urlPost, body) {
       var errPost = null;
       var resp = null;
 
+      console.log('crearEntidad body: ' + JSON.stringify(body));      
+
       try {
         const response = await fetch(urlPost, {
           method: 'POST',
@@ -33,7 +35,7 @@ export async function crearEntidad(urlPost, body) {
         });
 
         resp = await response.json();
-        console.log('crear Entidad: ' + JSON.stringify(resp));
+        console.log('crearEntidad response: ' + JSON.stringify(resp));
       } catch(error){
         errPost = error;
       } finally {

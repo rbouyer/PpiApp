@@ -89,6 +89,11 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
           [name]: value
         });
       };
+
+      const assignDir = (paciente_id) => {
+        var pac = pacientes.find(value => value.id == paciente_id);
+        handleInputChange('direccion', pac.direccion);
+      }
      
       const handleSubmit = async () => {
         console.log('handleSubmit');
@@ -133,7 +138,7 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
 
                     {/* Selección Usuario */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Usuario asignado:</Text>
+                        <Text style={styles.label}>Usuario enfermera asignada:</Text>
                         <Picker
                             selectedValue={formData.usuario_id}
                             onValueChange={(value) => 
@@ -154,7 +159,7 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
                         <Picker
                             selectedValue={formData.paciente_id}
                             onValueChange={(value) => 
-                                handleInputChange('paciente_id', value)
+                                {handleInputChange('paciente_id', value); assignDir(value);}
                             }
                             style={styles.picker}
                             >

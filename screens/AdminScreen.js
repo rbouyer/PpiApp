@@ -11,6 +11,7 @@ import {obtenerData, crearEntidad} from '../helpers/RestApiHelper.js'
 
 const AdminScreen = ({navigation, route}) => {
     const { data } = route.params;
+    const visitasEnv = obtenerData(URL_API + "api/visita/estado/E");
 
     const [formData, setFormData] = useState(data);
 

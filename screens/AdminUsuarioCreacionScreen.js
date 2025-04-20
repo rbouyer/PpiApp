@@ -57,8 +57,8 @@ const AdminUsuarioCreacionScreen = ({navigation, route}) => {
 
     return (
         <View>
-            <Text style={styles.title}>Creación Paciente</Text>
-            <Text style={styles.label}>Creación nuevo paciente</Text>
+            <Text style={styles.title}>Creación Usuario</Text>
+            <Text style={styles.label}>Creación nuevo usuario</Text>
             <ScrollView>
                 <View style={styles.container}>
 
