@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Platform } from 'react-native';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -14,6 +14,9 @@ import dataDropDown from '../data/dropdown.json';
 
 import {calculaAnos, calculaEdad, formatearFecha} from '../helpers/DateHelper.js';
 import {calculaIMC,} from '../helpers/GralHelper.js';
+import { URL_API } from '../data/constants.js';
+import {obtenerData} from '../helpers/RestApiHelper.js'
+
 
 const PacienteIngresoScreen = ({navigation, route}) => {
     const { data } = route.params;
@@ -28,7 +31,8 @@ const PacienteIngresoScreen = ({navigation, route}) => {
     //alert(JSON.stringify(formData, null, 2));
 
     //console.log(JSON.stringify(formData, null, 2));
- 
+    //initDate(formData, setFormData);
+
     const handleInputChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
     };
@@ -43,7 +47,26 @@ const PacienteIngresoScreen = ({navigation, route}) => {
       setShowDatePicker(false); // Close the picker
       //setFormData({ ...formData, 'edadPaciente': calculaEdad(selectedDate) });
     };
+
     
+      // Initialize patient data on mount
+/*       useEffect(() => {
+        const fetchPatientData = async () => {
+            try {
+                const paciente = await obtenerData(URL_API + 'api/paciente/id/' + formData.paciente_id);
+                setFormData(prev => ({
+                    ...prev,
+                    'fechaNacimientoPaciente': paciente.fechaNacimientoPaciente,
+                    'edadPaciente': calculaEdad(paciente.fechaNacimientoPaciente)
+                }));
+            } catch (error) {
+                console.error("Error cargando data de paciente:", error);
+            }
+        };
+        
+        fetchPatientData();
+    }, []); // Empty dependency array = run once on mount
+ */    
     return (
 <View>
 <Text style={styles.title}>Ingreso Paciente</Text>

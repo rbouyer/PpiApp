@@ -8,7 +8,7 @@ export function calculaAnos(meses) {
 }
 
 export function calculaEdad(fechaNacimiento) {
-    //console.log('calculaEdad(' + fechaNacimiento + ')');
+    console.log('calculaEdad(' + fechaNacimiento + ')');
     var now = new Date();
     var current_year = now.getFullYear();
     var year_diff = current_year - fechaNacimiento.getFullYear();

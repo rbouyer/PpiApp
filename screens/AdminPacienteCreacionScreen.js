@@ -20,7 +20,7 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
         apellido: '',
         identificador: 0,
         direccion: '',
-        fechaNacimiento: new Date(),
+        fecha_nacimiento: new Date(),
         genero: '',
         diagnostico: '',
         fullName: function() {
@@ -40,7 +40,7 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
       const handleDateChange = (event, selectedDate) => {
         setShowDatePicker(false);
         if (selectedDate) {
-          handleInputChange('fechaNacimiento', selectedDate);
+          handleInputChange('fecha_nacimiento', selectedDate);
         }
       };
     
@@ -103,15 +103,16 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
                     <View style={styles.inputRow}>
                         <Text style={styles.label}>Fecha de Nacimiento</Text>
                         <Button 
-                            title={formatearFecha(formData.fechaNacimiento)} 
+                            title={formatearFecha(formData.fecha_nacimiento)} 
                             onPress={() => setShowDatePicker(true)} 
                             ancho="300"
                             color='blue'
                         />
                         {showDatePicker && (
                             <DateTimePicker
-                            value={formData.fechaNacimiento}
+                            value={formData.fecha_nacimiento}
                             maximumDate={new Date()}
+                            minimumDate={new Date('1900-01-01')}
                             mode="date"
                             display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
                             onChange={handleDateChange}

@@ -29,6 +29,12 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
     });
     const [error, setError] = useState(null);
 
+    // Al cambiar el estado de formData, se actuakia dirección de paciente
+    useEffect(() => {
+        // This will run after formData updates
+        if(formData.paciente_id != null) assignDir(formData.paciente_id);
+    }, [formData.paciente_id]);
+
     // Fetch all data on component mount
     useEffect(() => {
         const fetchData = async () => {
@@ -55,7 +61,7 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
 
         } catch (err) {
             setError(err.message);
-            setLoading({ users: false, cars: false, persons: false });
+            setLoading({ usuarios: false, pacientes: false });
             Alert.alert('Error', 'No pudo obtener data del servidor');
         }
         };
@@ -90,13 +96,14 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
         });
       };
 
-      const assignDir = (paciente_id) => {
+      const assignDir = async  (paciente_id) => {
         var pac = pacientes.find(value => value.id == paciente_id);
         handleInputChange('direccion', pac.direccion);
       }
+
      
       const handleSubmit = async () => {
-        console.log('handleSubmit');
+        console.log('handleSubmit'+ JSON.stringify(formData));
         if(formData != null && formData.id != null){
             console.log('Reenvio denegado');
             Alert.alert('Error', 'No se permite el reenvio de data que ya habia sido enviada al servidor');
@@ -158,8 +165,7 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
                         <Text style={styles.label}>Paciente asignado:</Text>
                         <Picker
                             selectedValue={formData.paciente_id}
-                            onValueChange={(value) => 
-                                {handleInputChange('paciente_id', value); assignDir(value);}
+                            onValueChange={(value) => handleInputChange('paciente_id', value)
                             }
                             style={styles.picker}
                             >

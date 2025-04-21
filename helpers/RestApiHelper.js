@@ -13,7 +13,7 @@ export async function obtenerData(url) {
         Alert.alert('Error', err.message);
       }
 
-    //console.log('Resp: ' + JSON.stringify(resp.data));
+    console.log('ObtenerData Resp: ' + JSON.stringify(resp.data));
 
     return resp? resp.data: null;
 }
