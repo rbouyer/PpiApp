@@ -38,15 +38,15 @@ const App = () => {
       mesesPostracionPaciente: 0, anosPostracionPaciente: 0, diagPaciente: '', ingresoPaciente: '', estudioPaciente: '', imcPaciente: 0,
       
       /* Examenes */
-      noRecolectadoProteinemia: false, fechaExProteinemia: null, validezExProteinemia: 'VE_SI_VAL', 
-      noRecolectadoOximetria: false, fechaExOximetria: null, validezExOximetria: 'VE_SI_VAL', 
-      noRecolectadoGlicemiaV: false, fechaExGlicemiaV: null, validezExGlicemiaV: 'VE_SI_VAL', 
-      noRecolectadoGlicemiaC: false, fechaExGlicemiaC: null, validezExGlicemiaC: 'VE_SI_VAL', 
-      noRecolectadoHemoglobina: false, fechaExHemoglobina: null, validezExHemoglobina: 'VE_SI_VAL', 
+      noRecolectadoProteinemia: false, fechaExProteinemia: null, validezExProteinemia: 'VE_SI_VAL', valorExProteinemia: 0,
+      noRecolectadoOximetria: false, fechaExOximetria: null, validezExOximetria: 'VE_SI_VAL', valorExOximetria: 0,
+      noRecolectadoGlicemiaV: false, fechaExGlicemiaV: null, validezExGlicemiaV: 'VE_SI_VAL', valorExGlicemiaV: 0,
+      noRecolectadoGlicemiaC: false, fechaExGlicemiaC: null, validezExGlicemiaC: 'VE_SI_VAL', valorExGlicemiaC: 0,
+      noRecolectadoHemoglobina: false, fechaExHemoglobina: null, validezExHemoglobina: 'VE_SI_VAL', valorExHemoglobina: 0,
 
-      noRecolectadoProcalcitonina: false, fechaExProcalcitonina: null, validezExProcalcitonina: 'VE_SI_VAL', 
-      noRecolectadoProteina: false, fechaExProteina: null, validezExProteina: 'VE_SI_VAL', 
-      noRecolectadoCreatinina: false, fechaExCreatinina: null, validezExCreatinina: 'VE_SI_VAL', 
+      noRecolectadoProcalcitonina: false, fechaExProcalcitonina: null, validezExProcalcitonina: 'VE_SI_VAL', valorExProcalcitonina: 0,
+      noRecolectadoProteina: false, fechaExProteina: null, validezExProteina: 'VE_SI_VAL', valorExProteina: 0,
+      noRecolectadoCreatinina: false, fechaExCreatinina: null, validezExCreatinina: 'VE_SI_VAL', valorExCreatinina: 0,
 
       /* Patologia y Medicamentos */
       tieneArtritis: null, nroMedArtritis: 0, tieneDiabetes: null, nroMedDiabetes: 0, tieneDisplidemia: null, nroMedDisplidemia: 0, tieneCardio: null, nroMedCardio: 0,

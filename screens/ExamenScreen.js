@@ -35,6 +35,12 @@ const ExamenScreen = ({navigation, route}) => {
         setFormData({ ...formData, [field]: !value, [fieldValidez]:  evaluaExamen(!value, fechaEx)});
     };
  
+    
+    const handleInputChange = async (field, value) => {
+        setFormData({ ...formData, [field]: value });
+        //console.log("handleInputChange: " + JSON.stringify(formData));
+    };
+
 
     return (
         <View>
@@ -46,8 +52,9 @@ const ExamenScreen = ({navigation, route}) => {
                     {/* Encabezado */}
                     <View style={styles.inputRow}>
                         <Text style={styles.labelBold}>Examen</Text>
-                        <Text style={styles.labelBold}>No recolectado</Text>
+                        <Text style={styles.labelBold}>No recol.</Text>
                         <Text style={styles.labelBold}>F.Examen</Text>
+                        <Text style={styles.labelBold}>Estado</Text>
                         <Text style={styles.labelBold}>Valor</Text>
 
                     </View>
@@ -78,6 +85,13 @@ const ExamenScreen = ({navigation, route}) => {
 
                         <Text style={[styles.textResult, {textAlign: "left"}]}>{buscaEnArreglo(formData.validezExProteinemia, dataDropDown.validezExamenes)}</Text>
 
+                        <TextInput
+                            style={styles.textInput}
+                            keyboardType="numeric"
+                            value={formData.valorExProteinemia}
+                            onChangeText={(text) => {handleInputChange('valorExProteinemia', text)}}
+                        />
+
                     </View>
 
 
@@ -106,6 +120,14 @@ const ExamenScreen = ({navigation, route}) => {
                         </View>
 
                         <Text style={[styles.textResult, {textAlign: "left"}]}>{buscaEnArreglo(formData.validezExOximetria, dataDropDown.validezExamenes)}</Text>
+
+                        <TextInput
+                            style={styles.textInput}
+                            keyboardType="numeric"
+                            textAlign="left"
+                            value={formData.valorExOximetria}
+                            onChangeText={(e) => handleInputChange('valorExOximetria', e)}
+                        />
 
                     </View>
 
@@ -136,6 +158,14 @@ const ExamenScreen = ({navigation, route}) => {
 
                         <Text style={[styles.textResult, {textAlign: "left"}]}>{buscaEnArreglo(formData.validezExGlicemiaV, dataDropDown.validezExamenes)}</Text>
 
+                        <TextInput
+                            style={styles.textInput}
+                            keyboardType="numeric"
+                            textAlign="left"
+                            value={formData.valorExGlicemiaV}
+                            onChangeText={(e) => handleInputChange('valorExGlicemiaV', e)}
+                        />
+
                     </View>
 
 
@@ -165,6 +195,14 @@ const ExamenScreen = ({navigation, route}) => {
 
                         <Text style={[styles.textResult, {textAlign: "left"}]}>{buscaEnArreglo(formData.validezExGlicemiaC, dataDropDown.validezExamenes)}</Text>
 
+                        <TextInput
+                            style={styles.textInput}
+                            keyboardType="numeric"
+                            textAlign="left"
+                            value={formData.valorExGlicemiaC}
+                            onChangeText={(e) => handleInputChange('valorExGlicemiaC', e)}
+                        />
+
                     </View>
 
 
@@ -193,6 +231,14 @@ const ExamenScreen = ({navigation, route}) => {
                         </View>
 
                         <Text style={[styles.textResult, {textAlign: "left"}]}>{buscaEnArreglo(formData.validezExHemoglobina, dataDropDown.validezExamenes)}</Text>
+
+                        <TextInput
+                            style={styles.textInput}
+                            keyboardType="numeric"
+                            textAlign="left"
+                            value={formData.valorExHemoglobina}
+                            onChangeText={(e) => handleInputChange('valorExHemoglobina', e)}
+                        />
 
                     </View>
 
@@ -224,6 +270,14 @@ const ExamenScreen = ({navigation, route}) => {
 
                         <Text style={[styles.textResult, {textAlign: "left"}]}>{buscaEnArreglo(formData.validezExProcalcitonina, dataDropDown.validezExamenes)}</Text>
 
+                        <TextInput
+                            style={styles.textInput}
+                            keyboardType="numeric"
+                            textAlign="left"
+                            value={formData.valorExProcalcitonina}
+                            onChangeText={(e) => handleInputChange('valorExProcalcitonina', e)}
+                        />
+
                     </View>
 
 
@@ -253,6 +307,14 @@ const ExamenScreen = ({navigation, route}) => {
 
                         <Text style={[styles.textResult, {textAlign: "left"}]}>{buscaEnArreglo(formData.validezExProteina, dataDropDown.validezExamenes)}</Text>
 
+                        <TextInput
+                            style={styles.textInput}
+                            keyboardType="numeric"
+                            textAlign="left"
+                            value={formData.valorExProteina}
+                            onChangeText={(e) => handleInputChange('valorExProteina', e)}
+                        />
+
                     </View>
 
 
@@ -281,6 +343,14 @@ const ExamenScreen = ({navigation, route}) => {
                         </View>
 
                         <Text style={[styles.textResult, {textAlign: "left"}]}>{buscaEnArreglo(formData.validezExCreatinina, dataDropDown.validezExamenes)}</Text>
+
+                        <TextInput
+                            style={styles.textInput}
+                            keyboardType="numeric"
+                            textAlign="left"
+                            value={formData.valorExCreatinina}
+                            onChangeText={(e) => handleInputChange('valorExCreatinina', e)}
+                        />
 
                     </View>
 

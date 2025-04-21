@@ -5,17 +5,22 @@ export function evaluaExamen(noRecolectado, fechaEx){
     var res = "VE_NO_VAL";
 
     console.log("evaluaExamen(noRecolectado: " + noRecolectado + ", fechaEx: " + fechaEx);
+
+    if(noRecolectado != null && noRecolectado) {
+        console.log('no recolectado');
+        res = "VE_NO_REC";
+    } else {
+        if(fechaEx){
+            console.log('fecha valida');
+            if(noRecolectado)
+                res = "VE_NO_REC";
+            else
+                res = evaluaEsMenor(fechaEx, new Date(), -3) ? "VE_SI_VAL": "VE_NO_VAL";
+        } else
+            res = "VE_NO_VAL";
     
-    if(fechaEx){
-        console.log('fecha valida');
-        if(noRecolectado)
-            res = "VE_NO_REC";
-        else
-            res = evaluaEsMenor(fechaEx, new Date(), -3) ? "VE_SI_VAL": "VE_NO_VAL";
-    } else
-        res = "VE_NO_VAL";
-
-    console.log("Res: " + res);
-
+        console.log("Res: " + res);
+    }
+    
     return res;
 }

@@ -79,6 +79,7 @@ const CuidadorPrimarioScreen = ({navigation, route}) => {
                             />
                             {showDatePicker && (<DateTimePicker
                             value={formData.fechaNacimientoCuidador || new Date()}
+                            minimumDate={new Date('1900-01-01')}
                             maximumDate={new Date()}
                             mode="date"
                             display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
