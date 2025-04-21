@@ -148,6 +148,12 @@ const BarthelScreen = ({navigation, route}) => {
                         puntaje = {formData.ptjeDependenciaMovilizarse} 
                     ></BarthelComponent>
 
+                    <View style={styles.inputRow}>
+                        <Text style={styles.label}>Ptje.Barthel</Text>
+                        <Text style={styles.textResult}>{calcularPtje()}</Text>
+                        <Text style={styles.label}>Condición Barthel</Text>
+                        <Text style={styles.textResult}>{obtenerClasificacion()}</Text>
+                    </View>
 
                     <Navigation 
                         onPressPrev={() => navigation.navigate('ExamenFisico', { data: formData })} 

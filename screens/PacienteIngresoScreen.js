@@ -20,18 +20,10 @@ import {obtenerData} from '../helpers/RestApiHelper.js'
 
 const PacienteIngresoScreen = ({navigation, route}) => {
     const { data } = route.params;
-    const [showDatePicker, setShowDatePicker] = useState(false);
-
-    //alert(JSON.stringify(data, null, 2));
-
-    //console.log(JSON.stringify(dataDropDown, null, 2));
-
+    //const [showDatePicker, setShowDatePicker] = useState(false);
     const [formData, setFormData] = useState(data);
- 
-    //alert(JSON.stringify(formData, null, 2));
 
     //console.log(JSON.stringify(formData, null, 2));
-    //initDate(formData, setFormData);
 
     const handleInputChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
@@ -44,29 +36,10 @@ const PacienteIngresoScreen = ({navigation, route}) => {
   
     const handleDateChange = (field, selectedDate) => {
       setFormData({ ...formData, [field]: selectedDate, 'edadPaciente': calculaEdad(selectedDate) });
-      setShowDatePicker(false); // Close the picker
-      //setFormData({ ...formData, 'edadPaciente': calculaEdad(selectedDate) });
+      //setShowDatePicker(false); // Close the picker
     };
 
     
-      // Initialize patient data on mount
-/*       useEffect(() => {
-        const fetchPatientData = async () => {
-            try {
-                const paciente = await obtenerData(URL_API + 'api/paciente/id/' + formData.paciente_id);
-                setFormData(prev => ({
-                    ...prev,
-                    'fechaNacimientoPaciente': paciente.fechaNacimientoPaciente,
-                    'edadPaciente': calculaEdad(paciente.fechaNacimientoPaciente)
-                }));
-            } catch (error) {
-                console.error("Error cargando data de paciente:", error);
-            }
-        };
-        
-        fetchPatientData();
-    }, []); // Empty dependency array = run once on mount
- */    
     return (
 <View>
 <Text style={styles.title}>Ingreso Paciente</Text>
@@ -101,17 +74,17 @@ const PacienteIngresoScreen = ({navigation, route}) => {
           <View>
             <Button
               title={formatearFecha(formData.fechaNacimientoPaciente)}
-              onPress={() => setShowDatePicker(true)}
+              /* onPress={() => setShowDatePicker(true)} */
               color='blue'
             />
-            {showDatePicker && (<DateTimePicker
+            {/* {showDatePicker && (<DateTimePicker
             value={formData.fechaNacimientoPaciente? formData.fechaNacimientoPaciente: new Date()}
             maximumDate={new Date()}
             mode="date"
             display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
             onChange={(event, selectedDate) => handleDateChange('fechaNacimientoPaciente', selectedDate)}
             onEndEditing={(e) => handleInputChange('edadPaciente', calculaEdad(e.nativeEvent.text))}
-            />)}
+            />)} */}
           </View>
 
           <Text style={styles.label}>      Edad:</Text>

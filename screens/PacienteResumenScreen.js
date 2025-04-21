@@ -39,7 +39,7 @@ const PacienteResumenScreen = ({navigation, route}) => {
           {/* Identificación */}
           <View style={styles.inputRow}>
 
-            <Text style={styles.label}>Identificación</Text>
+            <Text style={styles.label}>Paciente ID</Text>
             <Text style={styles.textResult}>{formData.idPaciente}</Text>
 
             <Text style={styles.label}></Text>
