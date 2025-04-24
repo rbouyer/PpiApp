@@ -10,21 +10,16 @@ import { URL_API } from '../data/constants'
 
 import Button from './components/ButtonComponent';
 
-import {obtenerData, crearEntidad} from '../helpers/RestApiHelper.js'
+import {obtenerData, actualizarEntidad} from '../helpers/RestApiHelper.js'
 
-const AdminVisitaCreacionScreen = ({navigation, route}) => {
+const AdminSubirConsentimientoScreen = ({navigation, route}) => {
     const [formData, setFormData] = useState({
-        id: null,
         paciente_id: null,
-        usuario_id: null,
-        direccion: '',
-        estado: 'P'
+        consentimiento: null
     });
 
-    const [usuarios, setUsuarios] = useState([]);
     const [pacientes, setPacientes] = useState([]);
     const [loading, setLoading] = useState({
-        usuarios: true,
         pacientes: true
     });
     const [error, setError] = useState(null);
@@ -32,36 +27,27 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
     // Al cambiar el estado de formData, se actuakia dirección de paciente
     useEffect(() => {
         // This will run after formData updates
-        if(formData.paciente_id != null) assignDir(formData.paciente_id);
+        if(formData.paciente_id != null) assignConsentimiento(formData.paciente_id);
     }, [formData.paciente_id]);
 
     // Fetch all data on component mount
     useEffect(() => {
         const fetchData = async () => {
         try {
-            const usrsResponse = await obtenerData(URL_API  + 'api/usuario');
-            console.log(usrsResponse);
-            // Validate the response is an array
-            if (!Array.isArray(usrsResponse)) {
-                throw new Error('Invalid API response format usuarios - expected array');
-            }
-  
-            const pacsResponse = await obtenerData(URL_API + 'api/paciente/min');
-            console.log(pacsResponse);
+   
+            const pacsResponse = await obtenerData(URL_API + 'api/paciente');
+            //console.log(pacsResponse);
             // Validate the response is an array
             if (!Array.isArray(pacsResponse)) {
                 throw new Error('Invalid API response format pacientes - expected array');
             }
-
-            setUsuarios(usrsResponse);
-            setLoading(prev => ({...prev, 'usuarios': false}));
 
             setPacientes(pacsResponse);
             setLoading(prev => ({...prev, 'pacientes': false}));
 
         } catch (err) {
             setError(err.message);
-            setLoading({ usuarios: false, pacientes: false });
+            setLoading({ pacientes: false });
             Alert.alert('Error', 'No pudo obtener data del servidor');
         }
         };
@@ -69,7 +55,7 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
         fetchData();
     }, []);
 
-    const isLoading = loading.usuarios || loading.pacientes;
+    const isLoading = loading.pacientes;
 
     if (isLoading) {
         return (
@@ -96,32 +82,35 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
         });
       };
 
-      const assignDir = async  (paciente_id) => {
+      const assignConsentimiento = async  (paciente_id) => {
         var pac = pacientes.find(value => value.id == paciente_id);
-        handleInputChange('direccion', pac.direccion);
+        handleInputChange('consentimiento', pac.consentimiento == null || pac.consentimiento == '' ? 'SIN' : 'CON');
       }
 
      
       const handleSubmit = async () => {
-        console.log('handleSubmit'+ JSON.stringify(formData));
-        if(formData != null && formData.id != null){
-            console.log('Reenvio denegado');
-            Alert.alert('Error', 'No se permite el reenvio de data que ya habia sido enviada al servidor');
-        } else {
-            // Validaciones
-            if(formData.usuario_id == null)
-                Alert.alert('Error', 'Debe seleccionar usuario');
-            else if(formData.paciente_id == null)
-                Alert.alert('Error', 'Debe seleccionar paciente');
-            else if(formData.direccion == '' )
-                Alert.alert('Error', 'Debe ingresar dirección');
-            else {
-                console.log('Envio exitoso');
-                // Here you would typically send the data to an API
-                const nuevaVisita = await crearEntidad(URL_API + "api/visita", formData);
-
-                if(nuevaVisita != null) setFormData(nuevaVisita);
+        try {
+            console.log('handleSubmit' + JSON.stringify(formData));
+            if (formData != null && formData.id != null) {
+                console.log('Reenvio denegado');
+                Alert.alert('Error', 'No se permite el reenvio de data que ya habia sido enviada al servidor');
+            } else {
+                console.log('handleSubmit formData: ' + formData.paciente_id);
+                // Validaciones
+                if (formData.paciente_id == null) {
+                    Alert.alert('Error', 'Debe seleccionar paciente');
+                } else {
+                    console.log('Iniciando Envio...');
+                    var pac = pacientes.find(value => value.id == formData.paciente_id);
+                    console.log('Paciente: ' + JSON.stringify(pac));
+                    pac.consentimiento = "xxxxx";
+                    const pacUpd = await actualizarEntidad(URL_API + "api/paciente", pac);
+                    console.log('Envio exitoso');
+                }
             }
+        } catch (error) {
+            console.error('Error en handleSubmit:', error);
+            Alert.alert('Error', 'Ocurrió un error al enviar la data');
         }
       };
 
@@ -131,8 +120,8 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
 
     return (
         <View>
-            <Text style={styles.title}>Creación Visita</Text>
-            <Text style={styles.label}>Creación nueva visita</Text>
+            <Text style={styles.title}>Subir documento consentimiento paciente</Text>
+            <Text style={styles.label}>Subir documento consentimiento paciente</Text>
             <ScrollView>
                 <View style={styles.container}>
 
@@ -143,26 +132,9 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
 
                     </View>
 
-                    {/* Selección Usuario */}
-                    <View style={styles.inputRow}>
-                        <Text style={styles.label}>Usuario enfermera asignada:</Text>
-                        <Picker
-                            selectedValue={formData.usuario_id}
-                            onValueChange={(value) => 
-                                handleInputChange('usuario_id', value)
-                            }
-                            style={styles.picker}
-                            >
-                            <Picker.Item label="Seleccione un usuario..." value={null} />
-                            {usuarios.map(user => (
-                                <Picker.Item key={`user-${user.id}`} label={nombreCompleto(user)} value={user.id} />
-                            ))}
-                        </Picker>
-                    </View>
-
                     {/* Selección Paciente */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Paciente asignado:</Text>
+                        <Text style={styles.label}>Paciente:</Text>
                         <Picker
                             selectedValue={formData.paciente_id}
                             onValueChange={(value) => handleInputChange('paciente_id', value)
@@ -178,13 +150,12 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
 
                     {/* Dirección */}
                     <View style={styles.inputRow}>
-                        <Text style={styles.label}>Dirección:</Text>
+                        <Text style={styles.label}>Tiene consentimiento:</Text>
                         <TextInput
                             style={styles.textInput}
-                            value={formData.direccion}
-                            onChangeText={(text) => handleInputChange('direccion', text)}
-                            placeholder="Ingrese dirección paciente"
-                        />
+                            value={formData.consentimiento}
+                            readOnly={true}
+                         />
                     </View>
 
 
@@ -210,4 +181,4 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
 
 }
 
-export default AdminVisitaCreacionScreen;
+export default AdminSubirConsentimientoScreen;

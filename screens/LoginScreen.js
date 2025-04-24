@@ -7,6 +7,7 @@ import styles from './Styles';
 
 import { URL_API } from '../data/constants'
 import {obtenerData, crearEntidad} from '../helpers/RestApiHelper.js'
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 const Separator = () => <View style={styles.separator} />;
@@ -102,8 +103,10 @@ const LoginScreen = ({navigation, route}) => {
   };
  */
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+    <View>
+      <ScrollView>
+      <View style={styles.container}>
+      <Text style={styles.title}>Ingrese credenciales (correo y clave)</Text>
 
       {/* Email Input */}
       <TextInput
@@ -128,12 +131,16 @@ const LoginScreen = ({navigation, route}) => {
 
       <View style={[styles.inputRow, {flex: 1, padding: 5}]}>
         <Button
-          title="Siguiente"
+          title="Ingresar"
+          ancho="200"
           //onPress={() => navigation.navigate('PacienteIngreso', { data: formData })}
           onPress={() => handleLogin(formData, setFormData)}
         />
       </View>
     </View>
+      </ScrollView>
+    </View>
+
   );
 }
 

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
-import { View, Text, TextInput, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Alert, ActivityIndicator } from 'react-native';
 import Button from './components/ButtonComponent';
+import * as FileSystem from 'expo-file-system';
+import * as Sharing from 'expo-sharing';
 
 import styles from './Styles';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -14,6 +16,32 @@ const AdminScreen = ({navigation, route}) => {
     const visitasEnv = obtenerData(URL_API + "api/visita/estado/E");
 
     const [formData, setFormData] = useState(data);
+    const [downloading, setDownloading] = useState(false);
+
+    const handleDownload = async () => {
+      setDownloading(true);
+  
+      try {
+        const fileUrl = URL_API + 'api/ficha/csv';
+        const fileName = 'fichas.csv';
+        const fileUri = FileSystem.documentDirectory + fileName;
+  
+        const { uri } = await FileSystem.downloadAsync(fileUrl, fileUri);
+        console.log('Downloaded to:', uri);
+  
+        if (await Sharing.isAvailableAsync()) {
+          await Sharing.shareAsync(uri);
+        } else {
+          Alert.alert('Download complete', `CSV saved to: ${uri}`);
+        }
+      } catch (err) {
+        console.error('Download error:', err);
+        Alert.alert('Error', 'Failed to download the CSV file.');
+      } finally {
+        setDownloading(false);
+      }
+    };
+
 
     const handleInputChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
@@ -36,7 +64,7 @@ const AdminScreen = ({navigation, route}) => {
             return;
         }
 
-        console.log('Visita: ' + JSON.stringify(visita));
+        //console.log('Visita: ' + JSON.stringify(visita));
 
         console.info('visita.usuario_id: ' + visita.usuario_id);
         console.info('visita.ficha_id: ' + visita.ficha_id);
@@ -50,8 +78,8 @@ const AdminScreen = ({navigation, route}) => {
             //Cargar ficha
             console.log('Cargar ficha');
             var ficha = await obtenerData(URL_API + 'api/ficha/id/' + visita.ficha_id);
-            console.log('Ficha: ' + JSON.stringify(ficha));
-            console.log('Data: ' + JSON.stringify(ficha.data));
+            //console.log('Ficha: ' + JSON.stringify(ficha));
+            //console.log('Data: ' + JSON.stringify(ficha.data));
 
             if(ficha != null) {
                 var idVisita = formData.idVisita, idUsuario = formData.idUsuario;
@@ -66,39 +94,8 @@ const AdminScreen = ({navigation, route}) => {
         }
 
          
-        // getVisitaFromApi(formData, setFormData).then(visita => {
-        //     console.log('Visita: ' + JSON.stringify(visita));
-
-        //     console.info('visita.usuario_id: ' + visita.usuario_id);
-        //     console.info('visita.ficha_id: ' + visita.ficha_id);
-        //     console.info('visita.estado: ' + visita.estado);
-        
-        //     if(visita == null){
-        //         Alert.alert('Error', 'ID visita invalido');
-        //     } else if (visita.estado === 'P') {
-        //         Alert.alert('Error', 'Visita no recibida, sin datos');
-        //     } else {
-        //         //Cargar ficha
-        //         console.log('Cargar ficha');
-        //         var ficha = await obtenerData(URL_API + 'api/ficha/id/' + visita.ficha_id);
-        //         console.log('Ficha: ' + JSON.stringify(ficha));
-        //         if(ficha != null) setFormData(ficha.data.data)
-        //         navigation.navigate('PacienteIngreso', { data: formData });
-        //     }
-        // });
 
     };
-
-    // const getVisitaFromApi = (formData, setFormData) => {
-    //     return fetch(URL_API + 'api/visita/id/' + formData.idVisita)
-    //         .then(response => response.json())
-    //         .then(json => {
-    //             return json.status? json.data: null;
-    //         })
-    //         .catch(error => {
-    //             console.error(error);
-    //         });
-    // };
      
     
     return (
@@ -134,6 +131,18 @@ const AdminScreen = ({navigation, route}) => {
 
                     <View style={styles.inputRow}>
 
+                        <Text style={styles.label}>Seleccionar/Subir documento Consentimiento</Text>
+
+                        <Button
+                            title="Subir Doc"
+                            ancho="200"
+                            onPress={() => navigation.navigate('AdminSubirConsentimiento', { data: formData })}
+                        />
+
+                    </View>
+
+                    <View style={styles.inputRow}>
+
                         <Text style={styles.label}>Ingresar nueva visita</Text>
 
                         <Button
@@ -163,6 +172,23 @@ const AdminScreen = ({navigation, route}) => {
                         />
 
                     </View>
+
+                    <View style={styles.inputRow}>
+
+                        <Text style={styles.label}>Descargar archivo fichas</Text>
+
+{/*                         <Button
+                            title="Crear Visita"
+                            ancho="200"
+                            onPress={() => navigation.navigate('AdminVisitaCreacion', { data: formData })}
+                        /> 
+*/}
+                        <Button title="Descargar CSV" ancho="200" onPress={handleDownload} disabled={downloading} />
+                        {downloading && <ActivityIndicator size="large" style={{ marginTop: 20 }} />}
+                    </View>
+                    
+                    <Text style={styles.label}></Text>
+                    <Text style={styles.label}></Text>
 
                 </View>
             </ScrollView>
