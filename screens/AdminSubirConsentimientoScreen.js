@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Platform } from 'react-native';
 import { View, Text, TextInput, StyleSheet, ScrollView, ActivityIndicator, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import * as DocumentPicker from 'expo-document-picker';
+import * as FileSystem from 'expo-file-system';
 
 import styles from './Styles';
 
@@ -15,15 +17,16 @@ import {obtenerData, actualizarEntidad} from '../helpers/RestApiHelper.js'
 const AdminSubirConsentimientoScreen = ({navigation, route}) => {
     const [formData, setFormData] = useState({
         paciente_id: null,
-        consentimiento: null
+        consentimiento: false
     });
-
     const [pacientes, setPacientes] = useState([]);
     const [loading, setLoading] = useState({
         pacientes: true
     });
     const [error, setError] = useState(null);
-
+    const [uploading, setUploading] = useState(false);
+    const [fileName, setFileName] = useState(null);
+  
     // Al cambiar el estado de formData, se actuakia dirección de paciente
     useEffect(() => {
         // This will run after formData updates
@@ -84,7 +87,7 @@ const AdminSubirConsentimientoScreen = ({navigation, route}) => {
 
       const assignConsentimiento = async  (paciente_id) => {
         var pac = pacientes.find(value => value.id == paciente_id);
-        handleInputChange('consentimiento', pac.consentimiento == null || pac.consentimiento == '' ? 'SIN' : 'CON');
+        handleInputChange('consentimiento', pac.consentimiento == null || pac.consentimiento == '' ? false : true);
       }
 
      
@@ -100,23 +103,54 @@ const AdminSubirConsentimientoScreen = ({navigation, route}) => {
                 if (formData.paciente_id == null) {
                     Alert.alert('Error', 'Debe seleccionar paciente');
                 } else {
-                    console.log('Iniciando Envio...');
-                    var pac = pacientes.find(value => value.id == formData.paciente_id);
-                    console.log('Paciente: ' + JSON.stringify(pac));
-                    pac.consentimiento = "xxxxx";
-                    const pacUpd = await actualizarEntidad(URL_API + "api/paciente", pac);
-                    console.log('Envio exitoso');
+                    console.log('handleSubmit seleccion de archivo');
+                    var base64 = await getFileBase64();
+                    if(base64 != null) {
+                        console.log('handleSubmit base64: ' + base64.substring(0, 20) + '...');
+                        console.log('Iniciando Envio...');
+                        var pac = pacientes.find(value => value.id == paciente_id);
+                        console.log('Paciente: ' + JSON.stringify(pac));
+                        pac.consentimiento = base64;
+                        const pacUpd = await actualizarEntidad(URL_API + "api/paciente", pac);
+                        console.log('Envio exitoso');
+                    }
                 }
             }
         } catch (error) {
             console.error('Error en handleSubmit:', error);
-            Alert.alert('Error', 'Ocurrió un error al enviar la data');
+            Alert.alert('Error', 'Ocurrió un error al traspasar documento al servidor: ' + error.message);
         }
       };
 
       const nombreCompleto = (o) => {
         return o? `${o.nombre} ${o.apellido}`: '';
       }
+
+      const getFileBase64 = async () => {
+        try {
+          const result = await DocumentPicker.getDocumentAsync({ copyToCacheDirectory: true });
+    
+          if (result.type === 'cancel') return null;
+    
+          setFileName(result.name);
+    
+          const fileUri = result.assets?.[0]?.uri || result.uri;
+    
+          const base64 = await FileSystem.readAsStringAsync(fileUri, {
+            encoding: FileSystem.EncodingType.Base64,
+          });
+    
+          setUploading(true);
+    
+          return base64;
+
+        } catch (error) {
+          console.error('Upload error:', error);
+          Alert.alert('Error', error.message || 'Fallo traspaso de documento al servidor');
+        } finally {
+          setUploading(false);
+        }
+        }
 
     return (
         <View>
@@ -166,7 +200,7 @@ const AdminSubirConsentimientoScreen = ({navigation, route}) => {
                             onPress={() => navigation.navigate('Admin', { data: formData })}
                         />
                         <Button 
-                            title="Enviar"
+                            title="Subir Doc"
                             onPress={() => handleSubmit()}
                         />
                     </View>

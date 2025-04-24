@@ -37,6 +37,10 @@ const LoginScreen = ({navigation, route}) => {
     try {
       var usuario = await obtenerData(URL_API + 'api/usuario/email/' + formData.emailUsuario.trim());
     
+      if (usuario == null) {
+        Alert.alert('Error', 'Usuario no registrado');
+        return;
+      }
       console.log('Usuario: ' + JSON.stringify(usuario));
   
       console.info('usuario.id: ' + usuario.id);
