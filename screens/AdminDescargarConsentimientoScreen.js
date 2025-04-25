@@ -14,10 +14,9 @@ import Button from './components/ButtonComponent';
 
 import {obtenerData, actualizarEntidad} from '../helpers/RestApiHelper.js'
 
-const AdminSubirConsentimientoScreen = ({navigation, route}) => {
+const AdminDescargarConsentimientoScreen = ({navigation, route}) => {
     const [formData, setFormData] = useState({
-        paciente_id: null,
-        consentimiento: false
+        paciente_id: null
     });
     const [pacientes, setPacientes] = useState([]);
     const [loading, setLoading] = useState({
@@ -26,12 +25,7 @@ const AdminSubirConsentimientoScreen = ({navigation, route}) => {
     const [error, setError] = useState(null);
     const [uploading, setUploading] = useState(false);
     const [fileName, setFileName] = useState(null);
-  
-    // Al cambiar el estado de formData, se actuakia dirección de paciente
-    useEffect(() => {
-        // This will run after formData updates
-        if(formData.paciente_id != null) assignConsentimiento(formData.paciente_id);
-    }, [formData.paciente_id]);
+
 
     // Fetch all data on component mount
     useEffect(() => {
@@ -84,12 +78,6 @@ const AdminSubirConsentimientoScreen = ({navigation, route}) => {
           [name]: value
         });
       };
-
-      const assignConsentimiento = async  (paciente_id) => {
-        var pac = pacientes.find(value => value.id == paciente_id);
-        handleInputChange('consentimiento', pac.consentimiento == null || pac.consentimiento == '' ? false : true);
-      }
-
      
       const handleSubmit = async () => {
         try {
@@ -154,8 +142,8 @@ const AdminSubirConsentimientoScreen = ({navigation, route}) => {
 
     return (
         <View>
-            <Text style={styles.title}>Subir documento consentimiento paciente</Text>
-            <Text style={styles.label}>Subir documento consentimiento paciente</Text>
+            <Text style={styles.title}>Descargar documento consentimiento paciente</Text>
+            <Text style={styles.label}>Descargar documento consentimiento paciente</Text>
             <ScrollView>
                 <View style={styles.container}>
 
@@ -182,17 +170,6 @@ const AdminSubirConsentimientoScreen = ({navigation, route}) => {
                         </Picker>
                     </View>
 
-                    {/* Dirección */}
-                    <View style={styles.inputRow}>
-                        <Text style={styles.label}>Tiene consentimiento:</Text>
-                        <TextInput
-                            style={styles.textInput}
-                            value={formData.consentimiento}
-                            readOnly={true}
-                         />
-                    </View>
-
-
 
                     <View style={styles.inputRow}>
                         <Button
@@ -200,7 +177,7 @@ const AdminSubirConsentimientoScreen = ({navigation, route}) => {
                             onPress={() => navigation.navigate('Admin', { data: formData })}
                         />
                         <Button 
-                            title="Subir Doc"
+                            title="Descargar"
                             onPress={() => handleSubmit()}
                         />
                     </View>
@@ -215,4 +192,4 @@ const AdminSubirConsentimientoScreen = ({navigation, route}) => {
 
 }
 
-export default AdminSubirConsentimientoScreen;
+export default AdminDescargarConsentimientoScreen;

@@ -9,6 +9,7 @@ import AdminPacienteCreacionScreen from './screens/AdminPacienteCreacionScreen';
 import AdminVisitaCreacionScreen from './screens/AdminVisitaCreacionScreen';
 import AdminUsuarioCreacionScreen from './screens/AdminUsuarioCreacionScreen';
 import AdminSubirConsentimientoScreen from './screens/AdminSubirConsentimientoScreen';
+import AdminDescargarConsentimientoScreen from './screens/AdminDescargarConsentimientoScreen';
 
 import PacienteIngresoScreen from './screens/PacienteIngresoScreen';
 import PacienteResumenScreen from './screens/PacienteResumenScreen';
@@ -138,6 +139,7 @@ const App = () => {
         <Stack.Screen name="AdminVisitaCreacion" component={AdminVisitaCreacionScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="AdminUsuarioCreacion" component={AdminUsuarioCreacionScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="AdminSubirConsentimiento" component={AdminSubirConsentimientoScreen} initialParams={{ data: formData }}/>
+        <Stack.Screen name="AdminDescargarConsentimiento" component={AdminDescargarConsentimientoScreen} initialParams={{ data: formData }}/>
 
         <Stack.Screen name="PacienteIngreso" component={PacienteIngresoScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="PacienteResumen" component={PacienteResumenScreen} initialParams={{ data: formData }}/>

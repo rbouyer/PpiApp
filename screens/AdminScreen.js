@@ -143,6 +143,18 @@ const AdminScreen = ({navigation, route}) => {
 
                     <View style={styles.inputRow}>
 
+                        <Text style={styles.label}>Descargar/Obtener documento Consentimiento</Text>
+
+                        <Button
+                            title="Descargar Doc"
+                            ancho="200"
+                            onPress={() => navigation.navigate('AdminDescargarConsentimiento', { data: formData })}
+                        />
+
+                    </View>
+
+                    <View style={styles.inputRow}>
+
                         <Text style={styles.label}>Ingresar nueva visita</Text>
 
                         <Button
