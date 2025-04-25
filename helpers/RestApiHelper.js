@@ -56,7 +56,7 @@ export async function actualizarEntidad(urlPost, body) {
   var errPost = null;
   var resp = null;
 
-  console.log('actualizarEntidad body: ' + JSON.stringify(body));      
+  //console.log('actualizarEntidad body: ' + JSON.stringify(body));      
 
   try {
     const response = await fetch(urlPost, {
@@ -69,7 +69,7 @@ export async function actualizarEntidad(urlPost, body) {
     });
 
     resp = await response.json();
-    console.log('actualizarEntidad response: ' + JSON.stringify(resp));
+    //console.log('actualizarEntidad response: ' + JSON.stringify(resp));
   } catch(error){
     errPost = error;
   } finally {

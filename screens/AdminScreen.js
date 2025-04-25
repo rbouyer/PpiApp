@@ -10,6 +10,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { URL_API } from '../data/constants';
 
 import {obtenerData, crearEntidad} from '../helpers/RestApiHelper.js'
+import { formatDateToFilename } from '../helpers/DateHelper.js';
 
 const AdminScreen = ({navigation, route}) => {
     const { data } = route.params;
@@ -23,7 +24,7 @@ const AdminScreen = ({navigation, route}) => {
   
       try {
         const fileUrl = URL_API + 'api/ficha/csv';
-        const fileName = 'fichas.csv';
+        const fileName = 'fichas_' + formatDateToFilename() + '.csv';
         const fileUri = FileSystem.documentDirectory + fileName;
   
         const { uri } = await FileSystem.downloadAsync(fileUrl, fileUri);
@@ -32,11 +33,11 @@ const AdminScreen = ({navigation, route}) => {
         if (await Sharing.isAvailableAsync()) {
           await Sharing.shareAsync(uri);
         } else {
-          Alert.alert('Download complete', `CSV saved to: ${uri}`);
+          Alert.alert('Descarga realizada', `Archivo CSV grabado en: ${uri}`);
         }
       } catch (err) {
         console.error('Download error:', err);
-        Alert.alert('Error', 'Failed to download the CSV file.');
+        Alert.alert('Error', 'Fallo la descarga de archivo CSV. Detalles: ' + err.message);
       } finally {
         setDownloading(false);
       }

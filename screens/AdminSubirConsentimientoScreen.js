@@ -87,7 +87,7 @@ const AdminSubirConsentimientoScreen = ({navigation, route}) => {
 
       const assignConsentimiento = async  (paciente_id) => {
         var pac = pacientes.find(value => value.id == paciente_id);
-        handleInputChange('consentimiento', pac.consentimiento == null || pac.consentimiento == '' ? false : true);
+        handleInputChange('consentimiento', pac.consentimiento == null || pac.consentimiento == '' ? 'SIN doc consentimiento' : 'CON doc consentimiento');
       }
 
      
@@ -109,8 +109,9 @@ const AdminSubirConsentimientoScreen = ({navigation, route}) => {
                         console.log('handleSubmit base64: ' + base64.substring(0, 20) + '...');
                         console.log('Iniciando Envio...');
                         var pac = pacientes.find(value => value.id == formData.paciente_id);
-                        console.log('Paciente: ' + JSON.stringify(pac));
+                        //console.log('Paciente: ' + JSON.stringify(pac));
                         pac.consentimiento = base64;
+                        pac.nombre_archivo = fileName;
                         const pacUpd = await actualizarEntidad(URL_API + "api/paciente", pac);
                         console.log('Envio exitoso');
                     }
@@ -129,10 +130,12 @@ const AdminSubirConsentimientoScreen = ({navigation, route}) => {
       const getFileBase64 = async () => {
         try {
           const result = await DocumentPicker.getDocumentAsync({ copyToCacheDirectory: true });
+          console.log('File selected result:', JSON.stringify(result));
     
           if (result.type === 'cancel') return null;
     
-          setFileName(result.name);
+          console.log('File name selected:', result.assets[0].name);
+          setFileName(result.assets[0].name);
     
           const fileUri = result.assets?.[0]?.uri || result.uri;
     
@@ -186,7 +189,7 @@ const AdminSubirConsentimientoScreen = ({navigation, route}) => {
                     <View style={styles.inputRow}>
                         <Text style={styles.label}>Tiene consentimiento:</Text>
                         <TextInput
-                            style={styles.textInput}
+                            style={styles.textResult}
                             value={formData.consentimiento}
                             readOnly={true}
                          />

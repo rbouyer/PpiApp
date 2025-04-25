@@ -4,6 +4,7 @@ import { View, Text, TextInput, StyleSheet, ScrollView, ActivityIndicator, Alert
 import { Picker } from '@react-native-picker/picker';
 import * as DocumentPicker from 'expo-document-picker';
 import * as FileSystem from 'expo-file-system';
+import * as Sharing from 'expo-sharing';
 
 import styles from './Styles';
 
@@ -23,7 +24,7 @@ const AdminDescargarConsentimientoScreen = ({navigation, route}) => {
         pacientes: true
     });
     const [error, setError] = useState(null);
-    const [uploading, setUploading] = useState(false);
+    const [downloading, setDownloading] = useState(false);
     const [fileName, setFileName] = useState(null);
 
 
@@ -32,7 +33,7 @@ const AdminDescargarConsentimientoScreen = ({navigation, route}) => {
         const fetchData = async () => {
         try {
    
-            const pacsResponse = await obtenerData(URL_API + 'api/paciente');
+            const pacsResponse = await obtenerData(URL_API + 'api/paciente/consentimiento');
             //console.log(pacsResponse);
             // Validate the response is an array
             if (!Array.isArray(pacsResponse)) {
@@ -79,36 +80,35 @@ const AdminDescargarConsentimientoScreen = ({navigation, route}) => {
         });
       };
      
-      const handleSubmit = async () => {
-        try {
-            console.log('handleSubmit' + JSON.stringify(formData));
-            if (formData != null && formData.id != null) {
-                console.log('Reenvio denegado');
-                Alert.alert('Error', 'No se permite el reenvio de data que ya habia sido enviada al servidor');
-            } else {
-                console.log('handleSubmit formData: ' + formData.paciente_id);
-                // Validaciones
-                if (formData.paciente_id == null) {
-                    Alert.alert('Error', 'Debe seleccionar paciente');
-                } else {
-                    console.log('handleSubmit seleccion de archivo');
-                    var base64 = await getFileBase64();
-                    if(base64 != null) {
-                        console.log('handleSubmit base64: ' + base64.substring(0, 20) + '...');
-                        console.log('Iniciando Envio...');
-                        var pac = pacientes.find(value => value.id == formData.paciente_id);
-                        console.log('Paciente: ' + JSON.stringify(pac));
-                        pac.consentimiento = base64;
-                        const pacUpd = await actualizarEntidad(URL_API + "api/paciente", pac);
-                        console.log('Envio exitoso');
-                    }
-                }
-            }
-        } catch (error) {
-            console.error('Error en handleSubmit:', error);
-            Alert.alert('Error', 'Ocurrió un error al traspasar documento al servidor: ' + error.message);
+
+    const handleDownload = async () => {
+      setDownloading(true);
+  
+      try {
+        var pac = pacientes.find(value => value.id == formData.paciente_id);
+        console.log('Paciente: ' + JSON.stringify(pac));
+        const fileName = pac.nombre_archivo;
+        const fileUri = FileSystem.documentDirectory + fileName;
+  
+        //grabar contenido de consentimiento en file system
+        await FileSystem.writeAsStringAsync(fileUri, pac.consentimiento, {
+            encoding: FileSystem.EncodingType.Base64,
+        });
+        console.log('Downloaded to:', fileUri);
+  
+        if (await Sharing.isAvailableAsync()) {
+          await Sharing.shareAsync(fileUri);
+        } else {
+          Alert.alert('Descarga realizada', `Documento grabado en: ${uri}`);
         }
-      };
+      } catch (err) {
+        console.error('Download error:', err);
+        Alert.alert('Error', 'Fallo la descarga de documento. Detalles: ' + err.message);
+      } finally {
+        setDownloading(false);
+      }
+    };
+
 
       const nombreCompleto = (o) => {
         return o? `${o.nombre} ${o.apellido}`: '';
@@ -128,7 +128,7 @@ const AdminDescargarConsentimientoScreen = ({navigation, route}) => {
             encoding: FileSystem.EncodingType.Base64,
           });
     
-          setUploading(true);
+          setDownloading(true);
     
           return base64;
 
@@ -136,7 +136,7 @@ const AdminDescargarConsentimientoScreen = ({navigation, route}) => {
           console.error('Upload error:', error);
           Alert.alert('Error', error.message || 'Fallo traspaso de documento al servidor');
         } finally {
-          setUploading(false);
+          setDownloading(false);
         }
         }
 
@@ -176,11 +176,9 @@ const AdminDescargarConsentimientoScreen = ({navigation, route}) => {
                             title="Volver"
                             onPress={() => navigation.navigate('Admin', { data: formData })}
                         />
-                        <Button 
-                            title="Descargar"
-                            onPress={() => handleSubmit()}
-                        />
-                    </View>
+                        <Button title="Descargar Doc" ancho="200" onPress={handleDownload} disabled={downloading} />
+                        {downloading && <ActivityIndicator size="large" style={{ marginTop: 20 }} />}
+                   </View>
                     
                     <Text style={styles.label}></Text>
                     <Text style={styles.label}></Text>
