@@ -5,6 +5,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { Picker } from '@react-native-picker/picker';
 import styles from './Styles';
 import { ScrollView } from 'react-native-gesture-handler';
+//import NumericInput from 'react-native-numeric-input';
 
 import Button from './components/ButtonComponent';
 import Selector from './components/SelectorComponent';
@@ -13,7 +14,7 @@ import SelectorSimple from './components/SelectorSimpleComponent';
 import dataDropDown from '../data/dropdown.json';
 
 import {calculaAnos, calculaEdad, formatearFecha} from '../helpers/DateHelper.js';
-import {calculaIMC,} from '../helpers/GralHelper.js';
+import {calculaIMC, roundToTwo} from '../helpers/GralHelper.js';
 import { URL_API } from '../data/constants.js';
 import {obtenerData} from '../helpers/RestApiHelper.js'
 
@@ -52,7 +53,7 @@ const PacienteIngresoScreen = ({navigation, route}) => {
 
 {/*           <TextInput
             style={styles.textInput}
-            keyboardType="numeric"
+            keyboardType="decimal-pad"
             textAlign="right"
             value={formData.idVisita}
             editable={false}
@@ -74,7 +75,6 @@ const PacienteIngresoScreen = ({navigation, route}) => {
           <View>
             <Button
               title={formatearFecha(formData.fechaNacimientoPaciente)}
-              /* onPress={() => setShowDatePicker(true)} */
               color='blue'
             />
             {/* {showDatePicker && (<DateTimePicker
@@ -116,7 +116,7 @@ const PacienteIngresoScreen = ({navigation, route}) => {
 
           <TextInput
             style={styles.textInput}
-            keyboardType="numeric"
+            keyboardType="decimal-pad"
             textAlign="right"
             value={formData.pesoPaciente}
             onChangeText={(value) => handleInputChange('pesoPaciente', value)}
@@ -128,6 +128,33 @@ const PacienteIngresoScreen = ({navigation, route}) => {
 
         </View>
 
+
+
+
+        {/* Prueba */}
+{/*         <View style={styles.inputRow}>
+
+          <Text style={styles.label}>Prueba numerica</Text>
+
+          <NumericInput
+            value={Number(formData.pesoPaciente)}
+            onChange={(value) => handleInputChange('pesoPaciente', value)}
+            minValue={0}
+            maxValue={300}      // e.g., reasonable weight limit
+            step={0.1}          // Allows 1 decimal place
+            decimalPlaces={2}   // Shows "70.5" instead of "70.50"
+            rounded
+            inputStyle={{ fontSize: 18 }}
+          />
+
+          <Text style={styles.label}></Text>
+          <Text style={styles.label}></Text>
+
+        </View>
+ */}
+
+
+
         {/* Talla */}
         <View style={styles.inputRow}>
 
@@ -135,7 +162,7 @@ const PacienteIngresoScreen = ({navigation, route}) => {
 
           <TextInput
             style={styles.textInput}
-            keyboardType="numeric"
+            keyboardType="decimal-pad"
             textAlign="right"
             value={formData.tallaPaciente}
             onChangeText={(value) => handleInputChange('tallaPaciente', value)}
@@ -143,7 +170,7 @@ const PacienteIngresoScreen = ({navigation, route}) => {
             />
 
           <Text style={styles.label}>IMC:</Text>
-          <Text style={styles.textResult}>{formData.imcPaciente}</Text>
+          <Text style={styles.textResult}>{roundToTwo(formData.imcPaciente)}</Text>
 
         </View>
 
@@ -154,7 +181,7 @@ const PacienteIngresoScreen = ({navigation, route}) => {
 
           <TextInput
             style={styles.textInput}
-            keyboardType="numeric"
+            keyboardType="decimal-pad"
             textAlign="right"
             value={formData.mesesPostracionPaciente}
             onChangeText={(value) => handleInputChange('mesesPostracionPaciente', value)}
@@ -162,7 +189,7 @@ const PacienteIngresoScreen = ({navigation, route}) => {
             />
 
           <Text style={styles.label}>Postración [Años]:</Text>
-          <Text style={styles.textResult}>{formData.anosPostracionPaciente}</Text>
+          <Text style={styles.textResult}>{roundToTwo(formData.anosPostracionPaciente)}</Text>
 
         </View>
 

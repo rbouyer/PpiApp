@@ -1,10 +1,10 @@
 import { format } from 'date-fns';
-
+import { roundToTwo } from './GralHelper';
 
 export function calculaAnos(meses) {
     console.log('calculaMeses(' + JSON.stringify(meses, null, 2) + ')');
 
-    return !isNaN(meses)? meses / 12: 0;
+    return !isNaN(meses)? roundToTwo(meses / 12): 0.00;
 }
 
 export function calculaEdad(fechaNacimiento) {

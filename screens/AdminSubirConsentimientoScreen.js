@@ -114,6 +114,9 @@ const AdminSubirConsentimientoScreen = ({navigation, route}) => {
                         pac.nombre_archivo = fileName;
                         const pacUpd = await actualizarEntidad(URL_API + "api/paciente", pac);
                         console.log('Envio exitoso');
+                        
+                        // Se vuelve a menu principal
+                        navigation.navigate('Admin', { data: {} });
                     }
                 }
             }

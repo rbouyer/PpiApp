@@ -1,7 +1,7 @@
 export function calculaIMC(peso, talla) {
     //console.info('calculaIMC(' + peso + ', ' + talla + ')');
 
-    return !isNaN(peso) && !isNaN(talla) && talla > 0.0? peso / (talla * talla): 0;
+    return !isNaN(peso) && !isNaN(talla) && talla > 0.0? roundToTwo(peso / (talla * talla)): 0.00;
 }
 
 export function buscaEnArreglo(nameKey, myArray){
@@ -24,3 +24,7 @@ export function buscaEnLista(list, where){
     }
     return null;
 }
+
+export function roundToTwo(num) {
+    return Math.round((num + Number.EPSILON) * 100) / 100;
+  }

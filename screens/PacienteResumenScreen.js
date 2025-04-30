@@ -9,7 +9,7 @@ import { format } from 'date-fns';
 import styles from './Styles';
 
 import dataDropDown from '../data/dropdown.json';
-import {buscaEnArreglo} from '../helpers/GralHelper.js'
+import {buscaEnArreglo, roundToTwo} from '../helpers/GralHelper.js'
 
 import Navigation from './components/NavigationComponent';
 
@@ -87,7 +87,7 @@ const PacienteResumenScreen = ({navigation, route}) => {
             <Text style={styles.textResult}>{formData.tallaPaciente}</Text>
 
             <Text style={styles.label}>      IMC:</Text>
-            <Text style={styles.textResult}>{formData.imcPaciente}</Text>
+            <Text style={styles.textResult}>{roundToTwo(formData.imcPaciente)}</Text>
 
           </View>
 
@@ -98,7 +98,7 @@ const PacienteResumenScreen = ({navigation, route}) => {
             <Text style={styles.textResult}>{formData.mesesPostracionPaciente}</Text>
 
             <Text style={styles.label}>      Años:</Text>
-            <Text style={styles.textResult}>{formData.anosPostracionPaciente}</Text>
+            <Text style={styles.textResult}>{roundToTwo(formData.anosPostracionPaciente)}</Text>
 
           </View>
 

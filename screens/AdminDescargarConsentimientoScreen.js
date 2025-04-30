@@ -101,6 +101,10 @@ const AdminDescargarConsentimientoScreen = ({navigation, route}) => {
         } else {
           Alert.alert('Descarga realizada', `Documento grabado en: ${uri}`);
         }
+
+        // Se vuelve a menu principal
+        navigation.navigate('Admin', { data: {} });
+
       } catch (err) {
         console.error('Download error:', err);
         Alert.alert('Error', 'Fallo la descarga de documento. Detalles: ' + err.message);

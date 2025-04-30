@@ -50,10 +50,10 @@ const AdminScreen = ({navigation, route}) => {
 
 
     const handleVisita = async (formData, setFormData) => {
-        console.info('formData.idVisita: ' + formData.idVisita);
+        console.info('formData.idVisita: ' + formData.idVisita != null? formData.idVisita: 0);
     
         // Validación credenciales)
-        if (formData.idVisita === '' || formData.idVisita == 0) {
+        if (formData.idVisita == null || formData.idVisita === '' || formData.idVisita == 0) {
             Alert.alert('Error', 'Debe ingresar ID de visita');
             return;
         }
@@ -90,7 +90,10 @@ const AdminScreen = ({navigation, route}) => {
 
                 handleInputChange('idVisita', idVisita);
                 handleInputChange('idUsuario', idUsuario);
-                navigation.navigate('PacienteIngreso', { data: ficha.data });
+
+                var fichaUpdated = {...ficha.data, idUsuario: idUsuario};
+
+                navigation.navigate('PacienteIngreso', { data: fichaUpdated });
             }
         }
 

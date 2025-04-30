@@ -47,6 +47,11 @@ const AdminUsuarioCreacionScreen = ({navigation, route}) => {
             // Here you would typically send the data to an API
             try {
                 const nuevoUsuario = await crearEntidad(URL_API + "api/usuario", formData);
+                
+                if(nuevoUsuario != null) {
+                    // Se vuelve a menu principal
+                    navigation.navigate('Admin', { data: {} });
+                }
             } catch (error){
                 Alert.alert('Error servidor', 'Detalle: ' + error.message);
             }

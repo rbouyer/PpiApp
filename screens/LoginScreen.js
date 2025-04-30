@@ -52,7 +52,7 @@ const LoginScreen = ({navigation, route}) => {
         console.log('Login invalido');
         Alert.alert('Error', 'Usuario o clave invalida');
       } else {
-        const updatedFormData = { ...formData, idUsuario: parseInt(usuario.id) };
+        const updatedFormData = { ...formData, idUsuario: parseInt(usuario.id), role: usuario.role };
         //handleInputChange('idUsuario', usuario.id);
         // Siguiente screen depende de tipo usuario
         console.log('Login formData: ' + JSON.stringify(updatedFormData));

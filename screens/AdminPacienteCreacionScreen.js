@@ -47,6 +47,10 @@ const AdminPacienteCreacionScreen = ({navigation, route}) => {
       const handleSubmit = async () => {
         // Here you would typically send the data to an API
         const nuevoPaciente = await crearEntidad(URL_API + "api/paciente", formData);
+
+        if(nuevoPaciente != null) {
+            navigation.navigate('Admin', { data: {} });
+        }
       };
 
       

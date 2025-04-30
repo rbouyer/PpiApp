@@ -120,7 +120,11 @@ const AdminVisitaCreacionScreen = ({navigation, route}) => {
                 // Here you would typically send the data to an API
                 const nuevaVisita = await crearEntidad(URL_API + "api/visita", formData);
 
-                if(nuevaVisita != null) setFormData(nuevaVisita);
+                if(nuevaVisita != null) {
+                    setFormData(nuevaVisita);
+                    // Se vuelve a menu principal
+                    navigation.navigate('Admin', { data: {} });
+                }
             }
         }
       };
