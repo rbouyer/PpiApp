@@ -8,6 +8,7 @@ import Button from './components/ButtonComponent';
 
 import { URL_API } from '../data/constants';
 import {obtenerData, crearEntidad, actualizarEntidad} from '../helpers/RestApiHelper.js';
+import {initFormData} from '../data/object';
 
 const EnviaDataScreen = ({navigation, route}) => {
     const { data } = route.params;
@@ -46,7 +47,8 @@ const EnviaDataScreen = ({navigation, route}) => {
         else if(usuario.role == 'user'){
           // Vuelve a la pantalla de inicio
           nuevaVisita = await crearEntidad(urlPost, formData);
-          navigation.navigate('VisitaId', { data: formData });
+          const newFormData = { ...initFormData, idUsuario: usuario.id };
+          navigation.navigate('VisitaId', { data: newFormData });
         } 
 
         if(nuevaVisita != null){
