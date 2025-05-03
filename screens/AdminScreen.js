@@ -11,6 +11,7 @@ import { URL_API } from '../data/constants';
 
 import {obtenerData, crearEntidad} from '../helpers/RestApiHelper.js'
 import { formatDateToFilename } from '../helpers/DateHelper.js';
+import { initFormData } from '../data/object.js';
 
 const AdminScreen = ({navigation, route}) => {
     const { data } = route.params;
@@ -91,7 +92,12 @@ const AdminScreen = ({navigation, route}) => {
                 handleInputChange('idVisita', idVisita);
                 handleInputChange('idUsuario', idUsuario);
 
+                //console.log('ficha leida BdD: ' + JSON.stringify(ficha.data));
+
                 var fichaUpdated = {...ficha.data, idUsuario: idUsuario};
+
+                //console.log('ficha actualizada: ' + JSON.stringify(fichaUpdated));
+                //console.log('ficha.lppc actualizada: ' + JSON.stringify(fichaUpdated.lppc));
 
                 navigation.navigate('PacienteIngreso', { data: fichaUpdated });
             }
@@ -202,7 +208,19 @@ const AdminScreen = ({navigation, route}) => {
                         <Button title="Descargar CSV" ancho="200" onPress={handleDownload} disabled={downloading} />
                         {downloading && <ActivityIndicator size="large" style={{ marginTop: 20 }} />}
                     </View>
-                    
+  
+                    <View style={styles.inputRow}>
+
+                        <Text style={styles.label}>Salir de la aplicación</Text>
+
+                        <Button
+                            title="Salir"
+                            ancho="200"
+                            onPress={() => navigation.navigate('Login', { data: {...initFormData} })}
+                        />
+
+                    </View>
+                  
                     <Text style={styles.label}></Text>
                     <Text style={styles.label}></Text>
 

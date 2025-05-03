@@ -16,6 +16,8 @@ const EnviaDataScreen = ({navigation, route}) => {
 
 
     const enviarFormData = async () => {
+      console.log('enviarFormData');
+
       return await enviarFormDataSync();
     }
 

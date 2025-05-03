@@ -3,7 +3,7 @@ import { Alert } from 'react-native';
 export async function obtenerData(url) {
     var resp = null;
 
-    console.log('ObtenerData url: ' + url);
+    //console.log('ObtenerData url: ' + url);
 
     try {
         const response = await fetch(url);
@@ -15,7 +15,7 @@ export async function obtenerData(url) {
         Alert.alert('Error', err.message);
       }
 
-    console.log('ObtenerData Resp: ' + JSON.stringify(resp.data));
+    //console.log('ObtenerData Resp: ' + JSON.stringify(resp.data));
 
     return resp? resp.data: null;
 }
@@ -24,7 +24,7 @@ export async function crearEntidad(urlPost, body) {
       var errPost = null;
       var resp = null;
 
-      console.log('crearEntidad body: ' + JSON.stringify(body));      
+      //console.log('crearEntidad body: ' + JSON.stringify(body));      
 
       try {
         const response = await fetch(urlPost, {
@@ -37,7 +37,7 @@ export async function crearEntidad(urlPost, body) {
         });
 
         resp = await response.json();
-        console.log('crearEntidad response: ' + JSON.stringify(resp));
+        //console.log('crearEntidad response: ' + JSON.stringify(resp));
       } catch(error){
         errPost = error;
       } finally {

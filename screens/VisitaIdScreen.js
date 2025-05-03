@@ -11,6 +11,8 @@ import { URL_API } from '../data/constants'
 import {obtenerData} from '../helpers/RestApiHelper.js'
 import {calculaEdad} from '../helpers/DateHelper.js';
 
+import { initFormData } from '../data/object.js';
+
 
 const VisitaIdScreen = ({navigation, route}) => {
     const { data } = route.params;
@@ -168,7 +170,20 @@ const VisitaIdScreen = ({navigation, route}) => {
 
                         <Button
                             title="Iniciar Visita"
+                            ancho="200"
                             onPress={() => handleVisita()}
+                        />
+
+                    </View>
+  
+                    <View style={styles.inputRow}>
+
+                        <Text style={styles.label}>Salir de la aplicación</Text>
+
+                        <Button
+                            title="Salir"
+                            ancho="200"
+                            onPress={() => navigation.navigate('Login', { data: {...initFormData} })}
                         />
 
                     </View>
