@@ -29,6 +29,8 @@ import CuidadorPrimarioScreen from './screens/CuidadorPrimarioScreen';
 import ZaritScreen from './screens/ZaritScreen';
 import ClasificacionLesionScreen from './screens/ClasificacionLesionScreen';
 
+import EscarasCambioPosicionScreen from './screens/EscarasCambioPosicionScreen';
+
 import EnviaDataScreen from './screens/EnviaDataScreen';
 
 import {initFormData} from './data/object.js';
@@ -61,6 +63,7 @@ const App = () => {
         <Stack.Screen name="PatologiaMedicamento" component={PatologiaMedicamentoScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="PatologiaMedicamento2" component={PatologiaMedicamento2Screen} initialParams={{ data: formData }}/>
         <Stack.Screen name="MovilidadContencion" component={MovilidadContencionScreen} initialParams={{ data: formData }}/>
+        <Stack.Screen name="EscarasCambioPosicion" component={EscarasCambioPosicionScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="Alimento" component={AlimentoScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="Braden" component={BradenScreen} initialParams={{ data: formData }}/>
         <Stack.Screen name="Piel" component={PielScreen} initialParams={{ data: formData }}/>

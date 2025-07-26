@@ -168,7 +168,7 @@ const AlimentoScreen = ({navigation, route}) => {
 
 
                     <Navigation 
-                        onPressPrev={() => navigation.navigate('MovilidadContencion', { data: formData })} 
+                        onPressPrev={() => navigation.navigate('EscarasCambioPosicion', { data: formData })} 
                         onPressNext={() => navigation.navigate('Braden', { data: formData })}>
                     </Navigation>
                 </View>

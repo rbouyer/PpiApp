@@ -74,7 +74,7 @@ const MovilidadContencionScreen = ({navigation, route}) => {
 
                     <Navigation 
                         onPressPrev={() => navigation.navigate('PatologiaMedicamento2', { data: formData })} 
-                        onPressNext={() => navigation.navigate('Alimento', { data: formData })}>
+                        onPressNext={() => navigation.navigate('EscarasCambioPosicion', { data: formData })}>
                     </Navigation>
 
                 </View>

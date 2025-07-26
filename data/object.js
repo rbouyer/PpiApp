@@ -25,6 +25,11 @@ export const initFormData = { emailUsuario: '', claveUsuario: '', idUsuario: 0, 
       /* Movilidad y contención */
       tieneTraccion: null, descTraccion: '', tieneInmovilidad: null, descInmovilidad: '', tieneContencion: null, descContencion: '', tieneTipoContencion: null, tipoContencion: '',
 
+      /* Escaras y Cambio Posicion */
+      diagnosticoEscaras: '', utilizaColchonAE: null, funcionaColchonAE: null, funciona24HrsColchonAE: null, cambiaFamiliarPosicionColchonAE: null,
+      selCambioPosicionColchonAE: '',
+      indicaMedicoCambioPos: null, cuidaPielPrevenirLPPC: null, descripcionCuidadoPielPrevenirLPPC: '', cuidaAdecuadamentePielPrevenirLPPC: null,
+
       /* Alimentación */
       selFruta: '', selCarne: '', selHuevo: '', selPescado: '', selPasta: '', selPan: '', selVerdura: '', selLegumbre: '', selFiambre: '', 
       selLacteo: '', selDulce: '', selBebida: '', selRapida: '', selAperitivo: '', selJugo: '', tienePlanAlimentacion: null, 

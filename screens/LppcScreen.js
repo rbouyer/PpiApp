@@ -121,7 +121,7 @@ const LppScreen = ({navigation, route}) => {
 
                             <View style={styles.inputRow}>
                                 <LppcRBComponent 
-                                    patologia={(index + 1) + '.05 - ¿La LPPC - ' + (index + 1) + ' se encuentra en tratamiento de acuerdo con clasificación evaluar en Ficha clínica del paciente?'} 
+                                    patologia={(index + 1) + '.05 - ¿La LPPC - se encuentra en tratamiento de acuerdo con clasificación evaluar en Ficha clínica del paciente?'} 
                                     tienePatologia = {entry.enTratamientoLppc} 
                                     setTienePatologia = {(val) => {handleInputChange(index, 'enTratamientoLppc', val )}} 
                                     nroMedPatologia = {null} 

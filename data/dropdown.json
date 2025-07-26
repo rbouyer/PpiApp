@@ -41,6 +41,15 @@
         { "value": "AP_07", "label": "No Sabe" }, 
         { "value": "AP_08", "label": "No contesta" }
      ],
+     "cambioPosicionColchonAE": [
+         { "value": "0", "label": "(Seleccione)" },
+         { "value": "CP_01", "label": "Cada dos horas " },
+         { "value": "CP_02", "label": "Cada 4 horas" },
+         { "value": "CP_03", "label": "Una o dos veces por día" },
+         { "value": "CP_04", "label": "No realiza cambio de posición" },      
+         { "value": "CP_05", "label": "No aplica" },
+         { "value": "CP_06", "label": "No recuerda" }      
+     ],
      "percepcion": [
          { "value": "0", "label": "(Seleccione)" },
          { "value": "SB_01", "label": "1-Componente limitado.", "ptje": 1 },
@@ -196,7 +205,6 @@
         { "value": "LU_01", "label": "Talón" },
         { "value": "LU_02", "label": "Glúteo" },
         { "value": "LU_03", "label": "Sacra/ Coxis" },
-        { "value": "LU_04", "label": "Glúteo" },
         { "value": "LU_05", "label": "Pierna," },
         { "value": "LU_06", "label": "Trocánter" },
         { "value": "LU_07", "label": "Codo" },
