@@ -43,9 +43,10 @@ const LesionScreen = ({navigation, route}) => {
     };
 
     const handleNextScreen = () => {
+        var nextScreen = formData.presentaLPPC? 'Lppc' : 'ExamenFisico';
  
         if(validateInputs()){
-            navigation.navigate('Lppc', { data: formData });
+            navigation.navigate(nextScreen, { data: formData });
         } else
             alert("Se detectaron errores de ingreso, favor revisar y completar o corregir data ingresada.");
     }
@@ -57,7 +58,7 @@ const LesionScreen = ({navigation, route}) => {
         console.log('nroLPPC: ' + nroLPPC);
 
         errors.fld18 = null;
-        if (nroLPPC <= 0) {
+        if (formData.presentaLPPC && nroLPPC <= 0) {
             errors.fld18 = "Debe seleccionar campo 18: 'Número de LPP de origen comunitario'";
             setErrors({ ...errors, 'fld18': 'Debe seleccionar campo 18: Número de LPP de origen comunitario' });
             isValid = false;
@@ -290,7 +291,7 @@ const LesionScreen = ({navigation, route}) => {
 
                     <Navigation 
                         onPressPrev={() => navigation.navigate('Piel', { data: formData })} 
-                        onPressNext={handleNextScreen}>
+                        onPressNext={() => handleNextScreen()}>
                     </Navigation>
 
                 </View>

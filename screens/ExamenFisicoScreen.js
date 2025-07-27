@@ -97,7 +97,7 @@ const ExamenFisicoScreen = ({navigation, route}) => {
 
 
                     <Navigation 
-                        onPressPrev={() => navigation.navigate('Lppc', { data: formData })} 
+                        onPressPrev={() => navigation.navigate('Lesion', { data: formData })} 
                         onPressNext={() => navigation.navigate('Barthel', { data: formData })}>
                     </Navigation>
 

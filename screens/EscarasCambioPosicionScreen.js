@@ -40,22 +40,21 @@ const EscarasCambioPosicionScreen = ({navigation, route}) => {
                     */}
 
 
+                    {/* Encabezado */}
+                    <View style={styles.inputRow}>
+                        <Text style={styles.labelBold}>Pregunta</Text>
+                        <Text style={[styles.labelBold, {textAlign: "center"}]}>Respuesta</Text>
+                    </View>
+
                     <View style={styles.inputRow}>
                         <Text style={[styles.label]}>Diagnóstico médico actual:</Text>
-
+                       
                         <TextInput
                             style={[styles.textInput]}
                             textAlign="left"
                             value={formData.diagnosticoEscaras}
                             onChangeText={(val) => {handleInputChange(index, 'diagnosticoEscaras', val )}}
                         />
-                    </View>
-
-                    {/* Encabezado */}
-                    <View style={styles.inputRow}>
-                        <Text style={styles.labelBold}>Pregunta</Text>
-                        <Text style={[styles.labelBold, {textAlign: "center"}]}>SI/NO</Text>
-                        <Text style={styles.labelBold}>Descripción</Text>
                     </View>
 
                     <EscarasCambioPosicionComponent 
@@ -98,12 +97,21 @@ const EscarasCambioPosicionScreen = ({navigation, route}) => {
                     ></EscarasCambioPosicionComponent>
 
                     <EscarasCambioPosicionComponent 
-                        movilidad='08 - ¿Cómo usted cuida (o le cuidan) su piel para para prevenir LPPC?' 
+                        movilidad='08.1 - ¿Cuida (o le cuidan) su piel para para prevenir LPPC?' 
                         tieneMovilidad = {formData.cuidaPielPrevenirLPPC} 
                         setTieneMovilidad = {(val) => {setFormData({ ...formData, 'cuidaPielPrevenirLPPC': val })}} 
-                        descMovilidad = {formData.descripcionCuidadoPielPrevenirLPPC} 
-                        setDescMovilidad = {(val) => {setFormData({ ...formData, 'descripcionCuidadoPielPrevenirLPPC': val })}}
                     ></EscarasCambioPosicionComponent>
+
+                    <View style={styles.inputRow}>
+                        <Text style={[styles.label]}>08.2 - ¿Cómo usted cuida (o le cuidan) su piel para para prevenir LPPC?</Text>
+                        
+                        <TextInput
+                            style={[styles.textInput]}
+                            textAlign="left"
+                            value={formData.descripcionCuidadoPielPrevenirLPPC}
+                            onChangeText={(val) => {handleInputChange(index, 'descripcionCuidadoPielPrevenirLPPC', val )}}
+                        />
+                    </View>
 
                     <EscarasCambioPosicionComponent 
                         movilidad='09 - ¿La “forma de cuidar la piel del paciente”, es la adecuada para prevenir LPP?' 
