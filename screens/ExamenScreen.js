@@ -9,7 +9,7 @@ import styles from './Styles';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import dataDropDown from '../data/dropdown.json';
-import {buscaEnArreglo} from '../helpers/GralHelper.js'
+import {buscaEnArreglo, handleNextScreen} from '../helpers/GralHelper.js'
 import {evaluaExamen} from '../helpers/ValidHelper.js'
 import {formatearFecha} from '../helpers/DateHelper.js'
 
@@ -357,7 +357,9 @@ const ExamenScreen = ({navigation, route}) => {
 
                     <Navigation 
                         onPressPrev={() => navigation.navigate('PacienteResumen', { data: formData })} 
-                        onPressNext={() => navigation.navigate('PatologiaMedicamento', { data: formData })}>
+                        //onPressNext={() => navigation.navigate('PatologiaMedicamento', { data: formData })}
+                        onPressNext={() => handleNextScreen(navigation, 'PatologiaMedicamento', {data: formData})}
+                    >
                     </Navigation>
 
                 </View>

@@ -13,6 +13,7 @@ import {calculaEdad} from '../helpers/DateHelper.js';
 
 import { initFormData } from '../data/object.js';
 
+import { loadObjectState } from '../helpers/FSHelper.js';
 
 const VisitaIdScreen = ({navigation, route}) => {
     const { data } = route.params;
@@ -80,6 +81,14 @@ const VisitaIdScreen = ({navigation, route}) => {
             Alert.alert('Error', 'Ocurrió un error al cargar los datos');
         }
     };
+
+
+    const handleVisitaLocal = async () => {
+        console.info('handleVisitaLocal: formData.idVisita: ' + formData.idVisita);
+        var dataLocal = await loadObjectState(formData.idVisita);
+        console.info('handleVisitaLocal: dataLocal: ' + JSON.stringify(dataLocal, null, 2));
+        navigation.navigate('PacienteIngreso', dataLocal);
+   }
 
 /*     useEffect( () =>  {
         const fetchData = async() => {
@@ -158,13 +167,13 @@ const VisitaIdScreen = ({navigation, route}) => {
 
                     <View style={styles.inputRow}>
 
-                        <Text style={styles.label}>Ingrese ID de visita</Text>
+                        <Text style={styles.label}>Ingrese ID de nueva visita</Text>
 
                         <TextInput
                             style={styles.textInput}
                             keyboardType="numeric"
                             textAlign="right"
-                            value={formData.pesoPaciente}
+                            value={formData.idVisita}
                             onChangeText={(value) => handleInputChange('idVisita', value)}
                         />
 
@@ -172,6 +181,26 @@ const VisitaIdScreen = ({navigation, route}) => {
                             title="Iniciar Visita"
                             ancho="200"
                             onPress={() => handleVisita()}
+                        />
+
+                    </View>
+
+                    <View style={styles.inputRow}>
+
+                        <Text style={styles.label}>ID visita ingresada en este equipo</Text>
+
+                        <TextInput
+                            style={styles.textInput}
+                            keyboardType="numeric"
+                            textAlign="right"
+                            value={formData.idVisita}
+                            onChangeText={(value) => handleInputChange('idVisita', value)}
+                        />
+
+                        <Button
+                            title="Editar Visita"
+                            ancho="200"
+                            onPress={() => handleVisitaLocal()}
                         />
 
                     </View>

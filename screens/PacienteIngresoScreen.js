@@ -14,7 +14,7 @@ import SelectorSimple from './components/SelectorSimpleComponent';
 import dataDropDown from '../data/dropdown.json';
 
 import {calculaAnos, calculaEdad, formatearFecha} from '../helpers/DateHelper.js';
-import {calculaIMC, roundToTwo} from '../helpers/GralHelper.js';
+import {calculaIMC, roundToTwo, handleNextScreen} from '../helpers/GralHelper.js';
 import { URL_API } from '../data/constants.js';
 import {obtenerData} from '../helpers/RestApiHelper.js'
 
@@ -226,7 +226,8 @@ const PacienteIngresoScreen = ({navigation, route}) => {
         <View style={styles.inputRow}>
           <Button
             title="Siguiente"
-            onPress={() => navigation.navigate('PacienteResumen', { data: formData })}
+            //onPress={() => navigation.navigate('PacienteResumen', { data: formData })}
+            onPress={() => handleNextScreen(navigation, 'PacienteResumen', { data: formData })}
           />
         </View>
         <Text style={styles.label}></Text>

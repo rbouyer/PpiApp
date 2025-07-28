@@ -10,6 +10,9 @@ import styles from './Styles';
 
 import dataDropDown from '../data/dropdown.json';
 
+import {handleNextScreen} from '../helpers/GralHelper.js';
+
+
 const BarthelScreen = ({navigation, route}) => {
     const { data } = route.params;
 
@@ -157,7 +160,9 @@ const BarthelScreen = ({navigation, route}) => {
 
                     <Navigation 
                         onPressPrev={() => navigation.navigate('ExamenFisico', { data: formData })} 
-                        onPressNext={() => navigation.navigate('CuidadorPrimario', { data: formData })}>
+                        //onPressNext={() => navigation.navigate('CuidadorPrimario', { data: formData })}
+                        onPressNext={() => handleNextScreen(navigation, 'CuidadorPrimario', {data: formData})}
+                    >
                     </Navigation>
 
                 </View>

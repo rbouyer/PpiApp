@@ -9,6 +9,9 @@ import { RadioButton } from 'react-native-paper';
 import MovilidadContencionComponent from './components/MovilidadContencionComponent';
 import Navigation from './components/NavigationComponent';
 
+import {handleNextScreen} from '../helpers/GralHelper.js';
+
+
 const MovilidadContencionScreen = ({navigation, route}) => {
     const { data } = route.params;
 
@@ -74,7 +77,9 @@ const MovilidadContencionScreen = ({navigation, route}) => {
 
                     <Navigation 
                         onPressPrev={() => navigation.navigate('PatologiaMedicamento2', { data: formData })} 
-                        onPressNext={() => navigation.navigate('EscarasCambioPosicion', { data: formData })}>
+                        //onPressNext={() => navigation.navigate('EscarasCambioPosicion', { data: formData })}
+                        onPressNext={() => handleNextScreen(navigation, 'EscarasCambioPosicion', {data: formData})}
+                    >
                     </Navigation>
 
                 </View>

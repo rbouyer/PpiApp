@@ -10,6 +10,9 @@ import AlimentoRadioComponent from './components/PatologiaMedicamentoComponent';
 
 import dataDropDown from '../data/dropdown.json';
 
+import {handleNextScreen} from '../helpers/GralHelper.js';
+
+
 const AlimentoScreen = ({navigation, route}) => {
     const { data } = route.params;
 
@@ -169,7 +172,9 @@ const AlimentoScreen = ({navigation, route}) => {
 
                     <Navigation 
                         onPressPrev={() => navigation.navigate('EscarasCambioPosicion', { data: formData })} 
-                        onPressNext={() => navigation.navigate('Braden', { data: formData })}>
+                        //onPressNext={() => navigation.navigate('Braden', { data: formData })}
+                        onPressNext={() => handleNextScreen(navigation, 'Braden', {data: formData})}
+                    >
                     </Navigation>
                 </View>
             </ScrollView>

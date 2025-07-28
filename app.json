@@ -1,9 +1,8 @@
 {
   "expo": {
-    "name": "PpiApp",
+    "name": "PpiApp 1.0.8",
     "slug": "PpiApp",
-    "version": "1.0.7",
-    "orientation": "landscape",
+    "version": "1.0.8",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,

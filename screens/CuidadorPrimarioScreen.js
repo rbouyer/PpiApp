@@ -15,6 +15,7 @@ import dataDropDown from '../data/dropdown.json';
 
 import { format } from 'date-fns';
 import { calculaEdad, formatearFecha } from '../helpers/DateHelper';
+import {handleNextScreen} from '../helpers/GralHelper.js';
 
 
 const CuidadorPrimarioScreen = ({navigation, route}) => {
@@ -128,7 +129,9 @@ const CuidadorPrimarioScreen = ({navigation, route}) => {
 
                     <Navigation 
                         onPressPrev={() => navigation.navigate('Barthel', { data: formData })} 
-                        onPressNext={() => navigation.navigate('Zarit', { data: formData })}>
+                        //onPressNext={() => navigation.navigate('Zarit', { data: formData })}
+                        onPressNext={() => handleNextScreen(navigation, 'Zarit', {data: formData})}
+                    >
                     </Navigation>
 
                 </View>

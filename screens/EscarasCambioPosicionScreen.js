@@ -12,6 +12,10 @@ import Navigation from './components/NavigationComponent';
 
 import dataDropDown from '../data/dropdown.json';
 
+import {handleNextScreen} from '../helpers/GralHelper.js';
+
+
+
 const EscarasCambioPosicionScreen = ({navigation, route}) => {
     const { data } = route.params;
 
@@ -23,7 +27,7 @@ const EscarasCambioPosicionScreen = ({navigation, route}) => {
 
     return (
         <View>
-            <Text style={styles.title}>Movilidad y Contencion</Text>
+            <Text style={styles.title}>Escaras y Cambio Posición</Text>
             <ScrollView>
                 <View style={styles.container}>
 
@@ -70,20 +74,20 @@ const EscarasCambioPosicionScreen = ({navigation, route}) => {
                     ></EscarasCambioPosicionComponent>
 
                     <EscarasCambioPosicionComponent 
-                        movilidad='04 - ¿El colchón antiescaras funciona las 24 hrs al día?' 
+                        movilidad='03 - ¿El colchón antiescaras funciona las 24 hrs al día?' 
                         tieneMovilidad = {formData.funciona24HrsColchonAE} 
                         setTieneMovilidad = {(val) => {setFormData({ ...formData, 'funciona24HrsColchonAE': val })}} 
                     ></EscarasCambioPosicionComponent>
 
                     <EscarasCambioPosicionComponent 
-                        movilidad='05 - ¿Su familiar lo cambia de posición?' 
+                        movilidad='04 - ¿Su familiar lo cambia de posición?' 
                         tieneMovilidad = {formData.cambiaFamiliarPosicionColchonAE} 
                         setTieneMovilidad = {(val) => {setFormData({ ...formData, 'cambiaFamiliarPosicionColchonAE': val })}} 
                     ></EscarasCambioPosicionComponent>
 
 
                     <EscarasCambioPosicionSelComponent 
-                        alimento='06 - ¿Qué tan frecuente es que cumpla las indicaciones de cambio de posición?' 
+                        alimento='05 - ¿Qué tan frecuente es que cumpla las indicaciones de cambio de posición?' 
                         lista = {dataDropDown.cambioPosicionColchonAE}
                         seleccion = {formData.selCambioPosicionColchonAE} 
                         setSeleccion = {(val) => {setFormData({ ...formData, 'selCambioPosicionColchonAE': val })}} 
@@ -91,19 +95,24 @@ const EscarasCambioPosicionScreen = ({navigation, route}) => {
 
 
                     <EscarasCambioPosicionComponent 
-                        movilidad='07 -  ¿El medico indicó cambio de posición ?' 
+                        movilidad='06 -  ¿El medico indicó cambio de posición ?' 
                         tieneMovilidad = {formData.indicaMedicoCambioPos} 
                         setTieneMovilidad = {(val) => {setFormData({ ...formData, 'indicaMedicoCambioPos': val })}} 
                     ></EscarasCambioPosicionComponent>
 
+                    <View style={styles.inputRow}>
+                        <Text style={styles.labelBold}>Datos de ficha clínica</Text>
+                        <Text style={[styles.labelBold, {textAlign: "center"}]}>Respuesta</Text>
+                    </View>
+
                     <EscarasCambioPosicionComponent 
-                        movilidad='08.1 - ¿Cuida (o le cuidan) su piel para para prevenir LPPC?' 
+                        movilidad='07.1 - ¿Cuida (o le cuidan) su piel para para prevenir LPPC?' 
                         tieneMovilidad = {formData.cuidaPielPrevenirLPPC} 
                         setTieneMovilidad = {(val) => {setFormData({ ...formData, 'cuidaPielPrevenirLPPC': val })}} 
                     ></EscarasCambioPosicionComponent>
 
                     <View style={styles.inputRow}>
-                        <Text style={[styles.label]}>08.2 - ¿Cómo usted cuida (o le cuidan) su piel para para prevenir LPPC?</Text>
+                        <Text style={[styles.label]}>07.2 - ¿Cómo usted cuida (o le cuidan) su piel para para prevenir LPPC?</Text>
                         
                         <TextInput
                             style={[styles.textInput]}
@@ -114,7 +123,7 @@ const EscarasCambioPosicionScreen = ({navigation, route}) => {
                     </View>
 
                     <EscarasCambioPosicionComponent 
-                        movilidad='09 - ¿La “forma de cuidar la piel del paciente”, es la adecuada para prevenir LPP?' 
+                        movilidad='08 - ¿La “forma de cuidar la piel del paciente”, es la adecuada para prevenir LPP?' 
                         tieneMovilidad = {formData.cuidaAdecuadamentePielPrevenirLPPC} 
                         setTieneMovilidad = {(val) => {setFormData({ ...formData, 'cuidaAdecuadamentePielPrevenirLPPC': val })}} 
                     ></EscarasCambioPosicionComponent>
@@ -122,7 +131,9 @@ const EscarasCambioPosicionScreen = ({navigation, route}) => {
 
                     <Navigation 
                         onPressPrev={() => navigation.navigate('MovilidadContencion', { data: formData })} 
-                        onPressNext={() => navigation.navigate('Alimento', { data: formData })}>
+                        //onPressNext={() => navigation.navigate('Alimento', { data: formData })}
+                        onPressNext={() => handleNextScreen(navigation, 'Alimento', {data: formData})}
+                    >
                     </Navigation>
 
                 </View>

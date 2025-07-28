@@ -9,6 +9,8 @@ import Navigation from './components/NavigationComponent';
 
 import dataDropDown from '../data/dropdown.json';
 
+import {handleNextScreen} from '../helpers/GralHelper.js';
+
 
 const BradenScreen = ({navigation, route}) => {
     const { data } = route.params;
@@ -127,7 +129,9 @@ const BradenScreen = ({navigation, route}) => {
 
                     <Navigation 
                         onPressPrev={() => navigation.navigate('Alimento', { data: formData })} 
-                        onPressNext={() => navigation.navigate('Piel', { data: formData })}>
+                        //onPressNext={() => navigation.navigate('Piel', { data: formData })}
+                        onPressNext={() => handleNextScreen(navigation, 'Piel', {data: formData})}
+                    >
                     </Navigation>
 
                 </View>

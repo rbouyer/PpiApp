@@ -9,6 +9,9 @@ import { RadioButton } from 'react-native-paper';
 import PatologiaMedicamentoComponent from './components/PatologiaMedicamentoComponent';
 import Navigation from './components/NavigationComponent';
 
+import {handleNextScreen} from '../helpers/GralHelper.js';
+
+
 const PielScreen = ({navigation, route}) => {
     const { data } = route.params;
 
@@ -102,7 +105,9 @@ const PielScreen = ({navigation, route}) => {
 
                     <Navigation 
                         onPressPrev={() => navigation.navigate('Braden', { data: formData })} 
-                        onPressNext={() => navigation.navigate('Lesion', { data: formData })}>
+                        //onPressNext={() => navigation.navigate('Lesion', { data: formData })}
+                        onPressNext={() => handleNextScreen(navigation, 'Lesion', {data: formData})}
+                    >
                     </Navigation>
 
                 </View>

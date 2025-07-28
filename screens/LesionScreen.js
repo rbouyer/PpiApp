@@ -14,7 +14,7 @@ import Button from './components/ButtonComponent';
 
 import dataDropDown from '../data/dropdown.json';
 
-import {buscaEnArreglo} from '../helpers/GralHelper.js';
+import {buscaEnArreglo, handleNextScreen} from '../helpers/GralHelper.js';
 import {calculaAnos, calculaEdad, formatearFecha} from '../helpers/DateHelper.js';
 
 
@@ -42,11 +42,12 @@ const LesionScreen = ({navigation, route}) => {
         setShowDatePicker(false); // Close the picker
     };
 
-    const handleNextScreen = () => {
+    const handleValidNextScreen = () => {
         var nextScreen = formData.presentaLPPC? 'Lppc' : 'ExamenFisico';
  
         if(validateInputs()){
-            navigation.navigate(nextScreen, { data: formData });
+            //navigation.navigate(nextScreen, { data: formData });
+            handleNextScreen(navigation, nextScreen, {data: formData});
         } else
             alert("Se detectaron errores de ingreso, favor revisar y completar o corregir data ingresada.");
     }
@@ -291,7 +292,7 @@ const LesionScreen = ({navigation, route}) => {
 
                     <Navigation 
                         onPressPrev={() => navigation.navigate('Piel', { data: formData })} 
-                        onPressNext={() => handleNextScreen()}>
+                        onPressNext={() => handleValidNextScreen()}>
                     </Navigation>
 
                 </View>

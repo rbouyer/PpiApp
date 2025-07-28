@@ -1,3 +1,6 @@
+import {saveObjectState} from './FSHelper';
+
+
 export function calculaIMC(peso, talla) {
     //console.info('calculaIMC(' + peso + ', ' + talla + ')');
 
@@ -28,3 +31,12 @@ export function buscaEnLista(list, where){
 export function roundToTwo(num) {
     return Math.round((num + Number.EPSILON) * 100) / 100;
   }
+
+
+export async function handleNextScreen(navigation, nextScreen, formData){
+    const idVisita = formData.data.idVisita;
+    console.info("handleNextScreen: nextScreen: " + nextScreen + ", formData: " + JSON.stringify(formData, null, 2));
+    await saveObjectState( idVisita, formData );
+    console.info("handleNextScreen: formData saved for idVisita: " + idVisita);
+    navigation.navigate(nextScreen, formData );
+}

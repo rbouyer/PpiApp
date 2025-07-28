@@ -13,7 +13,7 @@ import styles from './Styles';
 
 import dataDropDown from '../data/dropdown.json';
 
-import {buscaEnArreglo} from '../helpers/GralHelper.js';
+import {buscaEnArreglo, handleNextScreen} from '../helpers/GralHelper.js';
 
 const LppScreen = ({navigation, route}) => {
     const { data } = route.params;
@@ -146,7 +146,9 @@ const LppScreen = ({navigation, route}) => {
 
                     <Navigation 
                         onPressPrev={() => navigation.navigate('Lesion', { data: formData })} 
-                        onPressNext={() => navigation.navigate('ExamenFisico', { data: formData })}>
+                        //onPressNext={() => navigation.navigate('ExamenFisico', { data: formData })}
+                        onPressNext={() => handleNextScreen(navigation, 'ExamenFisico', {data: formData})}
+                    >
                     </Navigation>
 
                 </View>

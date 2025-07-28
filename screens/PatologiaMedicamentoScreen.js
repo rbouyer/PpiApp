@@ -4,9 +4,11 @@ import { View, Text } from 'react-native';
 import styles from './Styles';
 import { ScrollView } from 'react-native-gesture-handler';
 
-
 import PatologiaMedicamentoComponent from './components/PatologiaMedicamentoComponent';
 import Navigation from './components/NavigationComponent';
+
+import {handleNextScreen} from '../helpers/GralHelper.js';
+
 
 const PatologiaMedicamentoScreen = ({navigation, route}) => {
     const { data } = route.params;
@@ -154,6 +156,15 @@ const PatologiaMedicamentoScreen = ({navigation, route}) => {
                         setNroMedPatologia = {(val) => {setFormData({ ...formData, 'nroMedSecuelaACV': val })}}
                     ></PatologiaMedicamentoComponent>
 
+                    {/* Otros medicamentos: tieneOtroMedicamento, nroMedOtro */}
+                    <PatologiaMedicamentoComponent 
+                        patologia='Otros medicamentos' 
+                        tienePatologia = {formData.tieneOtroMedicamento} 
+                        setTienePatologia = {(val) => {setFormData({ ...formData, 'tieneOtroMedicamento': val })}} 
+                        nroMedPatologia = {formData.nroMedOtro} 
+                        setNroMedPatologia = {(val) => {setFormData({ ...formData, 'nroMedOtro': val })}}
+                    ></PatologiaMedicamentoComponent>
+
                     {/* Audición reducida: tieneAudicionReducida */}
                     <PatologiaMedicamentoComponent 
                         patologia='Audición reducida' 
@@ -194,7 +205,9 @@ const PatologiaMedicamentoScreen = ({navigation, route}) => {
 
                     <Navigation 
                         onPressPrev={() => navigation.navigate('Examen', { data: formData })} 
-                        onPressNext={() => navigation.navigate('PatologiaMedicamento2', { data: formData })}>
+                        //onPressNext={() => navigation.navigate('PatologiaMedicamento2', { data: formData })}
+                        onPressNext={() => handleNextScreen(navigation, 'PatologiaMedicamento2', {data: formData})}
+                    >
                     </Navigation>
 
                 </View>

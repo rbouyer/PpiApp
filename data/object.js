@@ -17,7 +17,8 @@ export const initFormData = { emailUsuario: '', claveUsuario: '', idUsuario: 0, 
       tieneArtritis: null, nroMedArtritis: 0, tieneDiabetes: null, nroMedDiabetes: 0, tieneDisplidemia: null, nroMedDisplidemia: 0, tieneCardio: null, nroMedCardio: 0,
       tieneEPOC: null, nroMedEPOC: 0, tieneHipArterial: null, nroMedHipArterial: 0, tieneInUrinaria: null, nroMedInUrinaria: 0, tieneInfarto: null, nroMedInfarto: 0,
       tieneInsufCardiaca: null, nroMedInsufCardiaca: 0, tieneOsteoporosis: null, nroMedOsteoporosis: 0, tieneHepatico: null, nroMedHepatico: 0, tieneResInsulina: null, nroMedResInsulina: 0,
-      tieneSecuelaACV: null, nroMedSecuelaACV: 0, tieneAudicionReducida: null, tieneVisionReducida: null, tieneAlcohol: null, tieneTabaco: null,
+      tieneSecuelaACV: null, nroMedSecuelaACV: 0, tieneOtroMedicamento: null, nroMedOtro: 0,
+      tieneAudicionReducida: null, tieneVisionReducida: null, tieneAlcohol: null, tieneTabaco: null,
 
       /* Patologia y Medicamentos 2 */
       olvidaMedicamento: null, tomaMedicamentosEnHora: null, dejaDeTomarMedicamentoBien: null, dejaDeTomarMedicamentoMal: null, adherenteTratamiento: null,

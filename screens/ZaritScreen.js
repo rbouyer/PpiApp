@@ -9,10 +9,14 @@ import Navigation from './components/NavigationComponent';
 import dataDropDown from '../data/dropdown.json';
 import styles from './Styles';
 
+import {handleNextScreen} from '../helpers/GralHelper';
+
 const ZaritScreen = ({navigation, route}) => {
     const { data } = route.params;
 
     const [formData, setFormData] = useState(data);
+
+
  
     const handleInputChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
@@ -308,7 +312,8 @@ const ZaritScreen = ({navigation, route}) => {
 
                     <Navigation 
                         onPressPrev={() => navigation.navigate('CuidadorPrimario', { data: formData })} 
-                        onPressNext={() => navigation.navigate('EnviaData', { data: formData })}>
+                        //onPressNext={() => navigation.navigate('EnviaData', { data: formData })}>
+                        onPressNext={() => handleNextScreen(navigation, 'EnviaData', { data: formData })}>
                     </Navigation>
 
                 </View>
