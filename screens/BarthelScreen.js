@@ -23,7 +23,7 @@ const BarthelScreen = ({navigation, route}) => {
 
         res += !isNaN(formData.ptjeDependenciaComer)? formData.ptjeDependenciaComer: 0;
         res += !isNaN(formData.ptjeDependenciaLavarse)? formData.ptjeDependenciaLavarse: 0;
-        res += !isNaN(formData.ptjeDependenciaestirse)? formData.ptjeDependenciaestirse: 0;
+        res += !isNaN(formData.ptjeDependenciaestirse)? formData.ptjeDependenciaVestirse: 0;
         res += !isNaN(formData.ptjeDependenciaArreglarse)? formData.ptjeDependenciaArreglarse: 0;
         res += !isNaN(formData.ptjeDependenciaDeposicion)? formData.ptjeDependenciaDeposicion: 0;
         res += !isNaN(formData.ptjeDependenciaMiccion)? formData.ptjeDependenciaMiccion: 0;
@@ -33,6 +33,13 @@ const BarthelScreen = ({navigation, route}) => {
         res += !isNaN(formData.ptjeDependenciaMovilizarse)? formData.ptjeDependenciaMovilizarse: 0;
 
         return res;
+    }
+
+    const actualizarPtjeBarthel = () => {
+        var total = calcularPtje();
+        setFormData({ ...formData, totalBarthel: total });
+    
+        return total;
     }
 
     const obtenerClasificacion = () => {
@@ -153,7 +160,7 @@ const BarthelScreen = ({navigation, route}) => {
 
                     <View style={styles.inputRow}>
                         <Text style={styles.label}>Ptje.Barthel</Text>
-                        <Text style={styles.textResult}>{calcularPtje()}</Text>
+                        <Text style={styles.textResult}>{actualizarPtjeBarthel()}</Text>
                         <Text style={styles.label}>Condición Barthel</Text>
                         <Text style={styles.textResult}>{obtenerClasificacion()}</Text>
                     </View>

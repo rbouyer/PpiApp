@@ -59,6 +59,9 @@ export const initFormData = { emailUsuario: '', claveUsuario: '', idUsuario: 0, 
       /* Barthel */
       dependenciaComer: true, dependenciaLavarse: true, dependenciaVestirse: true, dependenciaArreglarse: true, dependenciaDeposicion: true, 
       dependenciaMiccion: true, dependenciaRetrete: true, dependenciaTrasladarse:true, dependenciaDeambular: true, dependenciaMovilizarse:true,
+      ptjeDependenciaComer: 0, ptjeDependenciaLavarse: 0, ptjeDependenciaVestirse: 0, ptjeDependenciaArreglarse: 0, 
+      ptjeDependenciaDeposicion: 0, ptjeDependenciaMiccion: 0, ptjeDependenciaRetrete: 0,
+      ptjeDependenciaTrasladarse: 0, ptjeDependenciaDeambular: 0, ptjeDependenciaMovilizarse: 0, totalBarthel: 0,
 
       /* Cuidador */
       tieneCuidador: null, nombreCuidador: '', fechaNacimientoCuidador: null, edadCuidador: 0, selSexoCuidador: '', selRelacionCuidador: '', selEstudioCuidador: '', selSaludCuidador: '',
@@ -86,6 +89,7 @@ export const initFormData = { emailUsuario: '', claveUsuario: '', idUsuario: 0, 
       selHacerMas: '', ptjeHacerMas: 0,
       selCuidadMejor: '', ptjeCuidarMejor: 0,
       selGlobalmente: '', ptjeGlobalmente: 0,
+      totalZarit: 0,
 
       lppc: null
 

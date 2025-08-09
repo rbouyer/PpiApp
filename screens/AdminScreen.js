@@ -81,7 +81,7 @@ const AdminScreen = ({navigation, route}) => {
             console.log('Cargar ficha');
             var ficha = await obtenerData(URL_API + 'api/ficha/id/' + visita.ficha_id);
             //console.log('Ficha: ' + JSON.stringify(ficha));
-            //console.log('Data: ' + JSON.stringify(ficha.data));
+            console.log('Data: ' + JSON.stringify(ficha.data));
 
             if(ficha != null) {
                 var idVisita = formData.idVisita, idUsuario = formData.idUsuario;

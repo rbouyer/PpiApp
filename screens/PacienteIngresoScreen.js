@@ -94,20 +94,12 @@ const PacienteIngresoScreen = ({navigation, route}) => {
 
         
         {/* Sexo */}
-        <View style={styles.inputRow}>
-
-          <Text style={styles.label}>Sexo</Text>
-
-          <Selector
-                        lista = {dataDropDown.sexo} 
-                        seleccion = {formData.sexoPaciente} 
-                        setSeleccion = {(value) => handleInputChange('sexoPaciente', value)} 
-          />
-
-          <Text style={styles.label}></Text>
-          <Text style={styles.label}></Text>
-
-        </View>
+        <SelectorSimple
+                      descripcion='Sexo'
+                      lista = {dataDropDown.sexo} 
+                      seleccion = {formData.sexoPaciente} 
+                      setSeleccion = {(value) => handleInputChange('sexoPaciente', value)} 
+        />
 
         {/* Peso */}
         <View style={styles.inputRow}>

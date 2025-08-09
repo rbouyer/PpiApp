@@ -27,7 +27,7 @@ const ZaritScreen = ({navigation, route}) => {
 
         res += !isNaN(formData.ptjeSolicitaAyuda)? +formData.ptjeSolicitaAyuda: 0;
         res += !isNaN(formData.ptjeTiempo)? +formData.ptjeTiempo: 0;
-        res += !isNaN(formData.selAgobiado)? +formData.selAgobiado: 0;
+        res += !isNaN(formData.selAgobiado)? +formData.ptjeAgobiado: 0;
         res += !isNaN(formData.ptjeVerguenza)? +formData.ptjeVerguenza: 0;
         res += !isNaN(formData.ptjeEnfadado)? +formData.ptjeEnfadado: 0;
         res += !isNaN(formData.ptjeAfecta)? +formData.ptjeAfecta: 0;
@@ -49,6 +49,13 @@ const ZaritScreen = ({navigation, route}) => {
         res += !isNaN(formData.ptjeGlobalmente)? +formData.ptjeGlobalmente: 0;
 
         return res;
+    }
+
+    const actualizarPtjeZarit = () => {
+        var total = calcularPtje();
+        setFormData({ ...formData, totalZarit: total });
+
+        return total;
     }
 
     const obtenerSobrecarga = () => {
@@ -232,7 +239,7 @@ const ZaritScreen = ({navigation, route}) => {
 
                         { /* 15 selIngresos, ptjeIngresos, */ }
                         <ZaritSelectorComponent 
-                        braden='15 - ¿Piensa que no tiene suficientes ingresos económicos para los gastos de cuidar a su familiar, además de susotros gastos?' 
+                        braden='15 - ¿Piensa que no tiene suficientes ingresos económicos para los gastos de cuidar a su familiar, además de sus otros gastos?' 
                         lista = {dataDropDown.zarit} 
                         seleccion = {formData.selIngresos} 
                         setSeleccion = {(valSel, valPtje) => {setFormData({ ...formData, 'selIngresos': valSel, 'ptjeIngresos': valPtje })}} 
@@ -304,7 +311,7 @@ const ZaritScreen = ({navigation, route}) => {
 
                     <View style={styles.inputRow}>
                         <Text style={styles.label}>Ptje.Zarit:</Text>
-                        <Text style={styles.textResult}>{calcularPtje()}</Text>
+                        <Text style={styles.textResult}>{actualizarPtjeZarit()}</Text>
                         <Text style={styles.label}>Escala Zarit:</Text>
                         <Text style={[styles.textResult, {flex: 2, width: "100%", textAlign: "left"}]}>{obtenerSobrecarga()}</Text>
                     </View>
