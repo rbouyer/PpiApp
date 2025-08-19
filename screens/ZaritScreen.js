@@ -27,7 +27,7 @@ const ZaritScreen = ({navigation, route}) => {
 
         res += !isNaN(formData.ptjeSolicitaAyuda)? +formData.ptjeSolicitaAyuda: 0;
         res += !isNaN(formData.ptjeTiempo)? +formData.ptjeTiempo: 0;
-        res += !isNaN(formData.selAgobiado)? +formData.ptjeAgobiado: 0;
+        res += !isNaN(formData.ptjeAgobiado)? +formData.ptjeAgobiado: 0;
         res += !isNaN(formData.ptjeVerguenza)? +formData.ptjeVerguenza: 0;
         res += !isNaN(formData.ptjeEnfadado)? +formData.ptjeEnfadado: 0;
         res += !isNaN(formData.ptjeAfecta)? +formData.ptjeAfecta: 0;
@@ -53,7 +53,7 @@ const ZaritScreen = ({navigation, route}) => {
 
     const actualizarPtjeZarit = () => {
         var total = calcularPtje();
-        setFormData({ ...formData, totalZarit: total });
+        //setFormData({ ...formData, totalZarit: total });
 
         return total;
     }

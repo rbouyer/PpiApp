@@ -23,7 +23,7 @@ const BarthelScreen = ({navigation, route}) => {
 
         res += !isNaN(formData.ptjeDependenciaComer)? formData.ptjeDependenciaComer: 0;
         res += !isNaN(formData.ptjeDependenciaLavarse)? formData.ptjeDependenciaLavarse: 0;
-        res += !isNaN(formData.ptjeDependenciaestirse)? formData.ptjeDependenciaVestirse: 0;
+        res += !isNaN(formData.ptjeDependenciaVestirse)? formData.ptjeDependenciaVestirse: 0;
         res += !isNaN(formData.ptjeDependenciaArreglarse)? formData.ptjeDependenciaArreglarse: 0;
         res += !isNaN(formData.ptjeDependenciaDeposicion)? formData.ptjeDependenciaDeposicion: 0;
         res += !isNaN(formData.ptjeDependenciaMiccion)? formData.ptjeDependenciaMiccion: 0;
@@ -37,7 +37,7 @@ const BarthelScreen = ({navigation, route}) => {
 
     const actualizarPtjeBarthel = () => {
         var total = calcularPtje();
-        setFormData({ ...formData, totalBarthel: total });
+        //setFormData({ ...formData, totalBarthel: total });
     
         return total;
     }
@@ -75,7 +75,7 @@ const BarthelScreen = ({navigation, route}) => {
 
                     {/* dependenciaComer: true, dependenciaLavarse: true, dependenciaVestirse: true, dependenciaArreglarse: true, dependenciaDeposicion: true, 
                         dependenciaMicción: true, dependenciaRetrete: true, dependenciaTrasladarse:true, dependenciaDeambular: true, dependenciaMovilizarse:true
-                        ptjeDependenciaComer: null, ptjeDependenciaLavarse: null, ptjeDependenciaestirse: null, ptjeDependenciaArreglarse: null, ptjeDependenciaDeposicion: null, 
+                        ptjeDependenciaComer: null, ptjeDependenciaLavarse: null, ptjeDependenciaVestirse: null, ptjeDependenciaArreglarse: null, ptjeDependenciaDeposicion: null, 
                         ptjeDependenciaMiccion: null, ptjeDependenciaRetrete: null, ptjeDependenciaTrasladarse:null, ptjeDependenciaDeambular: null, ptjeDependenciaMovilizarse:null
                     */}
                     <BarthelComponent 
