@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Platform } from 'react-native';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -17,6 +17,17 @@ const BarthelScreen = ({navigation, route}) => {
     const { data } = route.params;
 
     const [formData, setFormData] = useState(data);
+
+        // Al cambiar el estado de formData, se actualiza el total Barthel
+    useEffect(() => {
+        // This will run after formData updates
+        actualizarTotal();
+    }, [formData.ptjeDependenciaComer,formData.ptjeDependenciaLavarse,formData.ptjeDependenciaVestirse,formData.ptjeDependenciaArreglarse,formData.ptjeDependenciaDeposicion,formData.ptjeDependenciaMiccion,formData.ptjeDependenciaRetrete,formData.ptjeDependenciaTrasladarse,formData.ptjeDependenciaDeambular,formData.ptjeDependenciaMovilizarse]);
+
+    const actualizarTotal = () => {
+        var total = calcularPtje();
+        setFormData({ ...formData, totalBarthel: total });
+    }
 
     const calcularPtje = () => {
         var res = 0;
@@ -52,6 +63,8 @@ const BarthelScreen = ({navigation, route}) => {
             res = 'DEPENDENCIA SEVERA';
         else if(totPtje <= 55)
             res = 'DEPENDENCIA MODERADA';
+        else if(totPtje <= 95)
+            res = 'DEPENDENCIA LEVE';
         else
             res = 'INDEPENDENCIA';
 
@@ -166,10 +179,9 @@ const BarthelScreen = ({navigation, route}) => {
                     </View>
 
                     <Navigation 
-                        onPressPrev={() => navigation.navigate('ExamenFisico', { data: formData })} 
+                        onPressPrev={() => {navigation.navigate('ExamenFisico', { data: formData })}} 
                         //onPressNext={() => navigation.navigate('CuidadorPrimario', { data: formData })}
-                        onPressNext={() => handleNextScreen(navigation, 'CuidadorPrimario', {data: formData})}
-                    >
+                        onPressNext={() => {handleNextScreen(navigation, 'CuidadorPrimario', {data: formData})}}>
                     </Navigation>
 
                 </View>

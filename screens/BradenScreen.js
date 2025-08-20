@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import styles from './Styles';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -20,6 +20,19 @@ const BradenScreen = ({navigation, route}) => {
     const handleInputChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
     };
+
+    
+    // Al cambiar el estado de formData, se actualiza el total Braden
+    useEffect(() => {
+        // This will run after formData updates
+        actualizarTotal();
+    }, [formData.ptjePercepcion,formData.ptjeHumedad,formData.ptjeActividad,formData.ptjeMovilidad,formData.ptjeNutricion,formData.ptjeFuerza]);
+    
+
+    const actualizarTotal = () => {
+        var total = calcularPtje();
+        setFormData({ ...formData, totalBraden: total });
+    }
 
     const calcularPtje = () => {
         var res = 0;
@@ -128,9 +141,9 @@ const BradenScreen = ({navigation, route}) => {
                     </View>
 
                     <Navigation 
-                        onPressPrev={() => navigation.navigate('Alimento', { data: formData })} 
+                        onPressPrev={() => {navigation.navigate('Alimento', { data: formData })}} 
                         //onPressNext={() => navigation.navigate('Piel', { data: formData })}
-                        onPressNext={() => handleNextScreen(navigation, 'Piel', {data: formData})}
+                        onPressNext={() => {handleNextScreen(navigation, 'Piel', {data: formData})}}
                     >
                     </Navigation>
 

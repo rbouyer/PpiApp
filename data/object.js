@@ -37,7 +37,7 @@ export const initFormData = { emailUsuario: '', claveUsuario: '', idUsuario: 0, 
 
       /* Riesgo Braden */
       selPercepcion: '', ptjePercepcion: null, selHumedad: '', ptjeHumedad: null, selActividad: '', ptjeActividad: null, selMovilidad: '', ptjeMovilidad: null,
-      selNutricion: '', ptjeNutricion: null, selFuerza: '', ptjeFuerza: null,
+      selNutricion: '', ptjeNutricion: null, selFuerza: '', ptjeFuerza: null, totalBraden: 0,
 
       /* Mantención Piel */
       usoCrema: null, usoLinovera: null, usoColonia: null, usoHipoglos: null, usoOtraSolucion: null, usoBanoDiario: null, usoNada: null,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Platform } from 'react-native';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -17,10 +17,24 @@ const ZaritScreen = ({navigation, route}) => {
     const [formData, setFormData] = useState(data);
 
 
+    // Al cambiar el estado de formData, se actualiza el total Zarit
+    useEffect(() => {
+        // This will run after formData updates
+        actualizarTotal();
+    }, [formData.ptjeSolicitaAyuda,formData.ptjeTiempo,formData.ptjeAgobiado,formData.ptjeVerguenza,formData.ptjeEnfadado,formData.ptjeAfecta,formData.ptjeMiedo,
+        formData.ptjeDepende,formData.ptjeEmpeorado,formData.ptjeTenso,formData.ptjeIntimidad,formData.ptjeSocial,formData.ptjeIncomodo,
+        formData.ptjeCuidar,formData.ptjeIngresos,formData.ptjeCapaz,formData.ptjeControl,formData.ptjeOtra,formData.ptjeIndeciso,
+        formData.ptjeHacerMas,formData.ptjeCuidarMejor,formData.ptjeGlobalmente]);
+
  
     const handleInputChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
     };
+
+    const actualizarTotal = () => {
+        var total = calcularPtje();
+        setFormData({ ...formData, totalZarit: total });
+    }
 
     const calcularPtje = () => {
         var res = 0;
@@ -318,9 +332,9 @@ const ZaritScreen = ({navigation, route}) => {
 
 
                     <Navigation 
-                        onPressPrev={() => navigation.navigate('CuidadorPrimario', { data: formData })} 
+                        onPressPrev={() => {actualizarTotal();navigation.navigate('CuidadorPrimario', { data: formData })}} 
                         //onPressNext={() => navigation.navigate('EnviaData', { data: formData })}>
-                        onPressNext={() => handleNextScreen(navigation, 'EnviaData', { data: formData })}>
+                        onPressNext={() => {actualizarTotal(); handleNextScreen(navigation, 'EnviaData', { data: formData })}}>
                     </Navigation>
 
                 </View>

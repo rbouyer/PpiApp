@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Platform } from 'react-native';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -18,6 +18,18 @@ const PatologiaMedicamento2Screen = ({navigation, route}) => {
     const esAdherenteTratamiento = () => {
         return !formData.olvidaMedicamento && formData.tomaMedicamentosEnHora && !formData.dejaDeTomarMedicamentoBien && !formData.dejaDeTomarMedicamentoMal;
     }
+
+    const actualizarAdherente = () => {
+        var res = esAdherenteTratamiento();
+        setFormData({ ...formData, adherenteTratamiento: res });    
+    }
+
+    // Al cambiar el estado de formData, se actualiza la adherencia al tratamiento
+    useEffect(() => {
+        // This will run after formData updates
+        actualizarAdherente();
+    }, [formData.olvidaMedicamento,formData.tomaMedicamentosEnHora,formData.dejaDeTomarMedicamentoBien,formData.dejaDeTomarMedicamentoMal]);
+    
 
     return (
         <View>
@@ -78,9 +90,9 @@ const PatologiaMedicamento2Screen = ({navigation, route}) => {
 
 
                     <Navigation 
-                        onPressPrev={() => navigation.navigate('PatologiaMedicamento', { data: formData })} 
+                        onPressPrev={() => {navigation.navigate('PatologiaMedicamento', { data: formData })}} 
                         //onPressNext={() => navigation.navigate('MovilidadContencion', { data: formData })}
-                        onPressNext={() => handleNextScreen(navigation, 'MovilidadContencion', {data: formData})}
+                        onPressNext={() => {handleNextScreen(navigation, 'MovilidadContencion', {data: formData})}}
                     >
                     </Navigation>
 
